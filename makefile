@@ -54,3 +54,7 @@ clean:
 other:
 	$(RM) $(HOME)/$(DIR)/mutt/profiles/all
 	$(LN) $(HOME)/$(DIR)/secure/mutt-profiles $(HOME)/$(DIR)/mutt/profiles/all
+update:
+	git submodule update --recursive
+init:
+	git submodule update --recursive --init
