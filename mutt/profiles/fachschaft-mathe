@@ -1,0 +1,7 @@
+# mutt settings for fachschaft mathe account.
+# vim: ft=muttrc foldmethod=marker
+
+set smtp_url=$my_fs_smtp_url
+set from=$my_fs_from
+#color status $my_fs_fg $my_fs_bg
+set status_format="${my_default_status_format} ${my_fs_status_string}"

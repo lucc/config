@@ -1,0 +1,17 @@
+# vim: ft=muttrc
+
+# header display in the pager
+color hdrdefault cyan default
+color header red default ^Subject:
+color header red default ^From:
+
+# quoted messages
+color quoted  color51 default
+color quoted0 color27 default
+color quoted1 color33 default
+color quoted2 color39 default
+color quoted3 color45 default
+
+color body color57 default "^.*(wrote|schrieb).*:"
+color body color57 default "-{2,} ?((Original|Forwarded) [Mm]essage|(Original-|Ursprüngliche )Nachricht) ?-{2,}"
+

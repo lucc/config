@@ -1,0 +1,34 @@
+# ~/.xinitrc file by luc
+# vim: filetype=sh
+
+# we build up a variable to be exec'ed at the end of the script
+CMD=
+
+# first start some important background programs
+#(sleep 1 && xmodmap ~/.Xmodmap) &
+#xmodmap ~/.Xmodmap
+
+# how will i handle ssh stuff?
+
+# TODO
+
+# last we start the wm/de
+
+## this does not seem to work
+#case "${1:-awesome}" in
+#  awesome) CMD=awesome;;
+#  gnome)   CMD=gnome-session;;
+#  lxde)    CMD=lxsession;;
+#  openbox) CMD=openbox;;
+#  xfce)    CMD=xfce4-session;;
+#esac
+
+case `uname` in
+  Linux)
+    CMD=awesome
+    exec $CMD
+    ;;
+  Darwin)
+    xterm
+    ;;
+esac

@@ -1,0 +1,334 @@
+##########################################################################{{{1
+# file:		aliases
+# author:	luc
+# vim:          spelllang=en filetype=zsh foldmethod=marker
+# description:  This file contains aliases and functions which hopefully work
+#               not only in bash and zsh (I did not test anything else by
+#               now).
+# credits:	many thanks to the people from
+#		http://crunchbanglinux.org/forums/topic/1093/post-your-bashrc/
+##############################################################################
+
+# alias (all systems) {{{1
+##############################################################################
+
+# general aliases
+alias cp='cp -ip'
+alias grep='grep --color=auto'
+#alias l='ls -l --time-style=full-iso'
+alias l='ls -l --time-style=+%F\ %H:%M:%S'
+alias lr='tree -Chuapl' # replacement for ls -lR
+alias ls='ls --color=auto'
+alias la='l -A'
+alias mv='mv -i'
+alias scp='scp -p'
+alias mkdir='mkdir -p'
+alias man='transparent-gvim.sh -m'
+alias info='transparent-gvim.sh -i'
+
+# searching the internet
+alias c:='internet_search.sh -f'
+alias g:='internet_search.sh -g'
+alias l:='internet_search.sh -l'
+alias w:='internet_search.sh -w'
+alias y:='internet_search.sh -y'
+alias s='internet_search.sh -d'
+alias q='internet_search.sh -d'
+alias ip='curl --silent http://luc42.lima-city.de/ip.php'
+
+# connecting to remote servers
+alias lima='ftp ftp.lima-city.de'
+
+# backup and statistics
+alias b='battery.sh -v'
+alias t='statistics.sh -td ~'
+alias tbz2='tar -cjv --exclude .DS_Store'
+alias tgz='tar -czv --exclude .DS_Store'
+alias up='date +"%F `uptime`"'
+alias bk='backup.make fullbk'
+alias nload='nload -i 6144 -o 1024'
+
+# other
+alias ctw-muc='ctw GMXX0087'
+alias garbage='while ! read -t 1; do head -c 1000000 /dev/random | hexdump -C | grep --color=auto "42.*42.*42"; done; unset REPLY'
+alias gtype='gtypist ktde.typ'
+alias tex=latexmk
+#alias tmp='cd ~/tmp'
+alias maillog='cat ~/log/fetchmail.log | tail'
+alias maillog='syslog -k Sender fetchmail | tail'
+alias :q='echo You are not in vi. Use \"exit\", \"logout\" or CTRL-D.; false'
+alias D='date +%F'
+
+# old
+#alias ba='clear && cd ~/files/uni/mathe/ba/ && ls -lT'
+#alias bkba='make -C ~/files/uni/mathe/ba backup'
+#alias run='./`ls -t | head -n 1`'
+#alias vide='vim -S'
+#alias :q='read -s -k "?Quit the shell? [y]|n "; [ "$REPLY" = y -o "$REPLY" = Y -o "$REPLY" = " " -o -z "$REPLY" ] && exit || echo; unset REPLY'
+#alias :q='read -s -n1 -p "Do you realy want to quit the shell? [y]|n "; if [ "$REPLY" != n ] && [ "$REPLY" != N ]; then exit; else echo; fi'
+#alias :q='read -s -n1 -p "Quit the shell? [y]|n "; [ "$REPLY" = y -o "$REPLY" = Y -o "$REPLY" = " " -o -z "$REPLY" ] && exit || echo; unset REPLY'
+
+# alias (system specific) {{{1
+##############################################################################
+
+if [ `uname` = "Darwin" ] ; then # (Mac OS X, 10.6)
+  alias dl='cd $HOME/Downloads && wget'
+  #play go
+  alias igo='(wine c:/Program\ Files/igowin/igowin.exe &) >/dev/null 2>&1'
+  alias l='ls -lT'
+  alias ls='ls -G'
+  alias pstree='pstree -g3'
+  alias pst='pstree `ps -o ppid= $$` `pgrep tmux`'
+  alias psu='pstree -u $USER'
+  alias timemachine=/System/Library/CoreServices/backupd.bundle/Contents/Resources/backupd-helper
+  alias f=mdfind
+  alias o=open
+  alias app='open -a'
+  alias truecrypt=/Applications/TrueCrypt.app/Contents/MacOS/TrueCrypt
+  #alias passon="defaults write com.apple.screensaver askForPassword 1; defaults write com.apple.screensaver askForPasswordDelay 0"
+  #alias passoff="defaults write com.apple.screensaver askForPassword 0"
+  ff () { mdfind "$@" | head; }
+  brewi () {
+    echo "$@" >> ~/log/brew-installed.txt
+    brew install "$@"
+    rehash
+  }
+elif [ `uname` = Linux ]; then
+  alias pstree='pstree -n'
+fi
+
+# alias (shell specific) {{{1
+##############################################################################
+
+if [ "$BASH" != "" ]; then
+  ## We are running bash
+  alias ..='cd ..'
+  alias hgrep='history | grep'
+  alias histhead='history | awk '\''{a[$2]++}END{for(i in a){print a[i]" "i}}'\'' | sort -rn | head'
+elif [ "$ZSH_NAME" = zsh ]; then
+  ## We are running zsh
+  alias hgrep='history 1 -1 | grep'
+  alias histhead='history 1 -1 | awk '\''{a[$2]++}END{for(i in a){print a[i]" "i}}'\'' | sort -rn | head'
+  alias -s com=urlopen
+  alias -s org=urlopen
+  alias -s net=urlopen
+  alias -s de=urlopen
+  if [ `uname` = Darwin ]; then
+    alias -s jpg=open
+    alias -s pdf=open
+    alias umall='for v in ~v/*~/Volumes/System(N); diskutil unmount $v'
+    urlopen () { open "http://$*"; }
+    # directory hash table
+    ######################
+    hash -d i=~/Pictures
+    hash -d m=~/Music
+    hash -d u=~/uni
+    hash -d v=/Volumes
+  fi
+fi
+
+#  functions (all systems) {{{1
+##############################################################################
+
+conf () {
+  # configure different rc files and source changes
+  local SOURCE=.
+  local SARG=
+  local FILE=
+  local EDITOR=${EDITOR:-${VISUAL:-vi}}
+  local REHASH=true
+  local DOTDOR=~/.config/shell
+  if [ "$ZSH_NAME" = zsh ]; then REHASH=rehash; fi
+  case "$1" in
+    a|alias*)       FILE=$DOTDOR/aliases;;
+    b|bash)         FILE=$DOTDOR/bashrc;;
+    e|env)          FILE=$DOTDOR/envrc;;
+    g|gvim)         FILE=.gvimrc       SOURCE=true;;
+    i|input)        FILE=.inputrc      SOURCE=bind   SARG=-f;;
+    p|private)      FILE=$DOTDOR/private;;
+    pr|pro|profile) FILE=$DOTDOR/profile;;
+    t|tmux)         FILE=.tmux.conf    SOURCE=tmux   SARG=source-file;;
+    v|vi|vim)       FILE=.vimrc        SOURCE=true;;
+    vp|vimpager)    FILE=.vimpagerrc;;
+    z|zsh)          FILE=$DOTDOR/zshrc;;
+    ze|zenv|zshenv) FILE=$DOTDOR/zshenv;;
+    *)              echo Give an arguemnt. 1>&2; return 2;;
+  esac
+#set editor = "vim --remote-tab-wait-silent '+call LucRemoteEditor()|$'"
+  $EDITOR $HOME/$FILE
+  $SOURCE $SARG $HOME/$FILE
+  $REHASH
+}
+
+if [ -n "$DISPLAY" ]; then
+vi () {
+  if [ $# -eq 0 ]; then
+    if [ "`vim --serverlist`" = "" ]; then
+      vim -g
+    else
+      vim -g --remote-send '<C-\><C-N>:call foreground()<CR>'
+    fi
+  else
+    vim -g --remote-silent "$@"
+  fi
+}
+fi
+
+selff() {
+  local red= #"\033\[31m"
+  local plain= #"\033\[m"
+  clear
+  date +"%F %H:%M:%S"
+  echo ""
+  echo "${red}Machine${plain}"
+  echo "Host: `hostname`"
+  echo "Arch: `machine`"
+  echo ""
+  echo "${red}System${plain}"
+  echo "Kern: `uname -s`"
+  echo "Vers: `uname -r`"
+  echo ""
+  echo "${red}Shell${plain}"
+  echo "Shell: `ps -o command= -p $$`"
+  printf "Running: %02d:%02d:%02d\n" $((SECONDS/3600%24)) $((SECONDS/60%60)) $((SECONDS%60))
+  echo "SHLVL: $SHLVL"
+  echo ""
+  echo "${red}Processes${plain}"
+  pstree `ps -o ppid= $$`|tail +2 | grep --color=auto -C 999 $$ | grep -v pstree
+  w | tail +3
+}
+
+self () {
+  date +"%F %H:%M:%S `hostname` is running `uname -sr`"
+  #echo;
+  w
+  #echo;
+  echo -n "`ps -o command= -p $$`: running for "
+  if [ $SECONDS -gt $((24*3600)) ]; then
+    echo -n "$(($SECONDS/3600/24)) days and "
+  fi
+  printf "%02d:%02d:%02d (SHLVL=$SHLVL)\n" $((SECONDS/3600%24)) $((SECONDS/60%60)) $((SECONDS%60))
+  #echo
+  echo "Jobs in backround:"
+  if [ `jobs|wc -l` -ne 0 ]; then jobs; else echo "None"; fi
+}
+
+print_ifi() {
+  if [ $# -eq 0 ] || [ "$1" = -h ]; then
+    echo "usage: print_ifi file [lp-options]" >&2
+    return 1
+  fi
+  if [ -f "$1" ]; then
+    local FILE="$1"
+    shift
+    ssh ifi "lp -o sides=two-sided-long-edge ${1+"$@"} -- -" < "$FILE"
+  else
+    echo "Error: $1 is not a valid file." 1>&2
+    return 1
+  fi
+}
+
+#  functions (shell specific) {{{1
+##############################################################################
+
+if [ "$BASH" != "" ]; then
+
+  comp () { #compare the speed of two ($1, $2) commands (loop $3 times)
+    #if [ $# -ne 3 ]; then return 1; fi
+    type $1 >/dev/null 2>&1 || return 2
+    type $2 >/dev/null 2>&1 || return 3
+    printf 1
+    time (for ((i=0; i<${3:-10}; i++)) ; do $1 ; done >/dev/null 2>&1)
+    printf 2
+    time (for ((i=0; i<${3:-10}; i++)) ; do $2 ; done >/dev/null 2>&1)
+  }
+
+  fnd () { find . ${1:+-name "${@}"}; }
+
+  fndr () { find . -name "${@:?Give an argument.}" -delete; }
+
+  h () {
+    for ARG; do
+      case `type -t "$ARG"` in 
+        alias)    alias "$ARG";;
+        builtin)  help $ARG;;
+        function) type -a $ARG;;
+        keyword)  help "$ARG" || type -a "$ARG";;
+        file)
+          man "$ARG" || info "$ARG"
+          if [ $? -ne 0 ]; then
+            FILE=`which "$ARG"`
+            case `file --mime --dereference --brief "$FILE"` in
+              text/*|application/x-sh)
+                if [ 50 -gt `wc -l <"$FILE"` ]; then cat "$FILE"
+                else echo "$FILE is quite a long text file. I will not cat it."; fi
+                ;;
+              application/*)
+                echo "$FILE is a compiled executable or unsupported format."
+                echo "It does not have a man page installed. Try '$FILE --help' or '-h'."
+                ;;
+            esac
+          fi
+          ;;
+        *) echo "Not found: $ARG";;
+      esac
+    done
+  }
+
+elif [ "$ZSH_NAME" = zsh ]; then
+
+  help () {
+    echo "Visiting online help at http://zsh.sourceforge.net/."
+    sleep 2
+    lynx http://zsh.sourceforge.net/Intro/intro_toc.html
+  }
+
+  fnd () { find . ${=1:+-name "${@}"}; }
+
+  fndr () { find . -name ${=@:?Give an argument.} -delete; }
+
+  h () {
+    whence -w $@ | while read line; do
+      case ${line##*: } in
+        alias) alias ${line%:*};;
+        builtin|function|keyword)
+          whence -afv ${line%:*};;
+        command)
+          man ${line%:*} || info ${line%:*}
+          if [ $? -ne 0 ]; then
+            FILE=`which ${line%:*}`
+            case `file --mime --dereference --brief "$FILE"` in
+              text/*|application/x-sh)
+                if [ 50 -gt `wc -l <"$FILE"` ]; then cat "$FILE"
+                else echo "$FILE is quite a long text file. I will not cat it."; fi
+                ;;
+              application/*)
+                echo "$FILE is a compiled executable or unsupported format."
+                echo "It does not have a man page installed. Try '${line%:*} --help' or '-h'."
+                ;;
+            esac
+          fi
+          ;;
+        none) echo "Not found: ${line%:*}";;
+      esac
+    done
+  }
+
+  comp () {
+    local oldshwordsplit=
+    if setopt | grep -q '^shwordsplit$'; then
+      oldshwordsplit=shwordsplit 
+    else
+      oldshwordsplit=noshwordsplit 
+    fi
+    setopt shwordsplit
+    type ${1%% *} > /dev/null 2>&1 || return 2
+    type ${2%% *} > /dev/null 2>&1 || return 3
+    printf 1
+    time ( for ((i=0; i<${3:-10}; i++)); do $1; done > /dev/null 2>&1 )
+    printf 2
+    time ( for ((i=0; i<${3:-10}; i++)); do $2; done > /dev/null 2>&1 )
+    setopt $oldshwordsplit
+  }
+
+fi

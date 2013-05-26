@@ -1,0 +1,7 @@
+# mutt settings for gmail account.
+# vim: ft=muttrc foldmethod=marker
+
+set smtp_url=$my_gmail_forums_smtp_url
+set from=$my_gmail_forums_from
+#color status $my_gmail_forums_fg $my_gmail_forums_bg
+set status_format="${my_default_status_format} ${my_gmail_forums_status_string}"

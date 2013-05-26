@@ -1,0 +1,93 @@
+##############################################################################
+# file:		envrc
+# author:	luc
+# vim:          spelllang=en filetype=sh
+# description:	This file is meant to set environment variables which are
+#		needed for all shells. Shell specific variables should be set
+#		in the appropriate file (like ~/.bashrc or ~/.zshrc). 
+# credits:	many thanks to the people from
+#		http://crunchbanglinux.org/forums/topic/1093/post-your-bashrc/
+#		http://bodhizazen.net/Tutorials/envrc
+##############################################################################
+
+##############################################################################
+# PATH and INFOPATH
+##############################################################################
+if [ "$ZSH_NAME" = zsh ]; then setopt SH_WORD_SPLIT; fi
+set_var_from_file () {
+  local var=$1 file=$2 item=
+  eval local tmp='$'$var
+  cat $file | while read line; do
+    item=`eval echo $line`
+    if [ -d $item ]; then tmp=$item:$tmp; fi
+  done
+  tmp=`printf %s $tmp | awk -v RS=: -v ORS=: '!path[$0]{path[$0]=1;print}'`
+  eval export $var=${tmp%:}
+}
+for file in ~/.config/env/*; do
+  set_var_from_file ${file##*/} $file
+done
+unset -f set_var_from_file
+
+if [ "$ZSH_NAME" = zsh ]; then unsetopt SH_WORD_SPLIT; fi
+
+##############################################################################
+# all systems
+##############################################################################
+# pager stuff
+PAGER=`command which vimpager most | head -1`
+if [ -n $PAGER ]; then
+  export PAGER
+else
+  unset PAGER
+  # default pager program should be "less"
+  # FIXME this is bash syntax. zsh and sh seem to accept it as well.
+  LESS_TERMCAP_mb=$'\033[01;31m'      # begin blinking
+  LESS_TERMCAP_md=$'\033[01;31m'      # begin bold
+  LESS_TERMCAP_me=$'\033[0m'          # end mode
+  LESS_TERMCAP_se=$'\033[0m'          # end standout-mode
+  LESS_TERMCAP_so=$'\033[01;44m'      # begin standout-mode - info box
+  LESS_TERMCAP_ue=$'\033[0m'          # end underline
+  LESS_TERMCAP_us=$'\033[01;33m'      # begin underline
+  export LESS_TERMCAP_{mb,md,me,se,so,ue,us}
+  LESS=
+  LESS="$LESS --ignore-case"
+  LESS="$LESS --LINE-NUMBERS"
+  LESS="$LESS --hilite-unread"
+  LESS="$LESS --window=-4"
+  LESS="$LESS --hilite-search"
+  LESS="$LESS --LONG-PROMPT"
+  LESS="$LESS --no-init"
+  LESS="$LESS --quit-if-one-screen" 
+  LESS="$LESS --RAW-CONTROL-CHARS"
+  LESS="$LESS --prompt=%t?f%f"
+  # FIXME: What is this for?
+  LESS="$LESS \\"
+  export LESS
+fi
+if [ -z $DISPLAY ] && [ "$SSH_CLIENT" ]; then
+  export DISPLAY=`echo $SSH_CLIENT | cut -f1 -d\ `:0.0
+fi
+
+export EDITOR=vi
+export HISTSIZE=2000
+export PYTHONSTARTUP=~/.pystartup
+
+##############################################################################
+# systems specific
+##############################################################################
+case `uname` in
+  LINUX|Linux|linux) ;;
+  Darwin) # MacOS X
+    # do not work with ._* files
+    COPY_EXTENDED_ATTRIBUTES_DISABLE=true
+    BROWSER=browser # script installed with brew (uses "open")
+    HTMLPAGER="elinks --dump"
+    export LANG=en_US.UTF-8
+    export COPY_EXTENDED_ATTRIBUTES_DISABLE BROWSER HTMLPAGER
+    ;;
+  OpenBSD)
+    PKG_PATH=ftp://ftp.spline.de/pub/OpenBSD/`uname -r`/packages/`machine -a`/
+    export PKG_PATH
+    ;;
+esac

@@ -1,0 +1,21 @@
+"1.0rc1
+
+loadplugins '\.(js|penta)$'
+group user
+set! browser.tabs.closeWindowWithLastTab=false
+set showtabline=never
+
+if navigator.platform == "MacIntel" 
+  set editor='/usr/local/bin/gvim -f +<line> +"sil! call cursor(0, <column>)" <file>'
+else
+  set editor='gvim -f +<line> +"sil! call cursor(0, <column>)" <file>'
+endif
+
+set defsearch=d
+
+echoerr "hans"
+
+map ! :!
+map B :bmarks! 
+
+" vim: ft=pentadactyl syntax=vim

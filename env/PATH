@@ -1,0 +1,13 @@
+/usr/local/share/python3
+/usr/texbin
+/sbin
+/bin
+/usr/bin
+/usr/sbin
+/usr/local/bin
+/usr/local/sbin
+/opt/X11/bin
+/usr/X11/bin
+/opt/local/bin
+/opt/local/sbin
+$HOME/src/shell

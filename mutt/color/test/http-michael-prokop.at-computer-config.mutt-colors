@@ -1,0 +1,176 @@
+# vim: ft=muttrc
+#--------------------+
+# Farben/Darstellung |
+#--------------------+
+#
+# Syntax:  color objekt vordergrund hintergrund [regexp]
+#
+# --> Folgende Werte sind moeglich:
+#
+#  black (schwarz)
+#  blue (blau)
+#  cyan (cyan)
+#  green (gruen)
+#  magenta (violett)
+#  red (rot)
+#  white (weiss)
+#  yellow (gelb)
+#
+# --> default ist die Standardfarbe und beim Vordergrund kann
+#     noch bright vorangstellt werden...  z.B. brightblue
+
+# Header-Farbe bei Subject:
+color header yellow black Subject:
+
+# alle anderen Header:
+color header brightcyan black .
+
+# Body-Farbe bei Text mit @
+# color body brightyellow black [_a-z\.\$A-Z0-9-]+@[a-zA-Z0-9\./\-]+
+
+# URLs rot darstellen, Hintergrund bleibt unveraendert
+# color body brightred  default "(http|ftp|news|telnet|finger)://[^ ]*"
+color body yellow black (http|ftp|news|telnet|finger)://[_a-zA-Z0-9\./~\-]+
+
+# Mailto-Links rot, Hintergrund gelb
+color body red cyan "mailto:[-a-z_0-9.]+@[-a-z_0-9.]+"
+
+# E-Mail Adressen in hellrot
+color body brightred default "[-a-z_0-9.%$]+@[-a-z_0-9.]+\\.[-a-z][-a-z]+"
+
+
+# Mails aus einer Mailingliste in magenta
+# color index magenta default mailinglistenname
+
+uncolor index *                # unset all color index entries
+color index blue default ~F    # Flagged
+color index red default ~N     # New
+color index magenta default ~T # Tagged
+color index yellow default ~D  # Deleted
+color index red default ~O
+
+# Signature-Farbe
+color signature brightblue black
+
+# Attachment-Farbe
+color attachment yellow black
+
+# Baumansicht-Farbe
+color tree red default
+
+# Anzeige der aktiven Stelle (markierter Text)
+color indicator black cyan
+
+# Status-Farbe
+color status brightyellow black
+
+#
+color tilde blue black
+
+#
+color normal default default
+
+#  Colorize smileys:  :-)  ;-)  :-/  :-(
+color body brightyellow black "[*][Gg]*[*]"
+color body brightyellow black "<[Bb][Gg]>"
+color body brightyellow black "[;:]-[)/(|]"
+color body brightyellow black "[*]?((N)?ACK|CU|LOL|SCNR|BRB|BTW|CWYL|FWIW|vbg|GD&R|HTH|HTHBE|IMHO|IMNSHO|IRL|RTFM|ROTFL|ROFL|YMMV)[*]?"
+color body brightyellow black "[ ][*][^*]*[*][ ]?"
+color body brightyellow black "[ ]?[*][^*]*[*][ ]"
+
+# colorize my keywords :-)
+color body red default "MUTT|mutt|Vim|VIM|vim|SLRN|slrn|OpenSSH|SSH|ssh|iptables|IPTABLES|ipchains|IPCHAINS"
+
+# color body brightyellow default " [;=:8]-*[])>]"       # :-) etc...
+# color body brightblue default " [;=:8]-*[(<|/\]"     # :-( etc...
+color body brightyellow black "^Good signature"
+color body brightwhite red "^Bad signature from.*"
+color body brightgreen default "^(gpg: )?Good signature"
+color body brightred default "^(gpg: )?Bad signature"
+color body red default "^(gpg: )?warning:"
+
+# Antworten auf meine Nachrichten sind gelb
+color index brightyellow default '~h ^In-Reply-To:.*@michael-prokop\.at'
+
+# Nachrichten von mir sind braun
+#color index yellow default '~h ^From:.*michael-prokop\.at'
+
+# gelesene Nachrichten sind dunkelgrau (hellschwarz *g*)
+#color index brightblack default '~R'
+color index default default '~R'
+
+# Mail from people in my company (but not listed in the scores file)
+# should appear with a red background. ;-)
+color index red default '(~f @michael-prokop\.at) | (~f prokop@sbox\.tugraz\.at) | (~f prokop@iwb\.tu-graz\ac\.at)'
+
+# Put high-scoring messages in bold
+color index brightwhite default '~n 4-'
+
+# I'm interested in messages containing for examples the word 'iptables' in the body,
+# especially if they don't come from a mailing list (those are the hard ones to spot).  
+# So colour them green.  I love mutt. ;-)
+
+color index brightgreen default '!(~B netfilter) ~b iptables'
+color index brightgreen default '!(~B netfilter) ~b ipchains'
+color index brightred default '~b vim'
+color index blue default '~b mutt'
+color index brightcyan default '~b slrn'
+color index yellow default '~b OpenSSH'
+
+# other examples:
+
+# color header cyan default "Delivemagenta-To: "
+# color header brightcyan default "delivemagenta-to: vvirginie@free.fr"
+#color header red default "date: "
+#color header blue default "from: "
+# color header green default" sender: "
+# color header magenta default "organi[sz]ation: "
+# color header magenta default "x-editor: "
+# color header magenta default "x-mailer: "
+# color header magenta default "user-agent: "
+# colorheader magenta default "message-id:"
+# colorheader magenta default "in-reply-to: "
+# colorheader magenta default "references: "
+# colorheader brightgreen default "followup-to: "
+# colorheader brightgreen default "mail-followup-to: "
+# colorheader white default "reply-to: "
+# colorheader brightcyan default "priority: high"
+# colorheader brightcyan default "priority: urgent"
+color header yellow default "subject: "
+# colorheader green default "^bcc: [^ ]"
+# colorheader green default "^cc: [^ ]"
+#colorheader green default "^to: [^ ]"
+# colorheader white default "Received: "
+# colorheader white default "Return-Path: "
+# colorheader cyan default "X-Operating-System: "
+
+
+# Eigenschaften bei Benuetzung von einem "mono terminal"
+#
+# (none, bold, underline, reverse, standout)
+# object attribute
+#
+# mono header underline ^(From|Subject):
+mono normal none# normal text
+mono indicator reverse# actual message
+mono tree none# thread arrows
+mono status reverse# status line
+mono error bold# errors
+mono message none# info messages
+mono signature none# signature
+mono attachment underline# MIME attachments
+mono search reverse# search matches
+mono tilde none# ~ at bottom of msg
+mono markers bold# + at beginning of wrapped lines
+mono hdrdefault none# default header lines
+mono bold bold# hiliting bold patterns in body
+mono underline underline# hiliting underlined patterns in body
+
+#    object attributeRegExp
+
+mono header bold "^(from|subject):"
+#mono body underline "((ftp|http|https)://|news:)[^ >)\"\t]+"
+mono body underline "((ftp|http|https)://|(file|news):|www\\.)[-a-z0-9_.:]*[a-z0-9](/[^][{} \t\n\r\"<>()]*[^][{} \t\n\r\"<>().,:!])?/?"
+mono body underline "[-a-z_0-9.]+@[-a-z_0-9.]+"
+mono body bold "(^| )\\*[-a-z0-9äöüß*]+\\*[,.?]?[ \n]"
+mono body underline "(^| )_[-a-z0-9äöüß_]+_[,.?]?[ \n]"

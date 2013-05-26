@@ -1,0 +1,106 @@
+# ~/.muttrc file by luc
+# vim: foldmethod=marker
+
+# user defined variables {{{1
+#set my_date = `date +%F`
+#set my_mail_root = ~/mail
+#set my_mail_root_contents = "`echo $(ls ~/mail)`"
+
+# basic setup {{{1
+
+# maildir options
+set mbox_type = Maildir
+set folder    = ~/mail
+set spoolfile = +inbox
+set mbox      = +old
+#set record    = +sent
+set record    = +inbox
+set postponed = +draft
+#set mask='!^\.[^.]'
+#set force_name
+
+# sourcing private definitions
+source ~/.mutt/private
+
+# mailboxes which might contain new mail
+mailboxes +inbox
+mailboxes +lists/grillchill
+mailboxes +lists/tanzhans
+mailboxes +lists/sammersee
+mailboxes +uni/mathe
+mailboxes +uni/lmu
+mailboxes +landheim
+mailboxes +gmx
+mailboxes /var/mail/lucas
+
+# sorting email
+reply-hook ".*" set record="^"
+set reply_regexp = "^((re([\[0-9\]+])*|aw):[ \t]*)+"
+
+#save-hook . +inbox
+
+# changing display for some special folders
+folder-hook . "source ~/.mutt/folder-hooks/default"
+folder-hook +\(lists/\)?grillchill "source ~/.mutt/folder-hooks/grillchill"
+folder-hook +\(lists/\)?sammersee  "source ~/.mutt/folder-hooks/sammersee"
+folder-hook +lists/.*              "source ~/.mutt/folder-hooks/lists"
+
+# other stuff {{{1
+set edit_headers
+set use_envelope_from
+#folder-hook . "exec collapse-all"
+set send_charset = us-ascii:utf-8
+set certificate_file = ~/.mutt/certificates
+set editor = "transparent-gvim.sh -t '+call LucRemoteEditor(1)'"
+set history_file = ~/.mutt/history
+set save_history = 100
+set history = 100
+set beep_new
+set include = yes
+
+
+
+# alias configuration {{{1
+set alias_file    = ~/.mutt/aliases
+set query_command = "apple-addressbook-for-mutt.sh '%s'"
+source $alias_file
+
+# appearance {{{1
+
+# colors {{{2
+source ~/.mutt/color/plain
+macro index,pager <esc><space> ":source ~/.mutt/color/colorful<return>"
+macro index,pager <esc><tab> ":source ~/.mutt/color/plain<return>"
+
+
+# other {{{2
+# format for displaying {{{3
+set index_format  = "%4C %Z %{%b %d} %-15.15L (%?l?%4l&%4c?) %s"
+# We save the default status format for usage in the profile switching files.
+set my_default_status_format = $status_format
+
+#set pager_context = 1
+#set menu_context  = 1
+#set index_format  = "%4C %Z %{%b %d} %-20.20n %-20.20t (%?l?%4l&%4c?) %s"
+set sort          = threads
+set sort_aux      = last-date-received
+set sort_browser  = unsorted
+auto_view text/html
+alternative_order text/plain text/html
+
+# sidebar {{{2
+#set sidebar_visible=yes
+#set sidebar_width=12
+#set sidebar_sort=yes
+#bind index \CP sidebar-prev
+#bind index \CN sidebar-next
+#bind index \CO sidebar-open
+#bind pager \CP sidebar-prev
+#bind pager \CN sidebar-next
+#bind pager \CO sidebar-open
+#bind index \C<enter> sidebar-open
+#bind pager \C<enter> sidebar-open
+
+# last steps {{{1
+source ~/.mutt/profiles/all
+source ~/.mutt/profiles/webde

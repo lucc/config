@@ -1,0 +1,17 @@
+# ~/.mailcheckrc file by luc
+# vim: foldmethod=marker filetype=config
+
+# The mailboxes are sorted in the order I like them to appear on screen.
+$(HOME)/mail/inbox
+$(HOME)/mail/lists/grillchill
+$(HOME)/mail/lists/tanzhans
+$(HOME)/mail/lists/sammersee
+#$(HOME)/mail/draft
+#$(HOME)/mail/spam
+#$(HOME)/mail/mathe
+#$(HOME)/mail/philosophie
+#$(HOME)/mail/rewi
+#$(HOME)/mail/sent
+
+
+#/var/mail/lucas

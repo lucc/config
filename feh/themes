@@ -1,0 +1,93 @@
+# ~/.config/feh/themes file by luc
+
+# show exif info with exiftool(1)
+exif \
+  --info "exiftool -common %F" \
+  --auto-zoom \
+  --full-screen \
+
+exifa \
+  --info "exiftool -common %F" \
+  --auto-zoom \
+  --full-screen \
+  --recursive \
+
+
+# slides
+s \
+  --auto-zoom \
+  --full-screen \
+  --hide-pointer \
+  --recursive \
+  --sort filename \
+
+slideshow \
+  --auto-zoom \
+  --full-screen \
+  --hide-pointer \
+  --recursive \
+  --sort filename \
+
+# slow slides
+ss \
+  --auto-zoom \
+  --full-screen \
+  --hide-pointer \
+  --recursive \
+  --sort filename \
+  --slideshow-delay 2 \
+
+# fast slides
+sf \
+  --auto-zoom \
+  --full-screen \
+  --hide-pointer \
+  --recursive \
+  --sort filename \
+  --slideshow-delay .5 \
+
+# very fast slides
+sff \
+  --auto-zoom \
+  --full-screen \
+  --hide-pointer \
+  --recursive \
+  --sort filename \
+  --slideshow-delay .3 \
+
+# random slides
+r \
+  --auto-zoom \
+  --full-screen \
+  --hide-pointer \
+  --recursive \
+  --randomize \
+
+# slow random slides
+rs \
+  --auto-zoom \
+  --full-screen \
+  --hide-pointer \
+  --recursive \
+  --randomize \
+  --slideshow-delay 2 \
+
+# fast random slides
+rf \
+  --auto-zoom \
+  --draw-filename \
+  --full-screen \
+  --hide-pointer \
+  --recursive \
+  --randomize \
+  --slideshow-delay .5 \
+
+# very fast random slides
+rff \
+  --auto-zoom \
+  --full-screen \
+  --hide-pointer \
+  --recursive \
+  --randomize \
+  --slideshow-delay .3 \
+

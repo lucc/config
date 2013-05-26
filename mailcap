@@ -1,0 +1,57 @@
+# ~/.mailcap file by luc
+# vim: foldmethod=marker
+
+# application/* {{{1
+##############################################################################
+
+# application/ms-tnef{{{2
+application/ms-tnef;  tnef -t %s && read ans;
+
+# application/msword {{{2
+#application/msword;   openoffice.org %s; test=RunningX;
+#application/msword;   antiword %s; copiousoutput;
+application/msword;   wvText %s /dev/stdout; copiousoutput;
+
+application/vnd.openxmlformats-officedocument.wordprocessingml.document;docx2txt.pl %s; nametemplate=%s.docx; copiousoutput;
+application/vnd.openxmlformats-officedocument.spreadsheetml.sheet; libreoffice --copy %s; test=test -n "$DISPLAY"
+application/vnd.oasis.opendocument.spreadsheet; libreoffice %s; test=test -n "$DISPLAY"
+
+# application/pdf {{{2
+#application/pdf;      xpdf -q %s; test=RunningX;
+#application/pdf;      open -a Preview %s; nametemplate=%s.pdf;
+application/pdf;      mupdf %s; test=test -n "$DISPLAY"
+application/x-pdf;    mupdf %s; test=test -n "$DISPLAY"
+application/pdf;      mupdf %s; test=test -n "$DISPLAY"
+application/x-pdf;    mupdf %s; test=test -n "$DISPLAY"
+application/acrobat;  mupdf %s; test=test -n "$DISPLAY"
+application/vnd.pdf;  mupdf %s; test=test -n "$DISPLAY"
+application/pdf;      pdftotext %s /dev/stdout; copiousoutput;
+application/x-pdf;    pdftotext %s /dev/stdout; copiousoutput;
+application/pdf;      pdftotext %s /dev/stdout; copiousoutput;
+application/x-pdf;    pdftotext %s /dev/stdout; copiousoutput;
+application/acrobat;  pdftotext %s /dev/stdout; copiousoutput;
+application/vnd.pdf;  pdftotext %s /dev/stdout; copiousoutput;
+
+
+
+
+# image/* {{{1
+##############################################################################
+
+#image/*;              qiv %s; edit=gimp %s; test=RunningX;
+#image/*;              open -a Preview %s
+image/*;              feh --scale-down %s;
+
+# text/* {{{1
+##############################################################################
+
+# text/html {{{2
+text/html;            firefox %s &; nametemplate=%s.html; test=test -n "$DISPLAY";
+#text/html;            w3m %s; nametemplate=%s.html;
+#text/html;            lynx %s; nametemplate=%s.html;
+text/html;            elinks %s; nametemplate=%s.html;
+text/html;            elinks -dump %s; nametemplate=%s.html; copiousoutput;
+
+# text/pdf {{{2
+text/pdf;             pdftotext %s /dev/stdout; copiousoutput;
+text/x-pdf;           pdftotext %s /dev/stdout; copiousoutput;
