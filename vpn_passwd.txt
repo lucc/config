@@ -1,0 +1,38 @@
+http://www.proposedsolution.com/solutions/vpn-ipsec-prompting-saved-password/
+
+                    VPN (IPSec) Prompting For Saved Password
+
+   Written on February 22nd 2010 at 19:17. Last modified: March 28, 2010
+
+VPN (IPSec) Prompting For Saved PasswordSymptoms:
+
+     * On Mac OS X Snow Leopard (10.6.x) you are prompted to enter your VPN
+       password even though you've previously saved it in the keychain
+     * You are using IPSec on the built in VPN client on Mac OS X Snow
+       Leopard
+
+Explanation:
+
+   This is caused by a problem with the Keychain Access item for the VPN
+   IPSec connection.  A two minute fix will sort it out for you.
+
+Solution:
+
+    1. Launch Keychain Access by clicking Applications > Utilities > Keychain
+       Access
+    2. On the left upper pane, under Keychains select System
+    3. On the left lower, under Category select All Items
+    4. On the right side of the screen scroll to the bottom and locate the
+       two items called VPN(IPSec)
+    5. Double-click the VPN(IPSec) whos kind is IPSec XAuth Password
+    6. Click the Access Control button/tab.  The applications permitted to
+       use this keychain item will be displayed below.  If you're prompted
+       for your password, enter it.
+    7. Click the plus (+) sign
+    8. When the Finder window appears, press Cmd + Shift + G on your keyboard
+    9. When the Go To Folder dialog appears, enter /usr/libexec
+   10. Click Go
+   11. When the /usr/libexec folder appears scroll to configd, select it and
+       click Add
+   12. Click Save Changes
+   13. Close Keychain Access and try connecting to your VPN again
