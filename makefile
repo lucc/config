@@ -58,3 +58,42 @@ update:
 	git submodule update --recursive
 init:
 	git submodule update --recursive --init
+
+# from the backup.make file
+CONFIGDIRS   = \
+	      .abook            \
+	      .config           \
+	      .cups             \
+	      .easytag          \
+	      .elinks           \
+	      .epspdf           \
+	      .fontconfig       \
+	      .gem              \
+	      .inkscape-etc     \
+	      .links            \
+	      .local            \
+	      .lyra             \
+	      .MacOSX           \
+	      .mc               \
+	      .mu               \
+	      .netbeans         \
+	      .NetBeansProjects \
+	      .npm              \
+	      .postfix          \
+	      .subversion       \
+	      .terminfo         \
+	      .vifm             \
+	      .w3m              \
+	      .wine             \
+
+# configfiles {{{2
+CONFIGFILES  = \
+	      .apparixrc              \
+	      .fehrc                  \
+	      .nload                  \
+	      batterylog.txt          \
+	      boottimelog.txt         \
+	      geektool-diskspace.glet \
+	      geektool-mail.glet      \
+	      geektool-weather.glet   \
+	      TODO                    \

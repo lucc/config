@@ -194,21 +194,21 @@ function! LucVisitBufferOrEditFile(name) "{{{2
   execute (bufexists(expand(a:name)) ? 'buffer ' : 'edit ') . expand(a:name)
 endfunction
 
-function! LucInitiateSession(load_old_session) "{{{2
-  " A function to source a session file and set up an autocommand which will
-  " automatically save the session again, when vim is quit.
-  let l:session = '~/.vim/Session.vim'
-  if a:load_old_session
-    execute 'source' l:session
-    silent execute '!rm -f' l:session
-  endif
-  augroup LucSession
-    autocmd!
-    execute 'autocmd VimLeave * mksession!' l:session
-  augroup END
-  if argc() | argdelete * | endif
-  redraw!
-endfunction
+"function! LucInitiateSession(load_old_session) "{{{2
+"  " A function to source a session file and set up an autocommand which will
+"  " automatically save the session again, when vim is quit.
+"  let l:session = '~/.vim/Session.vim'
+"  if a:load_old_session
+"    execute 'source' l:session
+"    silent execute '!rm -f' l:session
+"  endif
+"  augroup LucSession
+"    autocmd!
+"    execute 'autocmd VimLeave * mksession!' l:session
+"  augroup END
+"  if argc() | argdelete * | endif
+"  redraw!
+"endfunction
 
 function! LucQuickMake(target, override) "{{{2
   " Try to build stuff depending on some parameters.  What will be built is
@@ -341,17 +341,17 @@ function! LucRemoteEditor(mail) "{{{2
   endif
 endfunction
 
-function! LucEditAllBuffers() "{{{2
-  let current = bufnr('%')
-  let alternative = bufnr('#')
-  bufdo edit
-  if bufexists(alternative)
-    execute 'buffer' alternative
-  endif
-  if bufexists(current)
-    execute 'buffer' current
-  endif
-endfunction
+"function! LucEditAllBuffers() "{{{2
+"  let current = bufnr('%')
+"  let alternative = bufnr('#')
+"  bufdo edit
+"  if bufexists(alternative)
+"    execute 'buffer' alternative
+"  endif
+"  if bufexists(current)
+"    execute 'buffer' current
+"  endif
+"endfunction
 
 function! LucTexDocFunction() "{{{2
   let l:word = expand("<cword>")
@@ -386,6 +386,18 @@ function! LucGetVisualSelection() "{{{2
   return join(lines, "\n")
 endfunction
 
+function! LucAutoJumpWraper(...) "{{{2
+  " call the autojump executable to change the directory in vim
+  if a:0 == 0
+    let arg = '-s'
+    let cmd = 'echo'
+  else
+    let arg = join(a:000)
+    let cmd = 'cd'
+  endif
+  let result = system('autojump ' . arg)
+  execute cmd result
+endfunction
 " user defined autocommands {{{1
 
 augroup LucLatex "{{{2
@@ -505,6 +517,8 @@ execute 'nmap <C-w># :call LucVisitBufferOrEditFile("' . s:notes . '")<CR>'
 " file it was loaded from, thus the changes you made.
 " Only define it when not defined already.
 "command! DiffOrig vne | se bt=nofile | r # | 0d_ | difft | wincmd p | difft
+
+command! -nargs=* -complete=dir J call LucAutoJumpWraper("<args>")
 
 " options: TODO {{{1
 
@@ -839,7 +853,7 @@ endif
 
 if s:plugins['ctrlp'] "{{{2
   Bundle 'kien/ctrlp.vim'
-  let g:ctrlp_cache_dir = $HOME.'/.vim/cache/ctrlp'
+  "let g:ctrlp_cache_dir = $HOME.'/.vim/cache/ctrlp'
   let g:ctrlp_clear_cache_on_exit = 0
   let g:ctrlp_show_hidden = 1
   let g:ctrlp_root_markers = ['makefile', 'Makefile', 'latexmkrc']
