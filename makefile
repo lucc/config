@@ -11,6 +11,10 @@ echoandlink = echo $(call link,$(1)); cd && $(call link,$(1));
 SEP         = :
 DIR         = $(strip $(subst $(HOME)/, , $(realpath $(dir $(MAKEFILE_LIST)))))
 LN          = ln -s
+LIMA        = ftp.lima-city.de
+TEMPFILE   := $(shell mktemp -t configs-bk.XXXXX)
+DATE       := $(shell date +%F)
+MKTEMPFILE  = echo put $(file) $(notdir $(file)) >> $(TEMPFILE)
 # this is ugly because I need pairs.
 CONFIGS     = \
 	      abcde.conf$(SEP).abcde.conf           \
@@ -47,6 +51,21 @@ UNUSED      = \
               conkyrc$(SEP).conkyrc \
               pal$(SEP).pal         \
 
+# limafiles {{{2
+LIMAFILES    = \
+	      shell/aliases  \
+	      shell/envrc    \
+	      vim/gvimrc     \
+	      htoprc         \
+	      inputrc        \
+	      latexmkrc      \
+	      profile        \
+	      rtorrent.rc    \
+	      vim/vimpagerrc \
+	      vim/vimrc      \
+	      shell/zshenv   \
+	      shell/zshrc    \
+
 links: clean
 	@$(foreach pair,$(CONFIGS) $(SECURE),$(call echoandlink,$(pair)))
 clean:
@@ -58,6 +77,17 @@ update:
 	git submodule update --recursive
 init:
 	git submodule update --recursive --init
+
+lima:
+	@touch $(TEMPFILE)
+	@echo mkdir files/dotfiles/$(DATE) > $(TEMPFILE)
+	@echo cd files/dotfiles/$(DATE)   >> $(TEMPFILE)
+	@$(foreach file,$(LIMAFILES),$(MKTEMPFILE);)
+	@#echo mput $(LIMAFILES)           >> $(TEMPFILE)
+	@echo bye                         >> $(TEMPFILE)
+	cd ~/.config && ftp -Vi $(LIMA)    < $(TEMPFILE)
+	@echo > $(TEMPFILE)
+	@$(RM) $(TEMPFILE)
 
 # from the backup.make file
 CONFIGDIRS   = \
@@ -91,9 +121,3 @@ CONFIGFILES  = \
 	      .apparixrc              \
 	      .fehrc                  \
 	      .nload                  \
-	      batterylog.txt          \
-	      boottimelog.txt         \
-	      geektool-diskspace.glet \
-	      geektool-mail.glet      \
-	      geektool-weather.glet   \
-	      TODO                    \
