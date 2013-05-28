@@ -20,6 +20,7 @@ CONFIGS     = \
 	      abcde.conf$(SEP).abcde.conf           \
 	      antiword$(SEP).antiword               \
 	      ctags$(SEP).ctags                     \
+	      elinks$(SEP).elinks                   \
 	      emacs.d$(SEP).emacs.d                 \
 	      htoprc$(SEP).htoprc                   \
 	      latexmkrc$(SEP).latexmkrc             \
@@ -28,13 +29,13 @@ CONFIGS     = \
 	      mime.types$(SEP).mime.types           \
 	      mpd$(SEP).mpd                         \
 	      inputrc$(SEP).inputrc                 \
-	      mutt$(SEP).mutt               \
+	      mutt$(SEP).mutt                       \
 	      pentadactyl$(SEP).pentadactyl         \
 	      pentadactylrc$(SEP).pentadactylrc     \
-	      gitconfig$(SEP).gitconfig     \
+	      gitconfig$(SEP).gitconfig             \
 	      pystartup$(SEP).pystartup             \
 	      rtorrent.rc$(SEP).rtorrent.rc         \
-	      fetchmailrc$(SEP).fetchmailrc \
+	      fetchmailrc$(SEP).fetchmailrc         \
 	      secure/gpg$(SEP).gnupg                \
 	      secure/netrc$(SEP).netrc              \
 	      secure/ssh$(SEP).ssh                  \
