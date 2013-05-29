@@ -84,16 +84,21 @@ init:
 	git submodule update --recursive --init
 
 # update some remote files {{{1
-link-math-profile:
-	cd && $(RM) $(call islink,.profile)
-	$(call echoandlink,shell/remote.profile$(SEP).profile)
-link-ifi-profile:
-	cd && $(RM) $(call islink,.profile_local)
-	$(call echoandlink,shell/remote.profile$(SEP).profile_local)
-update-remote-profile:
+update-remote-profiles: update-math-profile update-ifi-profile
+
+update-math-profile: TARGET = math
+update-ifi-profile:  TARGET = ifi
+update-math-profile update-ifi-profile: git-push
+	ssh $(TARGET) 'cd .config && git pull && $(MAKE) link-$(TARGET)-profile'
+
+link-math-profile: TARGET = .profile
+link-ifi-profile:  TARGET = .profile_local
+link-%-profile:
+	cd && $(RM) $(call islink,$(TARGET))
+	$(call echoandlink,shell/remote.profile$(SEP)$(TARGET))
+
+git-push:
 	git push github master
-	ssh math 'cd .config && git pull && make link-math-profile'
-	ssh ifi 'cd .config && git pull && make link-ifi-profile'
 
 diff-remote-profile:
 	@touch $(TEMPFILE)
