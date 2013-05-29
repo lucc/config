@@ -12,6 +12,7 @@ echoandlink = echo $(call link,$(1)); cd && $(call link,$(1));
 SEP         = :
 DIR         = $(strip $(subst $(HOME)/, , $(realpath $(dir $(MAKEFILE_LIST)))))
 LN          = ln -s
+REMOTEGIT   = https://github.com/lucc/config.git
 LIMA        = ftp.lima-city.de
 TEMPFILE   := $(shell mktemp -t configs-bk.XXXXX)
 DATE       := $(shell date +%F)
@@ -82,6 +83,9 @@ update:
 	git submodule update --recursive
 init:
 	git submodule update --recursive --init
+git-push:
+	git push $(REMOTEGIT) master
+
 
 # update some remote files {{{1
 update-remote-profiles: update-math-profile update-ifi-profile
@@ -89,16 +93,13 @@ update-remote-profiles: update-math-profile update-ifi-profile
 update-math-profile: TARGET = math
 update-ifi-profile:  TARGET = ifi
 update-math-profile update-ifi-profile: git-push
-	ssh $(TARGET) 'cd .config && git pull && $(MAKE) link-$(TARGET)-profile'
+	ssh $(TARGET) 'cd .config && (git pull || git clone $(REMOTEGIT) .) && $(MAKE) link-$(TARGET)-profile'
 
 link-math-profile: TARGET = .profile
 link-ifi-profile:  TARGET = .profile_local
 link-%-profile:
 	cd && $(RM) $(call islink,$(TARGET))
-	$(call echoandlink,shell/remote.profile$(SEP)$(TARGET))
-
-git-push:
-	git push github master
+	@$(call echoandlink,shell/remote.profile$(SEP)$(TARGET))
 
 diff-remote-profile:
 	@touch $(TEMPFILE)
