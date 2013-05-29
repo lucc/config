@@ -11,12 +11,14 @@
 # for debugging purpous
 #set -x
 
-# source local profile files
-[ -r ~/.profile_`hostname` ] && . ~/.profile_`hostname`
-[ -r ~/.profile_local ] && . ~/.profile_local
-
-# fix PATH
-[ -d "$HOME/bin" ] && PATH="$HOME/bin:$PATH"
+# source local profile files and other files (set up env)
+for file in \
+  ~/.config/shell/envrc \
+  ~/.profile_`hostname` \
+  ~/.profile_local \
+  ; do
+  if [ -r $file ]; then . $file; fi
+done
 
 ### FROM MATH.CIP
 #################

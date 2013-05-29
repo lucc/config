@@ -1,13 +1,14 @@
 # makefile to create and remove links from $HOME to the dotfile directory
+# vim: foldmethod=marker
 
-# functions
+# functions {{{1
 map         = $(foreach a,$(2),$(call $(1),$(a)))
 tail        = $(lastword $(subst $(SEP), ,$(1)))
 islink      = $(shell cd && if [ -L $(1) ]; then echo $(1); fi)
 link        = $(LN) $(DIR)/$(subst $(SEP), ,$(1))
 echoandlink = echo $(call link,$(1)); cd && $(call link,$(1));
 
-# variables
+# variables {{{1
 SEP         = :
 DIR         = $(strip $(subst $(HOME)/, , $(realpath $(dir $(MAKEFILE_LIST)))))
 LN          = ln -s
@@ -67,6 +68,7 @@ LIMAFILES    = \
 	      shell/zshenv   \
 	      shell/zshrc    \
 
+# linking files to $HOME {{{1
 links: clean
 	@$(foreach pair,$(CONFIGS) $(SECURE),$(call echoandlink,$(pair)))
 clean:
@@ -74,11 +76,36 @@ clean:
 other:
 	$(RM) $(HOME)/$(DIR)/mutt/profiles/all
 	$(LN) $(HOME)/$(DIR)/secure/mutt-profiles $(HOME)/$(DIR)/mutt/profiles/all
+
+# update git repo {{{1
 update:
 	git submodule update --recursive
 init:
 	git submodule update --recursive --init
 
+# update some remote files {{{1
+link-math-profile:
+	cd && $(RM) $(call islink,.profile)
+	$(call echoandlink,shell/remote.profile$(SEP).profile)
+link-ifi-profile:
+	cd && $(RM) $(call islink,.profile_local)
+	$(call echoandlink,shell/remote.profile$(SEP).profile_local)
+update-remote-profile:
+	git push github master
+	ssh math 'cd .config && git pull && make link-math-profile'
+	ssh ifi 'cd .config && git pull && make link-ifi-profile'
+
+diff-remote-profile:
+	@touch $(TEMPFILE)
+	scp -q math:.profile $(TEMPFILE)
+	-diff $(TEMPFILE) shell/remote.profile
+	@echo > $(TEMPFILE)
+	scp -q ifi:.profile_local $(TEMPFILE)
+	-diff $(TEMPFILE) shell/remote.profile
+	@echo > $(TEMPFILE)
+	@$(RM) $(TEMPFILE)
+	
+# push files to ftp server {{{1
 lima:
 	@touch $(TEMPFILE)
 	@echo mkdir files/dotfiles/$(DATE) > $(TEMPFILE)
@@ -90,7 +117,7 @@ lima:
 	@echo > $(TEMPFILE)
 	@$(RM) $(TEMPFILE)
 
-# from the backup.make file
+# from the backup.make file {{{1
 CONFIGDIRS   = \
 	      .abook            \
 	      .config           \
