@@ -8,16 +8,13 @@
 #          http://www.sourceguru.net/ssh-host-completion-zsh-stylee
 #          http://serverfault.com/questions/170346
 #          https://maze.io/2008/08/03/remote-tabcompletion-using-openssh-and-zsh
-##############################################################################
 
-#  local variables (unset at eof) {{{1
-######################################
+# local variables (unset at eof) {{{1
 # This variable will expand to the nullstring if we are not on Mac OS X or
 # brew is not installed.
 BREW=`brew --prefix 2>/dev/null`
 
-# files to be sourced {{{1
-##########################
+# files to be sourced (and similar) {{{1
 if [[ -r $ZDOTDIR/aliases ]]; then . $ZDOTDIR/aliases; fi
 if [[ -r $ZDOTDIR/private ]]; then . $ZDOTDIR/private; fi
 if [[ -r $BREW/etc/profile.d/z.sh ]]; then
@@ -32,9 +29,7 @@ elif [[ -r $BREW/etc/autojump.sh ]]; then
 fi
 
 # prompt {{{1
-#############
-
-# precommand functions {{{2
+# functions for the prompt {{{2
 
 # functions to dispay info in the prompts
 function right-prompt-function () {
@@ -68,7 +63,6 @@ PS1="[ %F{green}%n%F{cyan}@%F{blue}%m%f | %F{cyan}%1~%f | %D{%H:%M:%S} ] "
 RPROMPT='%(?.$(right-prompt-function).%F{red}Error: %?)'
 
 # options {{{1
-##############
 
 # contolling the history
 HISTFILE=$ZDOTDIR/histfile
@@ -94,7 +88,6 @@ setopt glob_dots
 setopt no_list_ambiguous
 
 # keybindings {{{1
-##################
 bindkey -v
 
 # searching {{{2
@@ -137,11 +130,9 @@ elif [[ `uname` = Linux ]]; then
 fi
 
 # zle stuff {{{1
-################
 zle_highlight=(region:bg=green special:bg=blue suffix:fg=red isearch:fg=yellow)
 
 # completion {{{1
-#################
 
 # layout {{{2
 
@@ -216,6 +207,23 @@ fi
 #      ${=${${${${(@M)${(f)"$(<~/.ssh/config)"}:#Host *}#Host }:#*\**}:#*\?*}}
 #      )'
 
+# VCS stuff {{{2
+autoload -Uz vcs_info
+zstyle ':vcs_info:*' actionformats '%F{magenta}%s%F{green}%b%F{3}|%F{1}%a%f'
+####TODO
+zstyle ':vcs_info:*' formats       '%F{cyan}%s%F{green}%c%u%b%f'
+zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{3}%r'
+zstyle ':vcs_info:*' enable git svn
+# change color if changes exist (with %c and %u)
+zstyle ':vcs_info:*' check-for-changes true
+zstyle ':vcs_info:*' stagedstr '%F{yellow}'
+zstyle ':vcs_info:*' unstagedstr '%F{red}'
+# turn the name 'git' into '±'
+zstyle ':vcs_info:git+set-message:*' hooks fixgitstring
+function +vi-fixgitstring() {
+  hook_com[vcs]='±'
+}
+
 # other {{{2
 
 zstyle ':completion:*' completer _expand _complete _ignored
@@ -233,33 +241,9 @@ zstyle ':completion:*' verbose true
 #zstyle ':completion:*' insert-unambiguous true
 #zstyle :compinstall filename '/Users/lucas/.zshrc'
 
-# VCS stuff {{{2
-autoload -Uz vcs_info
-#zstyle ':vcs_info:*' unstagedstr 
-zstyle ':vcs_info:*' actionformats '%F{magenta}%s%F{green}%b%F{3}|%F{1}%a%f'
-####TODO
-zstyle ':vcs_info:*' formats       '%F{magenta}%s%F{green}%c%u%b%f'
-zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{3}%r'
-zstyle ':vcs_info:*' enable git svn
-# change color if changes exist (with %c and %u)
-zstyle ':vcs_info:*' check-for-changes true
-zstyle ':vcs_info:*' stagedstr '%F{yellow}'
-zstyle ':vcs_info:*' unstagedstr '%F{red}'
-# turn the name 'git' into '±'
-zstyle ':vcs_info:git+set-message:*' hooks fixgitstring
-              #zstyle ':vcs_info:*+*:*' debug true
-              function +vi-fixgitstring() {
-                  hook_com[vcs]='±'
-              }
-
 # starting the completion system {{{2
 autoload -Uz compinit
 compinit
 
-#  OTHER STUFF {{{1
-###################
-[ -r =dircolors ] && eval `dircolors -b`
-
-#  UNSET LOCAL VARIABLES {{{1
-#############################
+#  unset local variables {{{1
 unset BREW
