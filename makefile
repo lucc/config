@@ -84,7 +84,7 @@ update:
 init:
 	git submodule update --recursive --init
 git-push:
-	git push $(REMOTEGIT) master
+	git push github master
 
 
 # update some remote files {{{1
