@@ -123,7 +123,7 @@ link-ifi-profile:  TARGET = .profile_local
 link-%-profile:
 	@echo $(TARGET)
 	cd && $(RM) $(call islink,$(TARGET))
-	@$(call echoandlink,shell/remote.profile$(SEP)$(TARGET))
+	$(call echoandlink,shell/remote.profile$(SEP)$(TARGET))
 
 diff-remote-profile:
 	@touch $(TEMPFILE)
