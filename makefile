@@ -102,7 +102,6 @@ update:
 init:
 	git submodule update --recursive --init
 git-push:
-	@echo git-push: $(TARGET)
 	git push github master
 
 

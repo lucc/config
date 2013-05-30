@@ -33,12 +33,14 @@ fi
 
 # functions to dispay info in the prompts
 function right-prompt-function () {
-  if [[ `ls ~/mail/gmx/new | wc -l` -ne 0 ]]; then
+  if [[ `ls ~/mail/gmx/new 2>/dev/null | wc -l` -ne 0 ]]; then
     echo '%B%F{red}Mail for mac_fan@gmx.de!%f%b'
-  elif mailcheck | grep -q " new "; then
+  elif mailcheck 2>/dev/null | grep -q " new "; then
     echo '%B%F{blue}You have mail!%f%b'
   elif [[ `uname` = Darwin ]]; then
     echo "${vcs_info_msg_0_} `battery.sh -bce zsh`"
+  else
+    echo "$vcs_info_msg_0_"
   fi
 }
 
