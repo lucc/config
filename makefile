@@ -110,15 +110,16 @@ update-remote-profiles: update-math-profile update-ifi-profile
 
 update-math-profile: TARGET = math
 update-ifi-profile:  TARGET = ifi
-update-math-profile update-ifi-profile: git-push
-	ssh $(TARGET) \
+update-%-profile: git-push
+	@echo ssh $(TARGET) 'cd .config && git pull && make'
+	@ssh $(TARGET) \
 	  'cd .config && \
 	  (git pull || git clone $(REMOTEGIT) .) && \
 	  $(MAKE) link-$(TARGET)-profile'
 
 link-math-profile: TARGET = .profile
 link-ifi-profile:  TARGET = .profile_local
-link-%-profile:
+link-%-profile: links
 	cd && $(RM) $(call is_link,$(TARGET))
 	@$(call echo_and_link,shell/remote.profile$(SEP)$(TARGET))
 
