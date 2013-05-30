@@ -130,7 +130,6 @@ mono bold bold
 color index $my_emph2 default ~U # unread
 color index $my_gray2 default ~D # deleted
 color index $my_gray1 default ~D # deleted
-color index black default ~D # deleted
 color index $my_blue1 default ~T # tagged
 
 # header display in the pager {{{3
