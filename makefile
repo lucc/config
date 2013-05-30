@@ -89,9 +89,9 @@ LIMAFILES    = \
 
 
 links: clean
-	@$(foreach pair,$(CONFIGS) $(SECURE),$(call echoandlink,$(pair)))
+	@$(foreach pair,$(CONFIGS) $(SECURE),$(call echo_and_link,$(pair)))
 clean:
-	cd && $(RM) $(call map,islink,$(call map,tail,$(CONFIGS)))
+	cd && $(RM) $(call map,is_link,$(call map,tail,$(CONFIGS)))
 other:
 	$(RM) $(HOME)/$(DIR)/mutt/profiles/all
 	$(LN) $(HOME)/$(DIR)/secure/mutt-profiles $(HOME)/$(DIR)/mutt/profiles/all
@@ -102,7 +102,7 @@ update:
 init:
 	git submodule update --recursive --init
 git-push:
-	@echo $(TARGET)
+	@echo git-push: $(TARGET)
 	git push github master
 
 
@@ -112,7 +112,6 @@ update-remote-profiles: update-math-profile update-ifi-profile
 update-math-profile: TARGET = math
 update-ifi-profile:  TARGET = ifi
 update-math-profile update-ifi-profile: git-push
-	@echo $(TARGET)
 	ssh $(TARGET) \
 	  'cd .config && \
 	  (git pull || git clone $(REMOTEGIT) .) && \
@@ -121,9 +120,8 @@ update-math-profile update-ifi-profile: git-push
 link-math-profile: TARGET = .profile
 link-ifi-profile:  TARGET = .profile_local
 link-%-profile:
-	@echo $(TARGET)
-	cd && $(RM) $(call islink,$(TARGET))
-	$(call echoandlink,shell/remote.profile$(SEP)$(TARGET))
+	cd && $(RM) $(call is_link,$(TARGET))
+	@$(call echo_and_link,shell/remote.profile$(SEP)$(TARGET))
 
 diff-remote-profile:
 	@touch $(TEMPFILE)
