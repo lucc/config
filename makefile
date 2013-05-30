@@ -102,15 +102,17 @@ update:
 init:
 	git submodule update --recursive --init
 git-push:
+	@echo $(TARGET)
 	git push github master
 
 
 # update some remote files {{{1
 update-remote-profiles: update-math-profile update-ifi-profile
 
-update-math-profile: private TARGET = math
-update-ifi-profile:  private TARGET = ifi
+update-math-profile: TARGET = math
+update-ifi-profile:  TARGET = ifi
 update-math-profile update-ifi-profile: git-push
+	@echo $(TARGET)
 	ssh $(TARGET) \
 	  'cd .config && \
 	  (git pull || git clone $(REMOTEGIT) .) && \
@@ -119,6 +121,7 @@ update-math-profile update-ifi-profile: git-push
 link-math-profile: TARGET = .profile
 link-ifi-profile:  TARGET = .profile_local
 link-%-profile:
+	@echo $(TARGET)
 	cd && $(RM) $(call islink,$(TARGET))
 	@$(call echoandlink,shell/remote.profile$(SEP)$(TARGET))
 
