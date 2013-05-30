@@ -108,8 +108,8 @@ git-push:
 # update some remote files {{{1
 update-remote-profiles: update-math-profile update-ifi-profile
 
-update-math-profile: TARGET = math
-update-ifi-profile:  TARGET = ifi
+update-math-profile: private TARGET = math
+update-ifi-profile:  private TARGET = ifi
 update-math-profile update-ifi-profile: git-push
 	ssh $(TARGET) \
 	  'cd .config && \
