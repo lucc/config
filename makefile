@@ -2,13 +2,18 @@
 # vim: foldmethod=marker
 
 # functions {{{1
-map         = $(foreach a,$(2),$(call $(1),$(a)))
-tail        = $(lastword $(subst $(SEP), ,$(1)))
-islink      = $(shell cd && if [ -L $(1) ]; then echo $(1); fi)
-link        = $(LN) $(DIR)/$(subst $(SEP), ,$(1))
-echoandlink = echo $(call link,$(1)); cd && $(call link,$(1));
+map            = $(foreach a,$(2),$(call $(1),$(a)))
+tail           = $(lastword $(subst $(SEP), ,$(1)))
+head           = $(firstword $(subst $(SEP), ,$(1)))
+is_link        = $(shell cd && if [ -L $(1) ]; then echo $(1); fi)
+link           = $(LN) $(DIR)/$(subst $(SEP), ,$(1))
+echo_and_link  = echo $(call link,$(1)); cd && $(call link,$(1));
+#same_file      = $(shell test $(1) -ef $(2))
+#swap           = $(call tail,$(1))$(SEP)$(call head,$(1))
+#create_deps = $(eval $(call map,swap,$(subst $(SEP),$(SEP)$(HOME)/,$(CONFIGS))))
 
 # variables {{{1
+# general {{{2
 SEP         = :
 DIR         = $(strip $(subst $(HOME)/, , $(realpath $(dir $(MAKEFILE_LIST)))))
 LN          = ln -s
@@ -17,6 +22,7 @@ LIMA        = ftp.lima-city.de
 TEMPFILE   := $(shell mktemp -t configs-bk.XXXXX)
 DATE       := $(shell date +%F)
 MKTEMPFILE  = echo put $(file) $(notdir $(file)) >> $(TEMPFILE)
+# file lists {{{2
 # this is ugly because I need pairs.
 CONFIGS     = \
 	      abcde.conf$(SEP).abcde.conf           \
@@ -50,11 +56,13 @@ CONFIGS     = \
 	      vim/vimpagerrc$(SEP).vimpagerrc       \
 	      vim/vimrc$(SEP).vimrc                 \
 
+#CONFIGS_ = $(patsubst %,$(DIR)/%,$(CONFIGS))
+
 UNUSED      = \
               conkyrc$(SEP).conkyrc \
               pal$(SEP).pal         \
 
-# limafiles {{{2
+# limafiles {{{3
 LIMAFILES    = \
 	      shell/aliases  \
 	      shell/envrc    \
@@ -70,6 +78,16 @@ LIMAFILES    = \
 	      shell/zshrc    \
 
 # linking files to $HOME {{{1
+#echo:
+#	@echo $(CONFIGS_)
+#	@echo $(call map,swap,$(CONFIGS_))
+
+#$(call create_deps)
+#$(foreach pair,$(CONFIGS),$(lastword $(subst $(SEP), ,$(pair)))):
+#	(LN)
+
+
+
 links: clean
 	@$(foreach pair,$(CONFIGS) $(SECURE),$(call echoandlink,$(pair)))
 clean:
@@ -93,7 +111,10 @@ update-remote-profiles: update-math-profile update-ifi-profile
 update-math-profile: TARGET = math
 update-ifi-profile:  TARGET = ifi
 update-math-profile update-ifi-profile: git-push
-	ssh $(TARGET) 'cd .config && (git pull || git clone $(REMOTEGIT) .) && $(MAKE) link-$(TARGET)-profile'
+	ssh $(TARGET) \
+	  'cd .config && \
+	  (git pull || git clone $(REMOTEGIT) .) && \
+	  $(MAKE) link-$(TARGET)-profile'
 
 link-math-profile: TARGET = .profile
 link-ifi-profile:  TARGET = .profile_local
