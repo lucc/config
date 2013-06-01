@@ -68,7 +68,8 @@ source $alias_file
 # appearance {{{1
 
 # colors {{{2
-source ~/.mutt/color/plain
+#source ~/.mutt/color/plain
+source ~/.mutt/color/for-solarized-terminal
 macro index,pager <esc><space> ":source ~/.mutt/color/colorful<return>"
 macro index,pager <esc><tab> ":source ~/.mutt/color/plain<return>"
 
