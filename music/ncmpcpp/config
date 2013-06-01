@@ -1,0 +1,2 @@
+mpd_music_dir = "~/.mpd/music"
+song_list_format = "{%D	$2%a$9 - $5%t$9$R%l}|{%f$R%l}"
