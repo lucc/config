@@ -32,8 +32,9 @@ update-math-profile update-ifi-profile: git-push
 
 link-math-profile: TARGET = .profile
 link-ifi-profile:  TARGET = .profile_local
-link-%-profile:    CONFIGS += remote.profile$(SEP)$(TARGET)
+#link-%-profile:    CONFIGS += remote.profile$(SEP)$(TARGET)
 link-math-profile link-ifi-profile: links
+	cd && $(RM) $(TARGET) && $(LN) $(DIR)/remote.profile $(TARGET)
 
 #diff-remote-profile:
 #	@touch $(TEMPFILE)
