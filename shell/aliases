@@ -87,12 +87,7 @@ if [ `uname` = "Darwin" ] ; then # (Mac OS X, 10.6)
   alias truecrypt=/Applications/TrueCrypt.app/Contents/MacOS/TrueCrypt
   #alias passon="defaults write com.apple.screensaver askForPassword 1; defaults write com.apple.screensaver askForPasswordDelay 0"
   #alias passoff="defaults write com.apple.screensaver askForPassword 0"
-  ff () { mdfind "$@" | head; }
-  brewi () {
-    echo "$@" >> ~/log/brew-installed.txt
-    brew install "$@"
-    rehash
-  }
+  alias sp='open -a System\ Preferences'
 elif [ `uname` = Linux ]; then
   alias pstree='pstree -n'
 fi

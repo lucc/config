@@ -35,7 +35,7 @@ mailboxes /var/mail/lucas
 
 # sorting email
 reply-hook ".*" set record="^"
-set reply_regexp = "^((re([\[0-9\]+])*|aw):[ \t]*)+"
+set reply_regexp = "^((re([\[0-9\]+])*|aw|Antw\.):[ \t]*)+"
 
 #save-hook . +inbox
 
