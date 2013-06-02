@@ -26,7 +26,7 @@ update-ifi-profile:  TARGET = ifi
 update-math-profile update-ifi-profile: git-push
 	@echo ssh $(TARGET) 'cd .config && git pull && make'
 	@ssh $(TARGET)                              \
-	  'cd .config &&                            \
+	  'cd $(DIR) &&                            \
 	  (git pull || git clone $(REMOTEGIT) .) && \
 	  $(MAKE) link-$(TARGET)-profile'
 
