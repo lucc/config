@@ -24,10 +24,10 @@ SUBDIRS = \
 	  vim         \
 
 CONFIGS = \
-          $(HOME)$(SEP)antiword$(SEP).antiword   \
-          $(HOME)$(SEP)elinks$(SEP).elinks       \
-          $(HOME)$(SEP)emacs.d$(SEP).emacs.d     \
-          $(HOME)$(SEP)gitconfig$(SEP).gitconfig \
+          antiword$(SEP).antiword   \
+          elinks$(SEP).elinks       \
+          emacs.d$(SEP).emacs.d     \
+          gitconfig$(SEP).gitconfig \
 
 # limafiles {{{3
 LIMAFILES = \
@@ -44,6 +44,7 @@ LIMAFILES = \
 	    vim/vimpagerrc    \
 	    vim/vimrc         \
 
+echo-all:echo; @$(foreach d,$(SUBDIRS),$(MAKE) -C $(d) echo;)
 link-all: links
 	$(foreach d,$(SUBDIRS),$(MAKE) -C $(d) links;)
 clean-all: clean

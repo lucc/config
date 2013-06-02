@@ -1,15 +1,13 @@
-# makefile to create and remove links from $HOME to the dotfile directory
-# vim: foldmethod=marker
+# makefile for ~/.config/music by luc
 
 # include the generic makefile
 include generic.mk
 
-# variables {{{1
-# file lists {{{2
-# this is ugly because I need pairs.
 CONFIGS = \
-          $(HOME)$(SEP)abcde.conf$(SEP).abcde.conf          \
-          $(HOME)$(SEP)mpd$(SEP).mpd                        \
-          $(HOME)$(SEP)ncmpcpp$(SEP).ncmpcpp                \
-	  $(HOME)/.config$(SEP)MusicBrainz$(SEP)MusicBrainz \
-	  $(HOME)/.config$(SEP)easytag$(SEP)easytag         \
+          abcde.conf$(SEP).abcde.conf \
+          mpd$(SEP).mpd               \
+          ncmpcpp$(SEP).ncmpcpp       \
+
+OTHER = \
+	$(HOME)/.config$(SEP)$(patsubst $(HOME)/.config/%,%,$(HOME)/$(DIR)/MusicBrainz)$(SEP)MusicBrainz \
+	$(HOME)/.config$(SEP)$(patsubst $(HOME)/.config/%,%,$(HOME)/$(DIR)/easytag)$(SEP)easytag         \

@@ -4,5 +4,5 @@
 include generic.mk
 
 CONFIGS = \
-	  $(HOME)$(SEP).$(SEP).pentadactyl               \
-	  $(HOME)$(SEP)pentadactylrc$(SEP).pentadactylrc \
+	  .$(SEP).pentadactyl               \
+	  pentadactylrc$(SEP).pentadactylrc \

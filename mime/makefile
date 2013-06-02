@@ -3,5 +3,5 @@
 include generic.mk
 
 CONFIGS = \
-          $(HOME)$(SEP)mailcap$(SEP).mailcap       \
-          $(HOME)$(SEP)mime.types$(SEP).mime.types \
+          mailcap$(SEP).mailcap       \
+          mime.types$(SEP).mime.types \
