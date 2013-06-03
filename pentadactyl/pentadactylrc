@@ -1,5 +1,3 @@
-"1.0rc1
-
 loadplugins '\.(js|penta)$'
 group user
 set! browser.tabs.closeWindowWithLastTab=false
@@ -13,9 +11,9 @@ endif
 
 set defsearch=d
 
-echoerr "hans"
-
 map ! :!
 map B :bmarks! 
+
+"echoerr "hans"
 
 " vim: ft=pentadactyl syntax=vim
