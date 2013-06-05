@@ -3,11 +3,15 @@ group user
 set! browser.tabs.closeWindowWithLastTab=false
 set showtabline=never
 
+"javascript var gvim_args = '-f +<line> +"silent! call cursor(0, <column>)" <file>'
 if navigator.platform == "MacIntel" 
-  set editor='/usr/local/bin/gvim -f +<line> +"sil! call cursor(0, <column>)" <file>'
+  "javascript var gvim_cmd = '/usr/local/bin/gvim'
+  set editor='/usr/local/bin/gvim -f +<line> +"silent! call cursor(0, <column>)" <file>'
 else
-  set editor='gvim -f +<line> +"sil! call cursor(0, <column>)" <file>'
+  "js var gvim_cmd = 'gvim'
+  set editor='gvim -f +<line> +"silent! call cursor(0, <column>)" <file>'
 endif
+"execute 'set editor=' + gvim_cmd + ' ' + gvim_args
 
 set defsearch=d
 

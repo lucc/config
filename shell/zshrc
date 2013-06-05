@@ -215,7 +215,7 @@ zstyle ':vcs_info:*' actionformats '%F{magenta}%s%F{green}%b%F{3}|%F{1}%a%f'
 ####TODO
 zstyle ':vcs_info:*' formats       '%F{cyan}%s%F{green}%c%u%b%f'
 zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{3}%r'
-zstyle ':vcs_info:*' enable git svn
+zstyle ':vcs_info:*' enable git svn cvs
 # change color if changes exist (with %c and %u)
 zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:*' stagedstr '%F{yellow}'
