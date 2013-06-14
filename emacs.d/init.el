@@ -12,16 +12,23 @@
 
 
 ; DEPENDENCIES
-; common lisp (needed for many other things.
+; common lisp (needed for many other things).
 (require 'cl)
-
+; the emacs library directory
+(add-to-list 'load-path "~/.emacs.d")
 
 ; KEYBOARD
-; map the cmd-key to meta (only in the gui, is caught by item)
+; map the cmd-key to meta (only in the gui, is caught by iterm)
 (setq mac-command-modifier 'meta)
 ; use the alt-key to access the mac keyboard (letters like []{}~…)
 (setq mac-option-modifier nil)
-(global-set-key (kbd "M-<f1>") 'hippie-expand)
+;(global-set-key (kbd "M-<f1>") 'hippie-expand)
+;(global-set-key (kbd "TAB") 'hippie-expand)
+
+; other autocomplete method
+;; (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
+;; (require 'auto-complete-config)
+;; (ac-config-default)
 
 
 ; APPEARENCE
@@ -29,6 +36,8 @@
 (show-paren-mode 1)
 (setq show-paren-delay 0)
 ;(scroll-bar-mode -1)
+
+; do not display the toolbar
 (ignore-errors (tool-bar-mode -1))
 
 
@@ -120,16 +129,16 @@
 (desktop-save-mode 1)
 (setq desktop-path '("~/.emacs.d"))
 
-  (global-set-key "%" 'match-paren)
-    (defun match-paren (arg)
-      "Go to the matching paren if on a paren; otherwise insert %."
-      (interactive "p")
-      (cond ((looking-at "\\s\(") (forward-list 1) (backward-char 1))
-            ((looking-at "\\s\)") (forward-char 1) (backward-list 1))
-            (t (self-insert-command (or arg 1)))))
+(global-set-key "%" 'match-paren)
+(defun match-paren (arg)
+  "Go to the matching paren if on a paren; otherwise insert %."
+  (interactive "p")
+  (cond ((looking-at "\\s\(") (forward-list 1) (backward-char 1))
+        ((looking-at "\\s\)") (forward-char 1) (backward-list 1))))
 
 
-(setq explicit-shell-file-name "/bin/zsh")
+
+(setq explicit-shell-file-name "/usr/local/bin/zsh")
 
 
 (setq history-delete-duplicates t)
@@ -142,9 +151,16 @@
 
 
 ; REPOSITORY
+(when (>= emacs-major-version 24)
+  (require 'package)
+  (package-initialize)
+  (add-to-list 'package-archives '("elpa" . "http://elpa.gnu.org"))
+  (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
+  (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+  )
+
 (ignore-errors ; whx is this necessary/why does it produce an error at start up time??
-(add-to-list 'package-archives
-	     '("marmalade" . "http://marmalade-repo.org/packages/")))
+)
 
 ;(setq Info-default-directory-list 'nil)
 

@@ -855,3 +855,50 @@ times in msec
 1447.925  000.005: before starting main loop
 1450.733  002.808: first screen update
 1450.736  000.003: --- VIM STARTED ---
+
+
+times in msec
+ clock   self+sourced   self:  sourced script
+ clock   elapsed:              other lines
+
+000.008  000.008: --- VIM STARTING ---
+000.131  000.123: Allocated generic buffers
+000.285  000.154: locale set
+000.293  000.008: GUI prepared
+000.298  000.005: clipboard setup
+000.305  000.007: window checked
+000.917  000.612: inits 1
+000.930  000.013: parsing arguments
+022.476  021.546: expanding arguments
+091.531  069.055: shell init
+102.115  010.584: Termcap init
+102.182  000.067: inits 2
+147.187  045.005: init highlight
+147.490  000.186  000.186: sourcing $VIM/vimrc
+148.609  000.491  000.491: sourcing /usr/local/Cellar/macvim/7.3-66/MacVim.app/Contents/Resources/vim/runtime/syntax/syncolor.vim
+148.786  000.812  000.321: sourcing /usr/local/Cellar/macvim/7.3-66/MacVim.app/Contents/Resources/vim/runtime/syntax/synload.vim
+169.394  020.494  020.494: sourcing /usr/local/Cellar/macvim/7.3-66/MacVim.app/Contents/Resources/vim/runtime/filetype.vim
+169.471  021.642  000.336: sourcing /usr/local/Cellar/macvim/7.3-66/MacVim.app/Contents/Resources/vim/runtime/syntax/syntax.vim
+169.619  000.021  000.021: sourcing /usr/local/Cellar/macvim/7.3-66/MacVim.app/Contents/Resources/vim/runtime/filetype.vim
+169.802  000.073  000.073: sourcing /usr/local/Cellar/macvim/7.3-66/MacVim.app/Contents/Resources/vim/runtime/ftplugin.vim
+169.977  000.067  000.067: sourcing /usr/local/Cellar/macvim/7.3-66/MacVim.app/Contents/Resources/vim/runtime/indent.vim
+172.836  000.444  000.444: sourcing /usr/local/Cellar/macvim/7.3-66/MacVim.app/Contents/Resources/vim/runtime/syntax/syncolor.vim
+196.951  001.893  001.893: sourcing /usr/local/Cellar/macvim/7.3-66/MacVim.app/Contents/Resources/vim/runtime/ftoff.vim
+197.337  000.194  000.194: sourcing /Users/luc/.vim/bundle/vundle/autoload/vundle.vim
+197.726  000.218  000.218: sourcing /Users/luc/.vim/bundle/vundle/autoload/vundle/config.vim
+37748.936  37601.337  37576.785: sourcing $HOME/.vimrc
+37749.026  000.316: sourcing vimrc file(s)
+39576.816  1828.790: loading plugins
+39576.840  000.024: inits 3
+39605.721  028.881: reading viminfo
+39605.751  000.030: setting raw mode
+42027.085  2422.334: waiting for return
+42027.097  000.012: start termcap
+42027.163  000.066: clearing screen
+42028.250  001.087: opening buffers
+42028.730  000.480: BufEnter autocommands
+42028.741  000.011: editing files in windows
+43147.651  1118.910: VimEnter autocommands
+43147.657  000.006: before starting main loop
+43150.295  002.638: first screen update
+43150.297  000.002: --- VIM STARTED ---

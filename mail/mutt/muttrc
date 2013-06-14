@@ -31,7 +31,9 @@ mailboxes +uni/mathe
 mailboxes +uni/lmu
 mailboxes +landheim
 mailboxes +gmx
-mailboxes /var/mail/lucas
+#mailboxes /var/mail/lucas
+#mailboxes /var/mail/luc
+mailboxes +system-mailbox
 
 # sorting email
 reply-hook ".*" set record="^"
@@ -58,6 +60,7 @@ set history = 100
 set beep_new
 set include = yes
 
+mime_lookup application/save-as
 
 
 # alias configuration {{{1
