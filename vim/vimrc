@@ -637,13 +637,16 @@ if has('statusline')
   " current version
   set statusline=%t                               " tail of the filename
   set statusline+=\ %([%M%R%H]\ %)                " group for mod., ro. & help
-  set statusline+=[%{strlen(&fenc)?&fenc:'none'}, " display fileencoding
+  set statusline+=[
+  set statusline+=%{strlen(&fenc)?&fenc:'none'},  " display fileencoding
   set statusline+=%{&ff}                          " filetype (unix/windows)
-  set statusline+=%Y]                             " filetype (c/sh/vim/...)
+  set statusline+=%Y                              " filetype (c/sh/vim/...)
+  set statusline+=%{fugitive#statusline()}        " info about git
+  set statusline+=]
   set statusline+=\ [ASCII=x%03B]                 " ASCII code of char
   "set statusline+=\ [ASCII=x%02.2B]               " ASCII code of char
   set statusline+=\ %=                            " rubber space
-  set statusline+=[%{strftime('%a\ %F\ %R')}]     " clock
+  "set statusline+=[%{strftime('%a\ %F\ %R')}]     " clock
   set statusline+=\ [%c%V,%l/%L]                  " position in file
   set statusline+=\ [%P]                          " percent of above
   "set statusline+=\ %{SyntasticStatuslineFlag()}  " see :h syntastic
@@ -754,29 +757,30 @@ endif
 " not.  One could also comment the the line loading the plugin, but these are
 " scatterd ofer the file and not centralized.
 let s:plugins = {
-	       \ 'buffergator': 0,
-	       \ 'bufferlist': 0,
-	       \ 'buffet': 1,
-	       \ 'bufmru': 0,
-	       \ 'buftabs': 0,
-	       \ 'commandt': 0,
-	       \ 'ctrlp': 1,
-	       \ 'fuzzyfinder': 0,
-	       \ 'latexsuite': 1,
-	       \ 'lusty': 0,
-	       \ 'nerd': 0,
-	       \ 'popupbuffer': 1,
-	       \ 'powerline': 0,
-	       \ 'qnamebuf': 0,
-	       \ 'syntastic': 0,
-	       \ 'taglist': 1,
-	       \ 'tcommand': 0,
-	       \ 'tselectbuffer': 0,
-	       \ 'tselectfiles': 0,
-	       \ 'unite': 0,
-	       \ 'vimmp': 0,
-	       \ 'winmanager': 0,
-	       \ }
+		\ 'buffergator': 0,
+		\ 'bufferlist': 0,
+		\ 'buffet': 1,
+		\ 'bufmru': 0,
+		\ 'buftabs': 0,
+		\ 'commandt': 0,
+		\ 'ctrlp': 1,
+		\ 'fuzzyfinder': 0,
+		\ 'latexsuite': 1,
+		\ 'lusty': 0,
+		\ 'neocompl': 0,
+		\ 'nerd': 0,
+		\ 'popupbuffer': 1,
+		\ 'powerline': 0,
+		\ 'qnamebuf': 0,
+		\ 'syntastic': 0,
+		\ 'taglist': 1,
+		\ 'tcommand': 0,
+		\ 'tselectbuffer': 0,
+		\ 'tselectfiles': 0,
+		\ 'unite': 0,
+		\ 'vimmp': 0,
+		\ 'winmanager': 0,
+		\ }
 
 " plugins: standard {{{1
 
@@ -799,7 +803,6 @@ let s:plugins = {
 filetype off
 set runtimepath+=~/.vim/bundle/vundle/
 call vundle#rc()
-" Bundle 'gmarik/vundle'
 "Bundle 'gmarik/vundle'
 Bundle 'lucc/vundle'
 
@@ -1001,12 +1004,6 @@ if s:plugins['winmanager'] "{{{2
   nmap <leader>wt :WMToggle<cr>
 endif
 
-" plugins: powerline {{{1
-if s:plugins['powerline'] "{{{2
-  Bundle 'Lokaltog/vim-powerline'
-  Bundle 'Lokaltog/powerline'
-endif
-
 " plugins: LaTeX {{{1
 
 " 3109 LatexBox.vmb
@@ -1063,9 +1060,42 @@ if s:plugins['latexsuite'] "{{{2
   "let g:Tex_UseUtfMenus=1
 endif
 
+" plugins: lisp/scheme {{{1
+
+" lisp/scheme interaction {{2
+Bundle 'slimv.vim'
+"2531 slimv.vim
+
+" plugins: shell {{{1
+
+Bundle 'Shougo/vimproc'
+Bundle 'Shougo/vimshell.vim'
+Bundle 'Conque-Shell'
+" to be tested (shell in gvim)
+"http://www.vim.org/scripts/script.php?script_id=118
+"http://www.vim.org/scripts/script.php?script_id=165
+"http://www.vim.org/scripts/script.php?script_id=1788
+"http://www.vim.org/scripts/script.php?script_id=2620
+"http://www.vim.org/scripts/script.php?script_id=2711
+"http://www.vim.org/scripts/script.php?script_id=2771
+"http://www.vim.org/scripts/script.php?script_id=3040
+"http://www.vim.org/scripts/script.php?script_id=3123
+"http://www.vim.org/scripts/script.php?script_id=3431
+"http://www.vim.org/scripts/script.php?script_id=3554
+"4011 18175 :AutoInstall: vimux
+
+" plugins: comma separated values (csv) {{{1
+"Bundle 'csv.vim'
+"Bundle 'csv-reader'
+"Bundle 'CSVTK'
+"Bundle 'rcsvers.vim'
+"Bundle 'csv-color'
+"Bundle 'CSV-delimited-field-jumper'
+
 " plugins: tags {{{1
 " taglist_45.zip
 " ttags.vba.gz
+"Bundle 'xolox/vim-easytags'
 
 " Bundle 'taglist-plus' {{{2
 Bundle 'taglist-plus'
@@ -1220,8 +1250,112 @@ let g:manpageview_winopen = 'reuse'
 " icomplete-0.5.tar.bz2
 " cppcomplete.vim.gz
 
-" Bundle 'javacomplete' {{{2
 Bundle 'javacomplete'
+
+if s:plugins['neocompl'] "{{{2
+  "Bundle 'Shougo/neocomplete.vim'
+  Bundle 'Shougo/neocomplcache.vim'
+  Bundle 'Shougo/neosnippet'
+  " Code from the help file:
+  """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""{{{
+  "Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
+  " Disable AutoComplPop.
+  let g:acp_enableAtStartup = 0
+  " Use neocomplcache.
+  let g:neocomplcache_enable_at_startup = 1
+  " Use smartcase.
+  let g:neocomplcache_enable_smart_case = 1
+  " Set minimum syntax keyword length.
+  let g:neocomplcache_min_syntax_length = 3
+  let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+
+  " Enable heavy features.
+  " Use camel case completion.
+  "let g:neocomplcache_enable_camel_case_completion = 1
+  " Use underbar completion.
+  "let g:neocomplcache_enable_underbar_completion = 1
+
+  " Define dictionary.
+  let g:neocomplcache_dictionary_filetype_lists = {
+      \ 'default' : '',
+      \ 'vimshell' : $HOME.'/.vimshell_hist',
+      \ 'scheme' : $HOME.'/.gosh_completions'
+	  \ }
+
+  " Define keyword.
+  if !exists('g:neocomplcache_keyword_patterns')
+      let g:neocomplcache_keyword_patterns = {}
+  endif
+  let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
+
+  " Plugin key-mappings.
+  inoremap <expr><C-g>     neocomplcache#undo_completion()
+  inoremap <expr><C-l>     neocomplcache#complete_common_string()
+
+  " Recommended key-mappings.
+  " <CR>: close popup and save indent.
+  inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+  function! s:my_cr_function()
+    return neocomplcache#smart_close_popup() . "\<CR>"
+    " For no inserting <CR> key.
+    "return pumvisible() ? neocomplcache#close_popup() : "\<CR>"
+  endfunction
+  " <TAB>: completion.
+  inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+  " <C-h>, <BS>: close popup and delete backword char.
+  inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
+  inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+  inoremap <expr><C-y>  neocomplcache#close_popup()
+  inoremap <expr><C-e>  neocomplcache#cancel_popup()
+  " Close popup by <Space>.
+  "inoremap <expr><Space> pumvisible() ? neocomplcache#close_popup() : "\<Space>"
+
+  " For cursor moving in insert mode(Not recommended)
+  "inoremap <expr><Left>  neocomplcache#close_popup() . "\<Left>"
+  "inoremap <expr><Right> neocomplcache#close_popup() . "\<Right>"
+  "inoremap <expr><Up>    neocomplcache#close_popup() . "\<Up>"
+  "inoremap <expr><Down>  neocomplcache#close_popup() . "\<Down>"
+  " Or set this.
+  "let g:neocomplcache_enable_cursor_hold_i = 1
+  " Or set this.
+  "let g:neocomplcache_enable_insert_char_pre = 1
+
+  " AutoComplPop like behavior.
+  "let g:neocomplcache_enable_auto_select = 1
+
+  " Shell like behavior(not recommended).
+  "set completeopt+=longest
+  "let g:neocomplcache_enable_auto_select = 1
+  "let g:neocomplcache_disable_auto_complete = 1
+  "inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
+
+  " Enable omni completion.
+  autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+  autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+  autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+  autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+  autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+  " Enable heavy omni completion.
+  if !exists('g:neocomplcache_omni_patterns')
+    let g:neocomplcache_omni_patterns = {}
+  endif
+  if !exists('g:neocomplcache_force_omni_patterns')
+    let g:neocomplcache_force_omni_patterns = {}
+  endif
+  let g:neocomplcache_omni_patterns.php =
+  \ '[^. \t]->\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
+  let g:neocomplcache_omni_patterns.c =
+  \ '[^.[:digit:] *\t]\%(\.\|->\)\%(\h\w*\)\?'
+  let g:neocomplcache_omni_patterns.cpp =
+  \ '[^.[:digit:] *\t]\%(\.\|->\)\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
+
+  " For perlomni.vim setting.
+  " https://github.com/c9s/perlomni.vim
+  let g:neocomplcache_omni_patterns.perl =
+  \ '[^. \t]->\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
+  """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
+endif
 
 " Bundle 'OmniCppComplete' {{{2
 " vimscript
@@ -1234,9 +1368,9 @@ if version >= 7
   let OmniCpp_GlobalScopeSearch = 1
   let OmniCpp_ShowAccess = 1
   let OmniCpp_ShowPrototypeInAbbr = 1 " show function parameters
-  let OmniCpp_MayCompleteDot = 1 " autocomplete after .
-  let OmniCpp_MayCompleteArrow = 1 " autocomplete after ->
-  let OmniCpp_MayCompleteScope = 1 " autocomplete after ::
+  let OmniCpp_MayCompleteDot = 1      " autocomplete after .
+  let OmniCpp_MayCompleteArrow = 1    " autocomplete after ->
+  let OmniCpp_MayCompleteScope= 1    " autocomplete after ::
   let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
   " automatically open and close the popup menu / preview window
   augroup LucOmniCppCompete
@@ -1248,82 +1382,58 @@ if version >= 7
 endif
 
 " Bundle 'AutoComplPop' {{{2
-" vimscript
+" vimscript id 1879
 Bundle 'AutoComplPop'
-" id 1879
 " do not start popup menu after curser moved.
 "let g:acp_mappingDriven = 1
 "let g:acp_behaviorKeywordCommand = '<tab>'
 
-" Bundle 'delimitmate' {{{2
+" From the help file:
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""{{{
+" snipMate's Trigger Completion ~
+" 
+" snipMate's trigger completion enables you to complete a snippet trigger
+" provided by snipMate plugin
+" (http://www.vim.org/scripts/script.php?script_id=2540) and expand it.
+" 
+" 
+" To enable auto-popup for this completion, add following function to
+" plugin/snipMate.vim:
+" >
+"   fun! GetSnipsInCurrentScope()
+"     let snips = {}
+"     for scope in [bufnr('%')] + split(&ft, '\.') + ['_']
+"       call extend(snips, get(s:snippets, scope, {}), 'keep')
+"       call extend(snips, get(s:multi_snips, scope, {}), 'keep')
+"     endfor
+"     return snips
+"   endf
+" <
+" And set |g:acp_behaviorSnipmateLength| option to 1.
+" 
+" There is the restriction on this auto-popup, that the word before cursor must
+" consist only of uppercase characters.
+" 
+"                                                                *acp-perl-omni*
+" Perl Omni-Completion ~
+" 
+" AutoComplPop supports perl-completion.vim
+" (http://www.vim.org/scripts/script.php?script_id=2852).
+" 
+" To enable auto-popup for this completion, set |g:acp_behaviorPerlOmniLength|
+" option to 0 or more.
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
+
+" plugins: parenthesis and quotes {{{1
+
 Bundle 'Raimondi/delimitMate'
+Bundle 'paredit.vim'
 
 " plugins: unsorted {{{1
-"3412 xterm-color-table.vim.tar.gz
-"2540 snipMate
-"2369 vmmp
-"2856 vmmpc
-"2582 blogit
-"3510 vimrepress
-" lisp/scheme interaction {{2
-"2531 slimv.vim
-
-" maybe not interesting {{{2
-"877 gvcolor.vim
-"1283 tbe.vim
-
-" why is this installed? {{{2
-"1066 cecutil.vim
-
-" to be tested (shell in gvim) {{{2
-"http://www.vim.org/scripts/script.php?script_id=118
-"http://www.vim.org/scripts/script.php?script_id=165
-"http://www.vim.org/scripts/script.php?script_id=1788
-"http://www.vim.org/scripts/script.php?script_id=2620
-"http://www.vim.org/scripts/script.php?script_id=2711
-"http://www.vim.org/scripts/script.php?script_id=2771
-"http://www.vim.org/scripts/script.php?script_id=3040
-"http://www.vim.org/scripts/script.php?script_id=3123
-"http://www.vim.org/scripts/script.php?script_id=3431
-"http://www.vim.org/scripts/script.php?script_id=3554
-"4011 18175 :AutoInstall: vimux
-
-" other default {{{2
-"40 DrawIt.tar.gz
-"104 blockhl.vim
-"120 decho.vim
-"122 astronaut.vim
-"195 engspchk.vim
-"294 Align.vim
-"302 AnsiEsc.vim
-"451 EasyAccents.vim
-"514 mrswin.vim                   # wtf?
-"551 Mines.vim                    # wtf?
-"628 SeeTab.vim
-"670 visincr.vim
-
-" added on 2012-02-14 (bookmarks) {{{2
-"1048 R_with_vim.tar.gz
-"2358 cpp_src.tar.bz2
-"3931 vim-support.zip
-
-" This stuff was in my old ~/.vim dir. {{{2
-" AutoAlign.vba.gz
-" auto.vim.gz
-" bash-support.zip
-" csv-0.22.vmb
-" cvim.zip
-" easytags.zip
-" ex_plugins_package-unix-8.05_b2.zip
-" lookupfile-1.8.zip
-" neocomplcache-6.1.zip
-" octave_with_vim_0.01-8.tar.gz
-" project-1.4.1.tar.gz
-" renamer.vim.gz
-" sessionman.vim.gz
-" snippy_plugin.vba.gz
-" supertab.vba.gz
-" tskeleton.vba.gz
+if s:plugins['powerline'] "{{{2
+  Bundle 'Lokaltog/vim-powerline'
+  Bundle 'Lokaltog/powerline'
+endif
 
 if s:plugins['syntastic'] "{{{2
   Bundle 'scrooloose/syntastic'
@@ -1344,7 +1454,8 @@ Bundle 'applescript.vim'
 Bundle 'browser.vim'
 
 " Bundle 'calendar.vim' {{{2
-Bundle 'calendar.vim'
+"Bundle 'calendar.vim'
+" buggy!
 
 " Bundle 'matchit.zip' {{{2
 Bundle 'matchit.zip'
@@ -1353,7 +1464,9 @@ Bundle 'matchit.zip'
 Bundle 'Vim-JDE'
 
 " Bundle 'VimRepress' {{{2
+"3510 vimrepress
 Bundle 'VimRepress'
+"2582 blogit
 
 " Bundle 'ZoomWin' {{{2
 Bundle 'ZoomWin'
@@ -1368,6 +1481,9 @@ Bundle 'tpope/vim-fugitive'
 " Bundle 'vimwiki' {{{2
 Bundle 'vimwiki'
 
+" plugins: mpd {{{1
+"2369 vmmp
+"2856 vmmpc
 " Bundle 'vimmpc' {{{2
 "Bundle 'vimmpc'
 
@@ -1396,19 +1512,63 @@ Bundle 'vibrantink'
 Bundle 'tortex'
 Bundle 'tomasr/molokai'
 
-" set colors for the terminal {{{1
-filetype plugin indent on
-if has('syntax')
-  " Are we running on MacVim?
-  if has('gui_macvim')
-    colorscheme macvim
-    " that is 202=#ff5f00, 234=#1c1c1c
-    hi Pmenu ctermfg=202 ctermbg=234
-    hi PmenuSel ctermfg=234 ctermbg=202
+" plugins: bookmarks {{{1
+"3412 xterm-color-table.vim.tar.gz
+"2540 snipMate
 
-  " what is a good alternative colorsheme?
-  "else
-  endif
+" maybe not interesting {{{2
+"877 gvcolor.vim
+"1283 tbe.vim
+
+" why is this installed? {{{2
+"1066 cecutil.vim
+
+" other default {{{2
+"40 DrawIt.tar.gz
+"104 blockhl.vim
+"120 decho.vim
+"122 astronaut.vim
+"195 engspchk.vim
+"294 Align.vim
+"302 AnsiEsc.vim
+"451 EasyAccents.vim
+"514 mrswin.vim                   # wtf?
+"551 Mines.vim                    # wtf?
+"628 SeeTab.vim
+"670 visincr.vim
+
+" added on 2012-02-14 (bookmarks) {{{2
+"1048 R_with_vim.tar.gz
+"2358 cpp_src.tar.bz2
+"3931 vim-support.zip
+
+" This stuff was in my old ~/.vim dir. {{{2
+" AutoAlign.vba.gz
+" bash-support.zip
+" ex_plugins_package-unix-8.05_b2.zip
+" octave_with_vim_0.01-8.tar.gz
+" project-1.4.1.tar.gz
+" renamer.vim.gz
+" sessionman.vim.gz
+" snippy_plugin.vba.gz
+" supertab.vba.gz
+" tskeleton.vba.gz
+
+" last steps {{{1
+filetype plugin indent on
+
+" set colors for the terminal {{{1
+if has('syntax')
+  "" Are we running on MacVim?
+  "if has('gui_macvim')
+  "  colorscheme macvim
+  "  " that is 202=#ff5f00, 234=#1c1c1c
+  "  hi Pmenu ctermfg=202 ctermbg=234
+  "  hi PmenuSel ctermfg=234 ctermbg=202
+
+  "" what is a good alternative colorsheme?
+  ""else
+  "endif
 
   " always set the background of the line number
   highlight LineNr ctermbg=black ctermfg=DarkGrey

@@ -64,6 +64,12 @@ PS1="[ %F{green}%n%F{cyan}@%F{blue}%m%f | %F{cyan}%1~%f | %D{%H:%M:%S} ] "
 # RPS1 prompt
 RPROMPT='%(?.$(right-prompt-function).%F{red}Error: %?)'
 
+# If we are in Conque Term inside Vim use a different prompt
+if [[ "$CONQUE" -eq 1 ]]; then
+  PS1="[ %F{green}%n%F{cyan}@%F{blue}%m%f | %F{cyan}%1~%f | %(?.%D{%H:%M:%S}.%F{red}Error %?%f) ] "
+  unset RPROMPT
+fi
+
 # options {{{1
 
 # contolling the history
