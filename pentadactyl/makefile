@@ -1,7 +1,7 @@
 # makefile for ~/.config/pentadactyl by luc
 # vim: foldmethod=marker
 
-include generic.mk
+include ../generic.mk
 
 CONFIGS = \
 	  .$(SEP).pentadactyl               \

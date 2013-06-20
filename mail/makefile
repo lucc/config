@@ -1,6 +1,6 @@
 # makefile for ~/.config/mail by luc
 
-include generic.mk
+include ../generic.mk
 
 CONFIGS = \
 	  mailcheckrc$(SEP).mailcheckrc \

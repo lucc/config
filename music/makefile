@@ -1,7 +1,7 @@
 # makefile for ~/.config/music by luc
 
 # include the generic makefile
-include generic.mk
+include ../generic.mk
 
 CONFIGS = \
           abcde.conf$(SEP).abcde.conf \

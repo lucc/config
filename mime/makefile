@@ -1,6 +1,6 @@
 # makefile for ~/.config/mime by luc
 
-include generic.mk
+include ../generic.mk
 
 CONFIGS = \
           mailcap$(SEP).mailcap       \

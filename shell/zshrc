@@ -211,26 +211,22 @@ zstyle ':completion:*' mailboxes ~/mail
 
 
 # ssh hosts {{{2
-# many thanks to http://www.sourceguru.net/ssh-host-completion-zsh-stylee/
-
-# is there already something saved in $hosts?
-if [[ -f ~/.ssh/config ]]; then
-  #hosts=($hosts `sed -n '/\*/d;/^Host/s/^Host[=\t ]*//p' ~/.ssh/config`)
+# many thanks to http://www.sourceguru.net/ssh-host-completion-zsh-stylee
+# other ideas:
+#              sed -n '/\*/d;/^Host/s/^Host[=\t ]*//p' ~/.ssh/config
+#              awk '{print $1}' ~/.ssh/known_hosts | tr ',' '\n'
+#              sed -n '/^machine/s/^machine //p' ~/.netrc
+#
+# this looks for the files /etc/ssh_hosts /etc/ssh_hosts2 ~/.ssh/known_hosts
+# ~/.ssh/known_hosts2 ...
+hosts=(
+  # is there already something saved in $hosts?
+  $hosts
   # from http://serverfault.com/questions/170346
-  hosts=($hosts ${${${(@M)${(f)"$(<~/.ssh/config)"}:#Host *}#Host }:#*[*?]*})
-fi
-if [[ -f ~/.ssh/known_hosts ]]; then
-  #hosts=($hosts `awk '{print $1}' ~/.ssh/known_hosts | tr ',' '\n'`)
-  # this looks for the files /etc/ssh_hosts /etc/ssh_hosts2 ~/.ssh/known_hosts
-  # ~/.ssh/known_hosts2
-  hosts=($hosts ${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })
-fi
-if [[ -f /var/lib/misc/ssh_known_hosts ]]; then
-  hosts=($hosts `awk -F "[, ]" '{print $1}' /var/lib/misc/ssh_known_hosts | sort -u`)
-fi
-if [[ -f ~/.netrc ]]; then
-  hosts=($hosts `sed -n '/^machine/s/^machine //p' ~/.netrc`)
-fi
+  ${${${(@M)${(f)"$(cat ~/.ssh/config(N) /dev/null)"}:#Host *}#Host }:#*[*?]*}
+  ${=${${(f)"$(cat {/etc/ssh_,{~/.ssh/,/var/lib/misc/ssh_}known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ }
+  ${${(@M)${(f)"$(cat ~/.netrc(N) /dev/null)"}:#machine *}#machine }
+)
 if [[ $#hosts -gt 0 ]]; then
   zstyle ':completion:*:hosts' hosts $hosts
   # from http://serverfault.com/questions/170346
@@ -251,12 +247,12 @@ fi
 #zstyle ':completion:*:ssh:*' group-order \
 #      hosts-domain hosts-host users hosts-ipaddr
 #
-#zstyle ':completion:*:(ssh|scp):*:hosts-host' ignored-patterns \
-#      '*.*' loopback localhost
-#zstyle ':completion:*:(ssh|scp):*:hosts-domain' ignored-patterns \
-#      '<->.<->.<->.<->' '^*.*' '*@*'
-#zstyle ':completion:*:(ssh|scp):*:hosts-ipaddr' ignored-patterns \
-#      '^<->.<->.<->.<->' '127.0.0.<->'
+zstyle ':completion:*:(ssh|scp):*:hosts-host' ignored-patterns \
+      '*.*' loopback localhost
+zstyle ':completion:*:(ssh|scp):*:hosts-domain' ignored-patterns \
+      '<->.<->.<->.<->' '^*.*' '*@*'
+zstyle ':completion:*:(ssh|scp):*:hosts-ipaddr' ignored-patterns \
+      '^<->.<->.<->.<->' '127.0.0.<->'
 #zstyle ':completion:*:(ssh|scp):*:users' ignored-patterns \
 #      adm bin daemon halt lp named shutdown sync
 #

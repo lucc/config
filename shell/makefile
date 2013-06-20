@@ -1,7 +1,7 @@
 # makefile for ~/.config/shell by luc
 # vim: foldmethod=marker
 
-include generic.mk
+include ../generic.mk
 
 # variables {{{1
 CONFIGS = \
