@@ -273,9 +273,25 @@ if [ "$BASH" != "" ]; then
 elif [ "$ZSH_NAME" = zsh ]; then
 
   help () {
-    echo "Visiting online help at http://zsh.sourceforge.net/."
+    local browser=
+    for b in lynx elinks; do
+      if command which -s $b; then
+	browser=$b
+	break
+      fi
+    done
+    if [ -z $browser ]; then
+      echo No browser available. >&2
+      return 1
+    fi
+    if [ -r ~/tmp/zsh_html/zsh.html ]; then
+      URL=file://$HOME/tmp/zsh_html/zsh_toc.html
+    else
+      URL=http://zsh.sourceforge.net/Doc/Release/zsh_toc.html
+    fi
+    echo Visiting online help at $URL.
     sleep 2
-    lynx http://zsh.sourceforge.net/Intro/intro_toc.html
+    $browser $URL
   }
 
   fnd () { find . ${=1:+-name "${@}"}; }

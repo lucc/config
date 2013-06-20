@@ -8,6 +8,8 @@
 #          http://www.sourceguru.net/ssh-host-completion-zsh-stylee
 #          http://serverfault.com/questions/170346
 #          https://maze.io/2008/08/03/remote-tabcompletion-using-openssh-and-zsh
+# and the zsh manual:
+#          http://zsh.sourceforge.net/Doc/
 
 # local variables (unset at eof) {{{1
 # This variable will expand to the nullstring if we are not on Mac OS X or
@@ -28,14 +30,46 @@ elif [[ -r $BREW/etc/autojump.sh ]]; then
   . $BREW/etc/autojump.sh
 fi
 
+# zsh arrays (fignore, fpath) {{{1
+
+# file endings to ignore for completion
+fignore=(${fignore[@]} '~' .o .bak .swp)
+
+# zle stuff
+zle_highlight=(region:bg=green special:bg=blue suffix:fg=red isearch:fg=yellow)
+
+# functions for completion
+for trypath in \
+    /usr/local/share/zsh-completions \
+    $ZDOTDIR/functions \
+  ; do
+  if [[ -d $trypath ]]; then
+    fpath=($trypath $fpath)
+  fi
+done
+
 # prompt {{{1
 # functions for the prompt {{{2
 
+# check for mail
+function check-mail-gmx () {
+  [[ `ls ~/mail/gmx/new 2>/dev/null | wc -l` -ne 0 ]]
+  # FIXME somehow the zsh version is much slower
+  #[[ -n `checkmail ~/mail/gmx` ]]
+}
+
+function check-mail-all () {
+  mailcheck 2>/dev/null | grep -q " new "
+  # FIXME somehow the zsh version is much slower
+  #[[ -n `checkmail ~/mail/^spam` ]]
+  #[[ `ls -d ~/mail/{inbox,landheim,lists/*,uni/{mathe,lmu}}/new/*(N)` != . ]]
+}
+
 # functions to dispay info in the prompts
 function right-prompt-function () {
-  if [[ `ls ~/mail/gmx/new 2>/dev/null | wc -l` -ne 0 ]]; then
+  if check-mail-gmx; then
     echo '%B%F{red}Mail for mac_fan@gmx.de!%f%b'
-  elif mailcheck 2>/dev/null | grep -q " new "; then
+  elif check-mail-all; then
     echo '%B%F{blue}You have mail!%f%b'
   elif [[ `uname` = Darwin ]]; then
     echo "${vcs_info_msg_0_} `battery.sh -bce zsh`"
@@ -137,9 +171,6 @@ elif [[ `uname` = Linux ]]; then
   fi
 fi
 
-# zle stuff {{{1
-zle_highlight=(region:bg=green special:bg=blue suffix:fg=red isearch:fg=yellow)
-
 # completion {{{1
 
 # layout {{{2
@@ -155,6 +186,29 @@ zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p
 
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path $ZDOTDIR/cache
+
+# other {{{2
+
+zstyle ':completion:*' completer _expand _complete _ignored
+zstyle ':completion:*' expand prefix suffix
+zstyle ':completion:*' special-dirs ..
+zstyle ':completion:*' ignore-parents parent pwd ..
+#TODO
+zstyle ':completion:*:cd:*' ignored-patterns . 
+zstyle ':completion:*' list-suffixes true
+zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}'
+zstyle ':completion:*' original false
+zstyle ':completion:*' squeeze-slashes true
+zstyle ':completion:*' verbose true
+#zstyle ':completion:*' format 'Completing %d'
+#zstyle ':completion:*' insert-unambiguous true
+#zstyle :compinstall filename '/Users/lucas/.zshrc'
+
+# what do these do?
+zstyle ':completion:*' muttrc ~/.mutt/muttrc
+zstyle ':completion:*' mail-directory ~/mail
+zstyle ':completion:*' mailboxes ~/mail
+
 
 # ssh hosts {{{2
 # many thanks to http://www.sourceguru.net/ssh-host-completion-zsh-stylee/
@@ -232,26 +286,20 @@ function +vi-fixgitstring() {
   hook_com[vcs]='±'
 }
 
-# other {{{2
-
-zstyle ':completion:*' completer _expand _complete _ignored
-zstyle ':completion:*' expand prefix suffix
-zstyle ':completion:*' special-dirs true
-zstyle ':completion:*' ignore-parents parent pwd ..
-#TODO
-zstyle ':completion:*:cd:*' ignored-patterns . 
-zstyle ':completion:*' list-suffixes true
-zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}'
-zstyle ':completion:*' original false
-zstyle ':completion:*' squeeze-slashes true
-zstyle ':completion:*' verbose true
-#zstyle ':completion:*' format 'Completing %d'
-#zstyle ':completion:*' insert-unambiguous true
-#zstyle :compinstall filename '/Users/lucas/.zshrc'
-
 # starting the completion system {{{2
 autoload -Uz compinit
 compinit
 
-#  unset local variables {{{1
+# aoutoloading stuff {{{1
+autoload colors
+autoload checkmail
+autoload run-help
+HELPDIR=~/zsh_help
+
+# load zsh modules {{{1
+zmodload zsh/sched
+zmodload zsh/zprof
+
+#  unset local variables and last steps {{{1
+source $BREW/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 unset BREW
