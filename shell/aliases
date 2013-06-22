@@ -23,8 +23,13 @@ alias la='l -A'
 alias mv='mv -i'
 alias scp='scp -p'
 alias mkdir='mkdir -p'
-alias man='transparent-gvim.sh -m'
-alias info='transparent-gvim.sh -i'
+
+# view documentation
+alias info='transparent-gvim.sh --info'
+alias man='transparent-gvim.sh --man'
+alias perldoc='transparent-gvim.sh --perldoc'
+alias phpdoc='transparent-gvim.sh --php'
+alias pydoc='transparent-gvim.sh --pydoc'
 
 # searching the internet
 alias c:='internet_search.sh -f'
@@ -81,7 +86,7 @@ if [ `uname` = "Darwin" ] ; then # (Mac OS X, 10.6)
   alias pst='pstree `ps -o ppid= $$` `pgrep tmux`'
   alias psu='pstree -u $USER'
   alias timemachine=/System/Library/CoreServices/backupd.bundle/Contents/Resources/backupd-helper
-  alias f=mdfind
+  #alias f=mdfind
   alias o=open
   alias app='open -a'
   alias truecrypt=/Applications/TrueCrypt.app/Contents/MacOS/TrueCrypt

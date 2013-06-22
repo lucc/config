@@ -289,8 +289,11 @@ compinit
 # aoutoloading stuff {{{1
 autoload colors
 autoload checkmail
+unalias run-help
 autoload run-help
 HELPDIR=~/zsh_help
+bindkey -M viins '\C-h' run-help
+bindkey -M vicmd '\C-h' run-help
 
 # load zsh modules {{{1
 zmodload zsh/sched
