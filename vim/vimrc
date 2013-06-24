@@ -76,6 +76,56 @@ let s:path = split(join(map(s:path, 'glob("~/" . v:val)')))
 call map(s:path, 'v:val . "/**"')
 
 " user defined functions {{{1
+
+" color scheme stuff {{{2
+function! LucFindAllColorschemes() "{{{3
+  return LucFlattenList(filter(map(split(&rtp, ','),
+	\ 'glob(v:val .  "/**/colors/*.vim", 0, 1)'), 'v:val != []'))
+endfunction
+
+function! LucSelectRandomColorscheme() "{{{3
+  let colorschemes = LucFindAllColorschemes()
+  let this = colorschemes[LucRandomNumber(0,len(colorschemes)-1)]
+  let this = split(this, '/')[-1][0:-5]
+  execute 'colorscheme' this
+  echo this
+endfunction
+
+function! LucLikeColorscheme(val) "{{{3
+  let fname = glob('~/.vim/colorscheme-ratings')
+  let cfiles = map(readfile(fname), 'split(v:val)')
+  for item in cfiles
+    if item[0] == g:colors_name
+      let item[1] += a:val
+      break
+    endif
+  endfor
+  call writefile(map(cfiles, 'join(v:val)'), fname)
+endfunction
+
+function! LucRandomNumber(start, end)
+  return (system('echo $RANDOM') % (a:end - a:start + 1)) + a:start
+  " code by Kazuo on vim@vim.org
+  python from random import randint
+  python from vim import command
+  execute 'python command("return %d" % randint('.a:start.','.a:end.'))'
+endfun 
+
+function! LucFlattenList(list)
+  " Code from bairui@#vim.freenode
+  " https://gist.github.com/3322468
+  let val = []
+  for elem in a:list
+    if type(elem) == type([])
+      call extend(val, LucFlattenList(elem))
+    else
+      call add(val, elem)
+    endif
+    unlet elem
+  endfor
+  return val
+endfunction
+
 function! LucFindBaseDir() "{{{2
   " files which indicate a suitable base directory
   let indicator_files = [
@@ -456,6 +506,41 @@ endfunction
 "  endfor
 "endfunction
 
+function! LucUpdateAllHelptags() "{{{2
+  for item in map(split(&runtimepath, ','), 'v:val . "/doc"')
+    if isdirectory(item)
+      "echo  'helptags' item
+      execute 'helptags' item
+    endif
+  endfor
+endfunction
+
+function! LucUpdateBundlesInBackground() "{{{2
+  silent echo ''
+endfunction
+
+function! LucUnsetOptions() "{{{2
+  set viminfo=
+  set noswapfile
+  set laststatus=0
+  set nonumber
+  "set lines=2
+  syntax off
+  redraw
+endfunction
+
+function! LucCpAsPrint(fname) "{{{2
+  let i = 1
+  let target = '~/vim-print-' . i . '.pdf'
+  while filereadable(target)
+    let i += 1
+    let target = '~/vim-print-' . i . '.pdf'
+  endwhile
+  call system('ps2pdf ' . a:fname . ' ' . target)
+  call delete(a:fname)
+  return v:shell_error
+endfunction
+
 " user defined autocommands {{{1
 
 augroup LucLatex "{{{2
@@ -580,10 +665,16 @@ execute 'nmap <C-w># :call LucVisitBufferOrEditFile("' . s:notes . '")<CR>'
 "command! DiffOrig vne | se bt=nofile | r # | 0d_ | difft | wincmd p | difft
 
 command! -nargs=* -complete=dir J call LucAutoJumpWraper("<args>")
+command! Helptags call LucUpdateAllHelptags()
+command! DislikeCS call LucLikeColorscheme(-1)
+command! LikeCS call LucLikeColorscheme(1)
+
+nmap <D-+> :LikeCS<CR>
+nmap <D--> :call LucLikeColorscheme(-1)\|call LucSelectRandomColorscheme()<CR>
+
 
 " options: TODO {{{1
 
-"set transparency=15
 "set foldcolumn=2
 
 " options: basic {{{1
@@ -642,7 +733,7 @@ if has('folding')
   " fold code by indent
   "set foldmethod=indent
   " but open all (20) folds on startup
-  set foldlevelstart=20
+  "set foldlevelstart=20
   " enable folding for functions, heredocs and if-then-else stuff in sh files.
   let g:sh_fold_enabled=7
 endif
@@ -678,7 +769,7 @@ if has('statusline')
   set statusline+=\ [ASCII=x%03B]                 " ASCII code of char
   "set statusline+=\ [ASCII=x%02.2B]               " ASCII code of char
   set statusline+=\ %=                            " rubber space
-  "set statusline+=[%{strftime('%a\ %F\ %R')}]     " clock
+  set statusline+=[%{strftime('%a\ %F\ %R')}]     " clock
   set statusline+=\ [%c%V,%l/%L]                  " position in file
   set statusline+=\ [%P]                          " percent of above
   "set statusline+=\ %{SyntasticStatuslineFlag()}  " see :h syntastic
@@ -802,7 +893,7 @@ let s:plugins = {
 		\ 'lusty': 0,
 		\ 'neocompl': 0,
 		\ 'nerd': 0,
-		\ 'popupbuffer': 1,
+		\ 'popupbuffer': 0,
 		\ 'powerline': 0,
 		\ 'qnamebuf': 0,
 		\ 'syntastic': 0,
@@ -834,7 +925,7 @@ let s:plugins = {
 " plugins: vundle {{{1
 " Managing plugins with Vundle (https://github.com/gmarik/vundle)
 filetype off
-set runtimepath+=~/.vim/bundle/vundle/
+set runtimepath+=~/.vim/bundle/vundle
 call vundle#rc()
 "Bundle 'gmarik/vundle'
 Bundle 'lucc/vundle'
@@ -1213,7 +1304,7 @@ if has('cscope')
   nmap <C-@><C-@>i :vert scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>	
   nmap <C-@><C-@>d :vert scs find d <C-R>=expand("<cword>")<CR><CR>
   " End of http://cscope.sourceforge.net/cscope_maps.vim stuff }}}
-  if filereadable("cscope.out")
+  if filereadable('cscope.out')
     cscope add cscope.out
   elseif $CSCOPE_DB != ""
     cscope add $CSCOPE_DB
@@ -1485,6 +1576,11 @@ if s:plugins['vimmp'] "{{{2
 endif
 
 " plugins: colors {{{1
+" list all colorschemes with: glob('~/.vim/**/colors/*.vim')
+" astronaut hybrid-light hybrid jellybeans kalt kaltex luc_dark molokai
+" nucolors solarized textmate16 Tomorrow-Night-Blue Tomorrow-Night-Bright
+" Tomorrow-Night-Eighties Tomorrow-Night Tomorrow tortex vibrantink
+
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'w0ng/vim-hybrid'
 Bundle 'chriskempson/vim-tomorrow-theme'
@@ -1495,6 +1591,28 @@ Bundle 'textmate16.vim'
 Bundle 'vibrantink'
 Bundle 'tortex'
 Bundle 'tomasr/molokai'
+
+Bundle 'ScrollColors'
+
+"Bundle 'molokai'
+Bundle 'Colour-Sampler-Pack'
+"Bundle 'pyte'
+"Bundle 'dw_colors'
+"Bundle 'Zenburn'
+"Bundle 'desert-warm-256'
+"Bundle 'tango-desert.vim'
+"Bundle 'desertEx'
+"Bundle 'darkerdesert'
+"Bundle 'DesertedOceanBurnt'
+"Bundle 'desertedocean.vim'
+"Bundle 'desertedocean.vim'
+"Bundle 'desert256.vim'
+"Bundle 'desert.vim'
+"Bundle 'eclm_wombat.vim'
+"Bundle 'wombat256.vim'
+"Bundle 'Wombat'
+"Bundle 'oceandeep'
+
 
 " plugins: bookmarks {{{1
 "Bundle 'xterm-color-table.vim'
