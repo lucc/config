@@ -177,8 +177,7 @@ endfunction
 
 function! LucSearchStringForURI(string) "{{{2
   " function to find an URI in a string
-  " thanks to
-  " http://vim.wikia.com/wiki/Open_a_web-browser_with_the_URL_in_the_current_line
+  " thanks to  http://vim.wikia.com/wiki/VimTip306
   return matchstr(a:string, '[a-z]\+:\/\/[^ >,;:]\+')
   " alternatives:
   "return matchstr(a:string, '\(http://\|www\.\)[^ ,;\t]*')
@@ -190,7 +189,16 @@ function! LucHandleURI(uri) "{{{2
 
   " first find a browser
   let browser = ''
-  let choises = [expand($BROWSER), 'elinks', 'links', 'w3m', 'lynx', 'wget', 'curl', '']
+  let choises = [
+	\ expand($BROWSER),
+	\ 'elinks',
+	\ 'links',
+	\ 'w3m',
+	\ 'lynx',
+	\ 'wget',
+	\ 'curl',
+	\ '',
+	\ ]
   if has('gui_macvim')
     " this only works on Mac OS X
     let browser = 'open'
@@ -213,8 +221,7 @@ endfunction
 
 function! LucInsertStatuslineColor(mode) "{{{2
   " function to change the color of the statusline depending on the mode
-  " this version is from
-  " http://vim.wikia.com/wiki/Change_statusline_color_to_show_insert_or_normal_mode
+  " this version is from http://vim.wikia.com/wiki/VimTip1287
   if     a:mode == 'i'
     highlight StatusLine guibg=DarkGreen   ctermbg=DarkGreen
   elseif a:mode == 'r'
@@ -337,7 +344,8 @@ endfunction
 "  if a:typed == ''
 "    return
 "  elseif a:typed =~ '[[({<]'
-"    let l:matching = (a:typed == '(' ? ')' : (a:typed == '[' ? ']' : (a:typed == '{' ? '}' : (a:typed == '<' ? '>' : ''))))
+"    let l:matches = {'(': ')', '[': ']', '{': '}', '<': '>'}
+"    let l:matching = l:matches[a:typed]
 "    if l:matching == ''
 "      " not good
 "    else
@@ -362,7 +370,9 @@ function! LucRemoteEditor(mail) "{{{2
   let abbreviate = 'cnoreabbrev <buffer>'
   let quit = 'confirm bdelete'
   let forcequit = 'bdelete!'
-  let hide = 'silent call system("osascript -e \"tell application \\\"Finder\\\" to set visible of process \\\"MacVim\\\" to false\"")'
+  let hide = 'silent call system("osascript -e \"' .
+	\ 'tell application \\\"Finder\\\" ' .
+	\ 'to set visible of process \\\"MacVim\\\" to false\"")'
   let quitandhide = quit . '<bar>' . hide . '<bar> redraw'
   let forcequitandhide = forcequit . '<bar>' . hide . '<bar> redraw'
   let write = 'write'
@@ -460,7 +470,8 @@ endfunction
 function! LucManPageTopicsCompletion(ArgLead, CmdLine, CursorPos) "{{{2
   let paths = tr(system('man -w'), ":\n", "  ")
   "let paths = "/usr/share/man/man9"
-  return system('find ' . paths . ' -type f | sed "s#.*/##;s/\.gz$//;s/\.[0-9]\{1,\}//" | sort -u')
+  return system('find ' . paths .
+	\ ' -type f | sed "s#.*/##;s/\.gz$//;s/\.[0-9]\{1,\}//" | sort -u')
 endfunction
 
 function! LucAutoJumpWraper(...) "{{{2
@@ -538,11 +549,49 @@ endfunction
 
 " user defined autocommands {{{1
 
-augroup LucLatex "{{{2
+" FileType autocommands {{{2
+
+augroup LucLatex "{{{3
   autocmd!
-  autocmd BufNewFile,BufRead *.tex setlocal dictionary+=*.bib
-  autocmd BufNewFile,BufRead *.tex nmap <buffer> g<C-g> :!texcount -nosub %<CR>
-  autocmd BufNewFile,BufRead *.tex nmap <buffer> K :call LucTexDocFunction()<CR>
+  autocmd BufNewFile,BufRead *.tex
+	\ setlocal dictionary+=%:h/**/*.bib,%:h/**/*.tex
+  autocmd BufNewFile,BufRead *.tex
+	\ nmap <buffer> g<C-g> :!texcount -nosub %<CR>
+  autocmd BufNewFile,BufRead *.tex
+	\ nmap <buffer> K :call LucTexDocFunction()<CR>
+augroup END
+
+augroup LucPython "{{{3
+  autocmd!
+  autocmd FileType python setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
+augroup END
+
+augroup LucJava "{{{3
+  autocmd!
+  autocmd Filetype java setlocal omnifunc=javacomplete#Complete
+  autocmd Filetype java setlocal makeprg=cd\ %:h\ &&\ javac\ %:t
+augroup END
+
+augroup LucMail "{{{3
+  autocmd!
+  autocmd FileType mail setlocal textwidth=72
+augroup END
+
+augroup LucMan "{{{3
+  autocmd!
+  autocmd FileType man setlocal nospell
+augroup END
+
+augroup LucTodoFile "{{{3
+  autocmd!
+  autocmd FileType luc-todo nnoremap <buffer> <down> zj
+  autocmd FileType luc-todo nnoremap <buffer> <up> zk
+  autocmd FileType luc-todo normal zM
+  autocmd FileType luc-todo autocmd CursorMoved <buffer> normal zx
+  "autocmd BufRead,BufNewFile,BufNew,BufEnter ~/TODO normal zM
+  "autocmd BufRead,BufNewFile,BufNew,BufEnter ~/TODO nmap <buffer> <down> zj
+  "autocmd BufRead,BufNewFile,BufNew,BufEnter ~/TODO nmap <buffer> <up> zk
+  "autocmd CursorMoved ~/TODO normal zx
 augroup END
 
 augroup LucNotesFile "{{{2
@@ -551,14 +600,6 @@ augroup LucNotesFile "{{{2
   " use the variable in the autocommands
   execute 'au BufEnter' s:notes 'setlocal bufhidden=hide'
   execute 'au BufDelete,BufHidden,BufLeave,BufUnload,FocusLost' s:notes 'up'
-augroup END
-
-augroup LucTodoFile "{{{2
-  autocmd!
-  autocmd BufRead,BufNewFile,BufNew,BufEnter ~/TODO normal zM
-  autocmd BufRead,BufNewFile,BufNew,BufEnter ~/TODO nmap <buffer> <down> zj
-  autocmd BufRead,BufNewFile,BufNew,BufEnter ~/TODO nmap <buffer> <up> zk
-  autocmd CursorMoved, ~/TODO normal zx
 augroup END
 
 augroup LucSession "{{{2
@@ -576,28 +617,16 @@ augroup LucSession "{{{2
 	\ endif
 augroup END
 
-augroup LucPython "{{{2
-  autocmd!
-  autocmd FileType python setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
-augroup END
-
-augroup LucJava "{{{2
-  autocmd Filetype java setlocal omnifunc=javacomplete#Complete
-  autocmd Filetype java setlocal makeprg=cd\ %:h\ &&\ javac\ %:t
-augroup END
-
-augroup LucMail "{{{2
-  autocmd FileType mail setlocal textwidth=72
-augroup END
-
 augroup LucLocalWindowCD "{{{2
+  autocmd!
   " FIXME: still buggy
   autocmd BufWinEnter,WinEnter,BufNew,BufRead,BufEnter *
 	\ execute 'lcd' LucFindBaseDir()
 augroup END
 
 augroup LucRemoveWhiteSpaceAtEOL "{{{2
-  autocmd BufWrite * %substitute/\s$//
+  autocmd!
+  autocmd BufWrite * %substitute/\s$//e
 augroup END
 
 " user defined commands and mappings {{{1
@@ -1366,7 +1395,7 @@ if s:plugins['neocompl'] "{{{2
   Bundle 'Shougo/neocomplcache.vim'
   Bundle 'Shougo/neosnippet'
   " Code from the help file:
-  """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""{{{
+  """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""{{{
   "Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
   " Disable AutoComplPop.
   let g:acp_enableAtStartup = 0
@@ -1463,7 +1492,7 @@ if s:plugins['neocompl'] "{{{2
   " https://github.com/c9s/perlomni.vim
   let g:neocomplcache_omni_patterns.perl =
   \ '[^. \t]->\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
-  """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
+  """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 endif
 
 " Bundle 'OmniCppComplete' {{{2
