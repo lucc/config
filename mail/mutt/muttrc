@@ -54,7 +54,7 @@ set use_envelope_from
 #folder-hook . "exec collapse-all"
 set send_charset = us-ascii:utf-8
 set certificate_file = ~/.mutt/certificates
-set editor = "transparent-gvim.sh -t '+call LucRemoteEditor(1)'"
+set editor = "transparent-gvim.sh --tab '+call LucRemoteEditor(1)'"
 set history_file = ~/.mutt/history
 set save_history = 100
 set history = 100
