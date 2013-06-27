@@ -16,7 +16,7 @@ if !(   has('autocmd') &&
       \ has('gui') &&
       \ has('mouse') &&
       \ has('syntax')
-      \ )
+      \ ) || version < 700
   echoerr "This version of Vim lacks many features, please update!"
   finish
 endif
@@ -43,18 +43,10 @@ let s:notes = '~/.vim/notes'
 let mapleader = ','
 "let s:braces_stack = []
 let s:path = [
-      \ '.abook',
       \ '.config',
-      \ '.emacs.d',
-      \ '.env',
       \ '.local',
-      \ '.mutt',
       \ '.NetBeansProjects',
-      \ '.pentadactyl',
       \ '.postfix',
-      \ '.shell',
-      \ '.ssh',
-      \ '.vim',
       \ 'apply',
       \ 'art',
       \ 'bin',
@@ -88,7 +80,8 @@ function! LucSelectRandomColorscheme() "{{{3
   let this = colorschemes[LucRandomNumber(0,len(colorschemes)-1)]
   let this = split(this, '/')[-1][0:-5]
   execute 'colorscheme' this
-  echo this
+  redraw
+  echo g:colors_name
 endfunction
 
 function! LucLikeColorscheme(val) "{{{3
@@ -101,6 +94,7 @@ function! LucLikeColorscheme(val) "{{{3
     endif
   endfor
   call writefile(map(cfiles, 'join(v:val)'), fname)
+  echo g:colors_name
 endfunction
 
 function! LucRandomNumber(start, end)
@@ -109,7 +103,7 @@ function! LucRandomNumber(start, end)
   python from random import randint
   python from vim import command
   execute 'python command("return %d" % randint('.a:start.','.a:end.'))'
-endfun 
+endfun
 
 function! LucFlattenList(list)
   " Code from bairui@#vim.freenode
@@ -393,6 +387,7 @@ function! LucRemoteEditor(mail) "{{{2
   execute 'nnoremap <buffer> <c-w>q'     ':' . quitandhide . '<CR>'
   if a:mail == 1
     /^$
+    normal vGzo
     redraw!
   endif
 endfunction
@@ -568,8 +563,17 @@ augroup END
 
 augroup LucSession "{{{2
   autocmd!
-  "autocmd VimEnter * if bufname('%') == '' && bufnr('%') == 1 | bwipeout 1 | silent edit | silent redraw | endif
-  autocmd VimEnter * if LucCheckIfBufferIsNew(1) | bwipeout 1 | doautocmd BufRead,BufNewFile | endif
+  "autocmd VimEnter *
+  "      \ if bufname('%') == '' && bufnr('%') == 1 |
+  "      \   bwipeout 1 |
+  "      \   silent edit |
+  "      \   silent redraw |
+  "      \ endif
+  autocmd VimEnter *
+	\ if LucCheckIfBufferIsNew(1) |
+	\   bwipeout 1 |
+	\   doautocmd BufRead,BufNewFile |
+	\ endif
 augroup END
 
 augroup LucPython "{{{2
@@ -588,7 +592,12 @@ augroup END
 
 augroup LucLocalWindowCD "{{{2
   " FIXME: still buggy
-  autocmd BufWinEnter,WinEnter,BufNew,BufRead,BufEnter * execute 'lcd' LucFindBaseDir()
+  autocmd BufWinEnter,WinEnter,BufNew,BufRead,BufEnter *
+	\ execute 'lcd' LucFindBaseDir()
+augroup END
+
+augroup LucRemoveWhiteSpaceAtEOL "{{{2
+  autocmd BufWrite * %substitute/\s$//
 augroup END
 
 " user defined commands and mappings {{{1
@@ -626,7 +635,7 @@ nnoremap <C-s>      :call LucFindNextSpellError()<CR>z=
 nmap <Leader>w :call LucHandleURI(LucSearchStringForURI(getline('.')))<CR>
 
 " find a script on vim.org by id or name
-nmap <Leader>v :call 
+nmap <Leader>v :call
   \ LucHandleURI('http://www.vim.org/scripts/script.php?script_id=' .
   \ matchstr(matchstr(expand('<cword>'), '[0-9]\+[^0-9]*$'), '^[0-9]*'))<CR>
 
@@ -832,8 +841,8 @@ endif
 
 " options: colorcolumn {{{1
 
-if version >= 703 	" NEW in VIM 7.3
-  set colorcolumn=+1 	"highlight the background of the 79th column
+if version >= 703
+  set colorcolumn=+1
 else
   " this highlights the part of the line which is longer then 78 char in grey
   " (blue in a terminal).
@@ -1172,6 +1181,7 @@ Bundle 'Limp'
 
 Bundle 'Shougo/vimproc'
 Bundle 'Shougo/vimshell.vim'
+map <D-F11> :VimShellPop<cr>
 Bundle 'Conque-Shell'
 "http://www.vim.org/scripts/script.php?script_id=2771
 
@@ -1279,29 +1289,29 @@ if has('cscope')
   " 	'f'   file:   open the filename under cursor
   " 	'i'   includes: find files that include the filename under cursor
   " 	'd'   called: find functions that function under cursor calls
-  nmap <C-_>s :cs find s <C-R>=expand("<cword>")<CR><CR>	
-  nmap <C-_>g :cs find g <C-R>=expand("<cword>")<CR><CR>	
-  nmap <C-_>c :cs find c <C-R>=expand("<cword>")<CR><CR>	
-  nmap <C-_>t :cs find t <C-R>=expand("<cword>")<CR><CR>	
-  nmap <C-_>e :cs find e <C-R>=expand("<cword>")<CR><CR>	
-  nmap <C-_>f :cs find f <C-R>=expand("<cfile>")<CR><CR>	
+  nmap <C-_>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+  nmap <C-_>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+  nmap <C-_>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+  nmap <C-_>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+  nmap <C-_>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+  nmap <C-_>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
   nmap <C-_>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-  nmap <C-_>d :cs find d <C-R>=expand("<cword>")<CR><CR>	
-  nmap <C-@>s :scs find s <C-R>=expand("<cword>")<CR><CR>	
-  nmap <C-@>g :scs find g <C-R>=expand("<cword>")<CR><CR>	
-  nmap <C-@>c :scs find c <C-R>=expand("<cword>")<CR><CR>	
-  nmap <C-@>t :scs find t <C-R>=expand("<cword>")<CR><CR>	
-  nmap <C-@>e :scs find e <C-R>=expand("<cword>")<CR><CR>	
-  nmap <C-@>f :scs find f <C-R>=expand("<cfile>")<CR><CR>	
-  nmap <C-@>i :scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>	
-  nmap <C-@>d :scs find d <C-R>=expand("<cword>")<CR><CR>	
+  nmap <C-_>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+  nmap <C-@>s :scs find s <C-R>=expand("<cword>")<CR><CR>
+  nmap <C-@>g :scs find g <C-R>=expand("<cword>")<CR><CR>
+  nmap <C-@>c :scs find c <C-R>=expand("<cword>")<CR><CR>
+  nmap <C-@>t :scs find t <C-R>=expand("<cword>")<CR><CR>
+  nmap <C-@>e :scs find e <C-R>=expand("<cword>")<CR><CR>
+  nmap <C-@>f :scs find f <C-R>=expand("<cfile>")<CR><CR>
+  nmap <C-@>i :scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+  nmap <C-@>d :scs find d <C-R>=expand("<cword>")<CR><CR>
   nmap <C-@><C-@>s :vert scs find s <C-R>=expand("<cword>")<CR><CR>
   nmap <C-@><C-@>g :vert scs find g <C-R>=expand("<cword>")<CR><CR>
   nmap <C-@><C-@>c :vert scs find c <C-R>=expand("<cword>")<CR><CR>
   nmap <C-@><C-@>t :vert scs find t <C-R>=expand("<cword>")<CR><CR>
   nmap <C-@><C-@>e :vert scs find e <C-R>=expand("<cword>")<CR><CR>
-  nmap <C-@><C-@>f :vert scs find f <C-R>=expand("<cfile>")<CR><CR>	
-  nmap <C-@><C-@>i :vert scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>	
+  nmap <C-@><C-@>f :vert scs find f <C-R>=expand("<cfile>")<CR><CR>
+  nmap <C-@><C-@>i :vert scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
   nmap <C-@><C-@>d :vert scs find d <C-R>=expand("<cword>")<CR><CR>
   " End of http://cscope.sourceforge.net/cscope_maps.vim stuff }}}
   if filereadable('cscope.out')
@@ -1488,12 +1498,12 @@ Bundle 'AutoComplPop'
 " From the help file:
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""{{{
 " snipMate's Trigger Completion ~
-" 
+"
 " snipMate's trigger completion enables you to complete a snippet trigger
 " provided by snipMate plugin
 " (http://www.vim.org/scripts/script.php?script_id=2540) and expand it.
-" 
-" 
+"
+"
 " To enable auto-popup for this completion, add following function to
 " plugin/snipMate.vim:
 " >
@@ -1507,16 +1517,16 @@ Bundle 'AutoComplPop'
 "   endf
 " <
 " And set |g:acp_behaviorSnipmateLength| option to 1.
-" 
+"
 " There is the restriction on this auto-popup, that the word before cursor must
 " consist only of uppercase characters.
-" 
-"                                                                *acp-perl-omni*
+"
+"                                                              *acp-perl-omni*
 " Perl Omni-Completion ~
-" 
+"
 " AutoComplPop supports perl-completion.vim
 " (http://www.vim.org/scripts/script.php?script_id=2852).
-" 
+"
 " To enable auto-popup for this completion, set |g:acp_behaviorPerlOmniLength|
 " option to 0 or more.
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
@@ -1591,6 +1601,7 @@ Bundle 'textmate16.vim'
 Bundle 'vibrantink'
 Bundle 'tortex'
 Bundle 'tomasr/molokai'
+BUndle 'jonathanfilip/vim-lucius'
 
 Bundle 'ScrollColors'
 
