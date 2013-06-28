@@ -1,0 +1,6 @@
+{
+	PATH2 = /usr/X11/bin:/opt/X11/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/bin:/sbin:/usr/texbin:/usr/local/share/python3;
+	AUTOJUMP_DATA_DIR = /Users/luc/.local/share/autojump;
+	COPY_EXTENDED_ATTRIBUTES_DISABLE = true;
+	LANG = en_US.UTF-8;
+}
