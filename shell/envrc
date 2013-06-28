@@ -4,7 +4,7 @@
 # vim:          spelllang=en filetype=sh
 # description:	This file is meant to set environment variables which are
 #		needed for all shells. Shell specific variables should be set
-#		in the appropriate file (like ~/.bashrc or ~/.zshrc). 
+#		in the appropriate file (like ~/.bashrc or ~/.zshrc).
 # credits:	many thanks to the people from
 #		http://crunchbanglinux.org/forums/topic/1093/post-your-bashrc/
 #		http://bodhizazen.net/Tutorials/envrc
@@ -58,7 +58,7 @@ else
   LESS="$LESS --hilite-search"
   LESS="$LESS --LONG-PROMPT"
   LESS="$LESS --no-init"
-  LESS="$LESS --quit-if-one-screen" 
+  LESS="$LESS --quit-if-one-screen"
   LESS="$LESS --RAW-CONTROL-CHARS"
   LESS="$LESS --prompt=%t?f%f"
   # FIXME: What is this for?

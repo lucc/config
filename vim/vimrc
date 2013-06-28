@@ -640,7 +640,7 @@ augroup END
 
 augroup LucRemoveWhiteSpaceAtEOL "{{{2
   autocmd!
-  autocmd BufWrite * %substitute/\s$//e
+  autocmd BufWrite * silent %substitute/\s$//e
 augroup END
 
 " user defined commands and mappings {{{1
@@ -1641,7 +1641,7 @@ Bundle 'nanotech/jellybeans.vim'
 Bundle 'kalt.vim'
 Bundle 'kaltex.vim'
 Bundle 'textmate16.vim'
-Bundle 'vibrantink'
+"Bundle 'vibrantink'
 Bundle 'tortex'
 Bundle 'tomasr/molokai'
 Bundle 'jonathanfilip/vim-lucius'
