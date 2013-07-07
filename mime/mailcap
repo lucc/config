@@ -15,6 +15,7 @@ application/msword;   wvText %s /dev/stdout; copiousoutput;
 application/vnd.openxmlformats-officedocument.wordprocessingml.document;docx2txt.pl %s; nametemplate=%s.docx; copiousoutput;
 application/vnd.openxmlformats-officedocument.spreadsheetml.sheet; libreoffice --copy %s; test=test -n "$DISPLAY"
 application/vnd.oasis.opendocument.spreadsheet; libreoffice %s; test=test -n "$DISPLAY"
+application/vnd.oasis.opendocument.text; libreoffice %s; test=test -n "$DISPLAY"; nametemplate=%s.odt
 
 # application/pdf {{{2
 #application/pdf;      xpdf -q %s; test=RunningX;

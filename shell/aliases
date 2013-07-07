@@ -19,7 +19,8 @@ alias grep='grep --color=auto'
 alias l='ls -l --time-style=+%F\ %H:%M:%S'
 alias lr='tree -Chuapl' # replacement for ls -lR
 alias ls='ls --color=auto'
-alias la='l -A'
+alias la='ls -A'
+alias lla='l -A'
 alias mv='mv -i'
 alias scp='scp -p'
 alias mkdir='mkdir -p'
@@ -249,7 +250,7 @@ if [ "$BASH" != "" ]; then
 
   h () {
     for ARG; do
-      case `type -t "$ARG"` in 
+      case `type -t "$ARG"` in
         alias)    alias "$ARG";;
         builtin)  help $ARG;;
         function) type -a $ARG;;
@@ -333,9 +334,9 @@ elif [ "$ZSH_NAME" = zsh ]; then
   comp () {
     local oldshwordsplit=
     if setopt | grep -q '^shwordsplit$'; then
-      oldshwordsplit=shwordsplit 
+      oldshwordsplit=shwordsplit
     else
-      oldshwordsplit=noshwordsplit 
+      oldshwordsplit=noshwordsplit
     fi
     setopt shwordsplit
     type ${1%% *} > /dev/null 2>&1 || return 2

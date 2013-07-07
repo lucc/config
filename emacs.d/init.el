@@ -129,8 +129,9 @@
 
 
 ; minibuffer completition {{{1
+;(ido-save-directory-list-file "~/.emacs.d/ido.last")
 (require 'ido)
-(ido-mode 1)
+(ido-mode t)
 ;(require 'mcomplete)
 
 

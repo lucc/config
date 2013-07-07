@@ -15,18 +15,24 @@
 ##############################################################################
 if [ "$ZSH_NAME" = zsh ]; then setopt SH_WORD_SPLIT; fi
 set_var_from_file () {
+  # The file should contain the values for the variable one per line. They
+  # will be read in duplicates wiill be removed and the variable will be set
+  # colon delmited.
   local var=$1 file=$2 item=
+  # get the original value of the variable
   eval local tmp='$'$var
   cat $file | while read line; do
+    # expand variable references in $line
     item=`eval echo $line`
+    # only add existing dirs
     if [ -d $item ]; then tmp=$item:$tmp; fi
   done
+  # remove all duplicates
   tmp=`printf %s $tmp | awk -v RS=: -v ORS=: '!path[$0]{path[$0]=1;print}'`
+  # export the result
   eval export $var=${tmp%:}
 }
-for file in ~/.config/env/*; do
-  set_var_from_file ${file##*/} $file
-done
+for file in ~/.config/env/*; do set_var_from_file ${file##*/} $file; done
 unset -f set_var_from_file
 
 if [ "$ZSH_NAME" = zsh ]; then unsetopt SH_WORD_SPLIT; fi

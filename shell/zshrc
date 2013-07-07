@@ -194,7 +194,7 @@ zstyle ':completion:*' expand prefix suffix
 zstyle ':completion:*' special-dirs ..
 zstyle ':completion:*' ignore-parents parent pwd ..
 #TODO
-zstyle ':completion:*:cd:*' ignored-patterns . 
+zstyle ':completion:*:cd:*' ignored-patterns .
 zstyle ':completion:*' list-suffixes true
 zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}'
 zstyle ':completion:*' original false
@@ -271,7 +271,7 @@ zstyle ':vcs_info:*' actionformats '%F{cyan}%s%F{green}%c%u%b%F{blue}%a%f'
 ####TODO
 zstyle ':vcs_info:*' formats       '%F{cyan}%s%F{green}%c%u%b%f'
 zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{3}%r'
-zstyle ':vcs_info:*' enable git svn cvs
+zstyle ':vcs_info:*' enable git svn cvs hg
 # change color if changes exist (with %c and %u)
 zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:*' stagedstr '%F{yellow}'

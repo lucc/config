@@ -43,10 +43,10 @@ set reply_regexp = "^((re([\[0-9\]+])*|aw|antw\.):[ \t]*)+"
 #save-hook . +inbox
 
 # changing display for some special folders
-folder-hook . "source ~/.mutt/folder-hooks/default"
-folder-hook +\(lists/\)?grillchill "source ~/.mutt/folder-hooks/grillchill"
-folder-hook +\(lists/\)?sammersee  "source ~/.mutt/folder-hooks/sammersee"
-folder-hook +lists/.*              "source ~/.mutt/folder-hooks/lists"
+folder-hook .                      "source ~/.mutt/hooks/default"
+folder-hook +\(lists/\)?grillchill "source ~/.mutt/hooks/grillchill"
+folder-hook +\(lists/\)?sammersee  "source ~/.mutt/hooks/sammersee"
+folder-hook +lists/.*              "source ~/.mutt/hooks/lists"
 
 # other stuff {{{1
 set edit_headers
@@ -75,12 +75,17 @@ source $alias_file
 #source ~/.mutt/color/plain
 source ~/.mutt/color/for-solarized-terminal
 macro index,pager <esc><space> ":source ~/.mutt/color/colorful<return>"
-macro index,pager <esc><tab> ":source ~/.mutt/color/plain<return>"
+macro index,pager <esc><tab>   ":source ~/.mutt/color/plain<return>"
 
 
 # other {{{2
 # format for displaying {{{3
-set index_format  = "%4C %Z %{%b %d} %-15.15L (%?l?%4l&%4c?) %s"
+
+# the default is index_format is "%4C %Z %{%b %d} %-15.15L (%?l?%4l&%4c?) %s"
+# these variables will be used by the hooks
+set my_index_format_1 = "%4C %Z %{%b %d %R}"
+set my_index_format_2 = "(%?l?%4l&%4c?) %s"
+
 # We save the default status format for usage in the profile switching files.
 set my_default_status_format = $status_format
 

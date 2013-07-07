@@ -1,6 +1,6 @@
 # config file for mutt to organize folders containing mail from mailing lists
 # vim: filetype=muttrc
 
-source ~/.mutt/folder-hooks/lists
+source ~/.mutt/hooks/lists
 #fcc-save-hook "~Lgrillchill@googlegroups\.com" +lists/grillchill-old
 save-hook "~Lgrillchill@googlegroups\.com" +lists/grillchill-old

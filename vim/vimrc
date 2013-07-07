@@ -71,16 +71,18 @@ call map(s:path, 'v:val . "/**"')
 
 " color scheme stuff {{{2
 function! LucFindAllColorschemes() "{{{3
-  return LucFlattenList(filter(map(split(&rtp, ','),
-	\ 'glob(v:val .  "/**/colors/*.vim", 0, 1)'), 'v:val != []'))
+  "return LucFlattenList(filter(map(split(&rtp, ','),
+  "      \ 'glob(v:val .  "/**/colors/*.vim", 0, 1)'), 'v:val != []'))
+  return sort(map(split(globpath(&rtp, 'colors/*.vim'), '\n'),
+        \ 'split(v:val, "/")[-1][0:-5]'))
 endfunction
 
 function! LucSelectRandomColorscheme() "{{{3
   let colorschemes = LucFindAllColorschemes()
   let this = colorschemes[LucRandomNumber(0,len(colorschemes)-1)]
-  let this = split(this, '/')[-1][0:-5]
   execute 'colorscheme' this
   redraw
+  let g:colors_name = this
   echo g:colors_name
 endfunction
 
@@ -97,7 +99,7 @@ function! LucLikeColorscheme(val) "{{{3
   echo g:colors_name
 endfunction
 
-function! LucRandomNumber(start, end)
+function! LucRandomNumber(start, end) "{{{3
   return (system('echo $RANDOM') % (a:end - a:start + 1)) + a:start
   " code by Kazuo on vim@vim.org
   python from random import randint
@@ -105,7 +107,7 @@ function! LucRandomNumber(start, end)
   execute 'python command("return %d" % randint('.a:start.','.a:end.'))'
 endfun
 
-function! LucFlattenList(list)
+function! LucFlattenList(list) "{{{3
   " Code from bairui@#vim.freenode
   " https://gist.github.com/3322468
   let val = []
@@ -118,6 +120,27 @@ function! LucFlattenList(list)
     unlet elem
   endfor
   return val
+endfunction
+
+function! LucRemoveColorscheme() "{{{3
+  if !exists('g:colors_name')
+    echoerr 'The variable g:colors_name is not set!'
+    return
+  else
+    let file = globpath(&rtp, 'colors/' . g:colors_name . '.vim')
+    if file == ''
+      echoerr 'Can not find colorscheme ' . g:colors_name . '!'
+      return
+    elseif !exists('g:remove_files')
+      let g:remove_files = [file]
+    elseif type(g:remove_files) != type([])
+      echoerr 'g:remove_files is not a list!'
+      return
+    else
+      call add(g:remove_files, file)
+      return file
+    endif
+  endif
 endfunction
 
 function! LucFindBaseDir() "{{{2
@@ -303,7 +326,7 @@ function! LucQuickMake(target, override) "{{{2
     let error = 1
   else
     execute 'cd' dir
-    echo 'Executing' cmd 'in' fnamemodify(getcwd(), ':~') '...'
+    echo 'Running' cmd 'in' fnamemodify(getcwd(), ':~')
     silent execute '!' cmd '&'
     cd -
     if v:shell_error
@@ -561,6 +584,13 @@ function! LucDiffFunction() "{{{2
   silent execute '!diff' opt v:fname_in v:fname_new '>' v:fname_out
 endfunction
 
+function! LucPutISODate() "{{{2
+  let old_register = @d
+  let @d = strftime('%F')
+  normal "dp
+  let @d = old_register
+endfunction
+
 " user defined autocommands {{{1
 
 " FileType autocommands {{{2
@@ -594,6 +624,7 @@ augroup END
 augroup LucMan "{{{3
   autocmd!
   autocmd FileType man setlocal nospell
+  autocmd FileType man stopinsert
 augroup END
 
 augroup LucTodoFile "{{{3
@@ -640,7 +671,7 @@ augroup END
 
 augroup LucRemoveWhiteSpaceAtEOL "{{{2
   autocmd!
-  autocmd BufWrite * silent %substitute/\s$//e
+  autocmd BufWrite * silent %substitute/\s\+$//e
 augroup END
 
 " user defined commands and mappings {{{1
@@ -658,6 +689,11 @@ inoremap <C-W> <C-G>u<C-W>
 " easy spell checking
 inoremap <C-s> <C-o>:call LucFindNextSpellError()<CR><C-x><C-s>
 nnoremap <C-s>      :call LucFindNextSpellError()<CR>z=
+
+if has('gui_macvim')
+  inoremap œ \
+  inoremap æ \|
+endif
 
 " TODO: is this usefull?
 "inoremap ( ()<++><ESC>F)i
@@ -681,6 +717,9 @@ nmap <Leader>w :call LucHandleURI(LucSearchStringForURI(getline('.')))<CR>
 nmap <Leader>v :call
   \ LucHandleURI('http://www.vim.org/scripts/script.php?script_id=' .
   \ matchstr(matchstr(expand('<cword>'), '[0-9]\+[^0-9]*$'), '^[0-9]*'))<CR>
+
+nmap <Leader>d :call LucPutISODate()<CR>
+imap <Leader>d <C-O>:call LucPutISODate()<CR>
 
 " easy compilation {{{2
 nmap          <F2>        :silent update <BAR> call LucQuickMake('', 0)<CR>
@@ -721,8 +760,9 @@ command! Helptags call LucUpdateAllHelptags()
 command! DislikeCS call LucLikeColorscheme(-1)
 command! LikeCS call LucLikeColorscheme(1)
 
-nmap <D-+> :LikeCS<CR>
+nmap <D-+> :call LucLikeColorscheme(1)\|call LucSelectRandomColorscheme()<CR>
 nmap <D--> :call LucLikeColorscheme(-1)\|call LucSelectRandomColorscheme()<CR>
+nmap <D-_> :call LucRemoveColorscheme()\|call LucSelectRandomColorscheme()<CR>
 
 
 " options: TODO {{{1
@@ -735,7 +775,7 @@ nmap <D--> :call LucLikeColorscheme(-1)\|call LucSelectRandomColorscheme()<CR>
 set backspace=indent,eol,start
 set backup
 set hidden
-set history=1000
+set history=2000
 set confirm
 " set the path for file searching
 set path=.
@@ -758,6 +798,10 @@ set shortmess=
 set nostartofline
 set encoding=utf-8
 set switchbuf=useopen
+
+if $TERM_PROGRAM == 'iTerm.app'
+  set t_Co=256
+endif
 
 " options: searching {{{1
 set ignorecase
@@ -821,7 +865,8 @@ if has('statusline')
   set statusline+=\ [ASCII=x%03B]                 " ASCII code of char
   "set statusline+=\ [ASCII=x%02.2B]               " ASCII code of char
   set statusline+=\ %=                            " rubber space
-  set statusline+=[%{strftime('%a\ %F\ %R')}]     " clock
+  "set statusline+=[%{strftime('%a\ %F\ %R')}]     " clock
+  set statusline+=[%{strftime('%R')}]             " clock
   set statusline+=\ [%c%V,%l/%L]                  " position in file
   set statusline+=\ [%P]                          " percent of above
   "set statusline+=\ %{SyntasticStatuslineFlag()}  " see :h syntastic
@@ -909,7 +954,7 @@ if has('mksession')
 endif
 if has('viminfo')
   " default: '100,<50,s10,h
-  set viminfo='100,<50,s10,h,%
+  set viminfo='100,<50,s10,h,%,n~/.vim/viminfo
   " the flag ' is for filenames for marks
   set viminfo='100
   " the flag < is the nummber of lines saved per register
@@ -1225,6 +1270,7 @@ Bundle 'Limp'
 Bundle 'Shougo/vimproc'
 Bundle 'Shougo/vimshell.vim'
 map <D-F11> :VimShellPop<cr>
+let g:vimshell_temporary_directory = expand('~/.vim/vimshell')
 Bundle 'Conque-Shell'
 "http://www.vim.org/scripts/script.php?script_id=2771
 
@@ -1383,7 +1429,7 @@ endif
 
 " Bundle 'ManPageView' {{{2
 " TODO
-Bundle 'ManPageView'
+"Bundle 'ManPageView'
 " http://www.drchip.org/astronaut/vim/vbafiles/manpageview.vba.gz
 " manually installed: open above url and execute :UseVimaball
 " display manpages in a vertical split (other options 'only', 'hsplit',
@@ -1603,6 +1649,7 @@ Bundle 'applescript.vim'
 Bundle 'matchit.zip'
 Bundle 'Vim-JDE'
 Bundle 'VimRepress'
+"Bundle 'connermcd/VimRepress'
 "Bundle 'blogit.vim'
 Bundle 'ZoomWin'
 Bundle 'AndrewRadev/linediff.vim'
@@ -1629,12 +1676,10 @@ if s:plugins['vimmp'] "{{{2
 endif
 
 " plugins: colors {{{1
-" list all colorschemes with: glob('~/.vim/**/colors/*.vim')
-" astronaut hybrid-light hybrid jellybeans kalt kaltex luc_dark molokai
-" nucolors solarized textmate16 Tomorrow-Night-Blue Tomorrow-Night-Bright
-" Tomorrow-Night-Eighties Tomorrow-Night Tomorrow tortex vibrantink
+" list all colorschemes with: globpath(&rtp,'colors/*.vim')
 
 Bundle 'altercation/vim-colors-solarized'
+let g:solarized_menu = 0
 Bundle 'w0ng/vim-hybrid'
 Bundle 'chriskempson/vim-tomorrow-theme'
 Bundle 'nanotech/jellybeans.vim'
@@ -1645,6 +1690,7 @@ Bundle 'textmate16.vim'
 Bundle 'tortex'
 Bundle 'tomasr/molokai'
 Bundle 'jonathanfilip/vim-lucius'
+Bundle 'dw_colors'
 
 Bundle 'ScrollColors'
 
