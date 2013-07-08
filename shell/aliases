@@ -16,7 +16,8 @@
 alias cp='cp -ip'
 alias grep='grep --color=auto'
 #alias l='ls -l --time-style=full-iso'
-alias l='ls -l --time-style=+%F\ %H:%M:%S'
+alias l='ls -l'
+alias L='ls -l --time-style=+%F\ %H:%M:%S'
 alias lr='tree -Chuapl' # replacement for ls -lR
 alias ls='ls --color=auto'
 alias la='ls -A'
@@ -81,7 +82,8 @@ if [ `uname` = "Darwin" ] ; then # (Mac OS X, 10.6)
   alias dl='cd $HOME/Downloads && wget'
   #play go
   alias igo='(wine c:/Program\ Files/igowin/igowin.exe &) >/dev/null 2>&1'
-  alias l='ls -lT'
+  alias l='ls -l'
+  alias L='ls -lT'
   alias ls='ls -G'
   alias pstree='pstree -g3'
   alias pst='pstree `ps -o ppid= $$` `pgrep tmux`'
