@@ -301,13 +301,16 @@ function! LucQuickMake(target, override) "{{{2
   " local variables
   let cmd   = ''
   let error = 0
-  let path  = filter(split(expand('%:p:h'), '/'), 'v:val !~ "^$"')
+  let path  = filter(split(expand('%:p:h'), '/'), 'v:val != ""')
   let dir   = ''
   " try to find a makefile and set dir and cmd
   while ! empty(path)
     let dir = '/' . join(path, '/')
     if filereadable(dir . '/makefile') || filereadable(dir . '/Makefile')
       let cmd = 'make' . (a:target == '' ? '' : ' ' . a:target)
+      let path = []
+    elseif filereadable(dir . '/build.xml')
+      let cmd = 'ant' . (a:target == '' ? '' : ' ' . a:target)
       let path = []
     else
       unlet path[-1]
@@ -589,6 +592,10 @@ function! LucPutISODate() "{{{2
   let @d = strftime('%F')
   normal "dp
   let @d = old_register
+endfunction
+
+function! LucGermanUTF8Quotes() "{{{2
+
 endfunction
 
 " user defined autocommands {{{1
@@ -908,7 +915,8 @@ if has('statusline')
     set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg " binary images
     set wildignore+=.*.sw?                         " Vim swap files
     set wildignore+=*.DS_Store                     " OSX bullshit
-    "set wildignore+=*.o,*.obj,*.exe,*.dll,        " compiled object files
+    set wildignore+=*.o,*.obj,*.exe,*.dll,         " compiled object files
+    set wildignore+=*.class                        " java class files
     "set wildignore+=*.spl                         " compiled spell word lists
     "set wildignore+=*.luac                        " Lua byte code
     "set wildignore+=migrations                    " Django migrations
