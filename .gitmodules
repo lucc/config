@@ -1,12 +1,19 @@
-[submodule "mutt/color/solarized"]
-	path = mutt/color/solarized
-	url = https://github.com/altercation/mutt-colors-solarized.git
+[submodule "mail/mutt/color/solarized"]
+  path = mail/mutt/color/solarized
+  url = https://github.com/altercation/mutt-colors-solarized.git
 [submodule "vim/bundle/vundle"]
-	path = vim/bundle/vundle
-	url = https://github.com/lucc/vundle.git
+  path = vim/bundle/vundle
+  url = https://github.com/lucc/vundle.git
 [submodule "emacs.d/solarized"]
-	path = emacs.d/solarized
-	url = https://github.com/sellout/emacs-color-theme-solarized.git
-[submodule "solarized"]
-	path = solarized
-	url = ./mail/mutt/color/solarized
+  path = emacs.d/solarized
+  url = https://github.com/sellout/emacs-color-theme-solarized.git
+[submodule "pentadactyl/colors/colorscheme-lucius"]
+  path = pentadactyl/colors/colorscheme-lucius
+  url = git@github.com:maksimr/colorscheme-lucius.git
+[submodule "pentadactyl/colors/pentadactyl-solarized"]
+  path = pentadactyl/colors/pentadactyl-solarized
+  url = git@github.com:claytron/pentadactyl-solarized.git
+[submodule "pentadactyl/colors/zenburn.penta"]
+  path = pentadactyl/colors/zenburn.penta
+  url = git@github.com:grassofhust/zenburn.penta.git
+
