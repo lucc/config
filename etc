@@ -1,24 +1,10 @@
 # Random info which did not fit in anywhere else
-###############################################################################
+##############################################################################
 
 ##  create a CD from an *.iso file
-###############################################################################
+##############################################################################
 sudo dd if=crunchbang.iso of=/dev/disk1 bs=4194304; sync
 
-## Mail.app
-###############################################################################
-# having Mail.app on Mac OS X send new mails as utf-8 encoded:
-defaults write com.apple.mail NSPreferredMailCharset "UTF-8"
-# The mailboxes are under ~/Library/Mail/
-
-# rtorrent 
-###############################################################################
+# rtorrent
+##############################################################################
 ^q für exit
-
-# quickcursor
-###############################################################################
-# get with
-git clone https://github.com/jessegrosjean/quickcursor.git
-# build and install with
-cd quickcursor && xcodebuild && cp -r build/Release/QuickCursor.app /Applications/
-

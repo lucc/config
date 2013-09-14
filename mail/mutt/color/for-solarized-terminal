@@ -45,3 +45,8 @@ color header $my_emph1 default "^Importance: high"
 
 # quoted messages {{{3
 color quoted $my_gray1 default
+
+# for pgp errors
+color body red default '^gpg: the signature could not be verified.$'
+  color body red default '^gpg: WARNING:.*'
+color body green default '^gpg: Good signature from .*'

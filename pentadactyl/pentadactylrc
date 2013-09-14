@@ -4,7 +4,7 @@ set! browser.tabs.closeWindowWithLastTab=false
 set showtabline=never
 
 "javascript var gvim_args = '-f +<line> +"silent! call cursor(0, <column>)" <file>'
-if navigator.platform == "MacIntel" 
+if navigator.platform == "MacIntel"
   "javascript var gvim_cmd = '/usr/local/bin/gvim'
   set editor='/usr/local/bin/gvim -f +<line> +"silent! call cursor(0, <column>)" <file>'
 else
@@ -16,7 +16,10 @@ endif
 set defsearch=d
 
 map ! :!
-map B :bmarks! 
+map B :bmarks!
+
+source ~/.pentadactyl/colors/pentadactyl-solarized/colors/solarized-light.penta
+source ~/.pentadactyl/colors/pentadactyl-solarized/colors/solarized-dark.penta
 
 "echoerr "hans"
 

@@ -24,6 +24,7 @@ endif
 " Do not load many of the GUI menus.  This has to happen before 'syntax on'
 " and 'filetype ...'
 set guioptions+=M
+"set guioptions-=m
 
 " syntax and filetype {{{
 if has('syntax')
@@ -301,7 +302,7 @@ function! LucQuickMake(target, override) "{{{2
   " local variables
   let cmd   = ''
   let error = 0
-  let path  = filter(split(expand('%:p:h'), '/'), 'v:val != ""')
+  let path  = filter(split(expand('%:p:h'), '/'), 'v:val !~ "^$"')
   let dir   = ''
   " try to find a makefile and set dir and cmd
   while ! empty(path)
@@ -598,6 +599,14 @@ function! LucGermanUTF8Quotes() "{{{2
 
 endfunction
 
+function! LucLoadScpBuffers() "{{{2
+  badd ftp://ftp.lima-city.de/index.html
+  badd ftp://ftp.lima-city.de/files/dotfiles/index.php
+  badd scp://math/.profile
+  badd scp://ifi/.profile
+  badd scp://ifi/.profile_local
+  badd scp://lg/.bash_profile
+endfunction
 " user defined autocommands {{{1
 
 " FileType autocommands {{{2
@@ -700,6 +709,8 @@ nnoremap <C-s>      :call LucFindNextSpellError()<CR>z=
 if has('gui_macvim')
   inoremap œ \
   inoremap æ \|
+  cnoremap œ \
+  cnoremap æ \|
 endif
 
 " TODO: is this usefull?
@@ -915,7 +926,7 @@ if has('statusline')
     set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg " binary images
     set wildignore+=.*.sw?                         " Vim swap files
     set wildignore+=*.DS_Store                     " OSX bullshit
-    set wildignore+=*.o,*.obj,*.exe,*.dll,         " compiled object files
+    set wildignore+=*.o,*.obj,*.exe,*.dll          " compiled object files
     set wildignore+=*.class                        " java class files
     "set wildignore+=*.spl                         " compiled spell word lists
     "set wildignore+=*.luac                        " Lua byte code
@@ -1001,7 +1012,6 @@ let s:plugins = {
 		\ 'lusty': 0,
 		\ 'neocompl': 0,
 		\ 'nerd': 0,
-		\ 'popupbuffer': 0,
 		\ 'powerline': 0,
 		\ 'qnamebuf': 0,
 		\ 'syntastic': 0,
@@ -1112,6 +1122,10 @@ if s:plugins['ctrlp'] "{{{2
   "let g:ctrlp_cache_dir = $HOME.'/.vim/cache/ctrlp'
   let g:ctrlp_clear_cache_on_exit = 0
   let g:ctrlp_show_hidden = 1
+  let g:ctrlp_max_files = 0
+  let g:ctrlp_custom_ignore = {
+	\ 'dir':  '\/Users\/luc\/\v(flac|Musik.*|img)'
+	\ }
   "let g:ctrlp_root_markers = ['makefile', 'Makefile', 'latexmkrc']
   let g:ctrlp_map = '<c-space>'
   let g:ctrlp_cmd = 'CtrlPMRU'
@@ -1225,7 +1239,7 @@ endif
 "Bundle 'tex.vim'
 "Bundle 'tex_autoclose.vim'
 
-Bundle 'auctex.vim'
+"Bundle 'auctex.vim'
 Bundle 'LaTeX-Help'
 
 if s:plugins['latexsuite'] "{{{2
@@ -1241,7 +1255,8 @@ if s:plugins['latexsuite'] "{{{2
   " OPTIONAL: Handle empty .tex files as LaTeX.
   let g:tex_flavor='latex'
   " Folding:
-  let Tex_FoldedEnvironments='*'
+  "let Tex_FoldedEnvironments='*'
+
   "let Tex_FoldedEnvironments+=','
   "let Tex_FoldedEnvironments  = 'document,minipage,'
   "let Tex_FoldedEnvironments .= 'di,lem,ivt,dc,'
@@ -1647,11 +1662,6 @@ if s:plugins['syntastic']
   Bundle 'scrooloose/syntastic'
 endif
 
-if s:plugins['popupbuffer']
-  " This is messing with fuf
-  Bundle 'PopupBuffer.vim'
-endif
-
 Bundle 'ack.vim'
 Bundle 'applescript.vim'
 "Bundle 'browser.vim'
@@ -1701,7 +1711,6 @@ Bundle 'textmate16.vim'
 Bundle 'tortex'
 Bundle 'tomasr/molokai'
 Bundle 'jonathanfilip/vim-lucius'
-Bundle 'dw_colors'
 
 Bundle 'ScrollColors'
 

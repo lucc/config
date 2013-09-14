@@ -1,0 +1,17 @@
+# vim: filetype=muttrc
+
+set sidebar_visible = no
+
+bind index \CP noop
+bind index \CN noop
+bind index \CO noop
+bind pager \CP noop
+bind pager \CN noop
+bind pager \CO noop
+#bind index \C<enter> noop
+#bind pager \C<enter> noop
+
+macro generic,index,compose,pager,postpone <f11> \
+  ":source ~/.mutt/switches/sidebar-on<enter>"
+
+push \CL

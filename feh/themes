@@ -91,3 +91,14 @@ rff \
   --randomize \
   --slideshow-delay .3 \
 
+# mv files
+mv \
+  --auto-zoom \
+  --draw-filename \
+  --full-screen \
+  --hide-pointer \
+  --recursive \
+  --randomize \
+  --action1 "mv-dialog.sh %F" \
+  --action2 "renumber-file.sh %F" \
+  --action3 "renumber-file.sh -p %F" \

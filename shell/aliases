@@ -25,6 +25,7 @@ alias lla='l -A'
 alias mv='mv -i'
 alias scp='scp -p'
 alias mkdir='mkdir -p'
+alias nload='nload -i 6144 -o 1024'
 
 # view documentation
 alias info='transparent-gvim.sh --info'
@@ -53,18 +54,23 @@ alias tbz2='tar -cjv --exclude .DS_Store'
 alias tgz='tar -czv --exclude .DS_Store'
 alias up='date +"%F `uptime`"'
 alias bk='backup.make fullbk'
-alias nload='nload -i 6144 -o 1024'
 
 # other
 alias ctw-muc='ctw GMXX0087'
-alias garbage='while ! read -t 1; do head -c 1000000 /dev/random | hexdump -C | grep --color=auto "42.*42.*42"; done; unset REPLY'
+alias garbage='while ! read -t 1; do
+		 head -c 1000000 /dev/random | \
+		   hexdump -C | \
+		   grep --color=auto "42.*42.*42"
+	       done; unset REPLY'
 alias gtype='gtypist ktde.typ'
 alias tex=latexmk
 #alias tmp='cd ~/tmp'
 alias maillog='cat ~/log/fetchmail.log | tail'
 alias maillog='syslog -k Sender fetchmail | tail'
+alias mail=mutt
 alias :q='echo You are not in vi. Use \"exit\", \"logout\" or CTRL-D.; false'
 alias D='date +%F'
+alias m=ncmpcpp
 
 # old
 #alias ba='clear && cd ~/files/uni/mathe/ba/ && ls -lT'
@@ -93,9 +99,8 @@ if [ `uname` = "Darwin" ] ; then # (Mac OS X, 10.6)
   alias o=open
   alias app='open -a'
   alias truecrypt=/Applications/TrueCrypt.app/Contents/MacOS/TrueCrypt
-  #alias passon="defaults write com.apple.screensaver askForPassword 1; defaults write com.apple.screensaver askForPasswordDelay 0"
-  #alias passoff="defaults write com.apple.screensaver askForPassword 0"
   alias sp='open -a System\ Preferences'
+  alias quit_finder='osascript -e tell\ app\ \"Finder\"\ to\ quit'
 elif [ `uname` = Linux ]; then
   alias pstree='pstree -n'
 fi
@@ -107,11 +112,17 @@ if [ "$BASH" != "" ]; then
   ## We are running bash
   alias ..='cd ..'
   alias hgrep='history | grep'
-  alias histhead='history | awk '\''{a[$2]++}END{for(i in a){print a[i]" "i}}'\'' | sort -rn | head'
+  alias histhead='history | \
+		    awk '\''{a[$2]++}END{for(i in a){print a[i]" "i}}'\'' | \
+		    sort -rn | \
+		    head'
 elif [ "$ZSH_NAME" = zsh ]; then
   ## We are running zsh
   alias hgrep='history 1 -1 | grep'
-  alias histhead='history 1 -1 | awk '\''{a[$2]++}END{for(i in a){print a[i]" "i}}'\'' | sort -rn | head'
+  alias histhead='history 1 -1 | \
+		    awk '\''{a[$2]++}END{for(i in a){print a[i]" "i}}'\'' | \
+		    sort -rn | \
+		    head'
   alias -s com=urlopen
   alias -s org=urlopen
   alias -s net=urlopen
@@ -120,6 +131,7 @@ elif [ "$ZSH_NAME" = zsh ]; then
     alias -s jpg=open
     alias -s pdf=open
     alias umall='for v in ~v/*~/Volumes/System(N); diskutil unmount $v'
+    alias e='for v in ~v/*~/Volumes/System(N); diskutil unmount $v'
     urlopen () { open "http://$*"; }
     # directory hash table
     ######################
@@ -193,11 +205,13 @@ selff() {
   echo ""
   echo "${red}Shell${plain}"
   echo "Shell: `ps -o command= -p $$`"
-  printf "Running: %02d:%02d:%02d\n" $((SECONDS/3600%24)) $((SECONDS/60%60)) $((SECONDS%60))
+  printf "Running: %02d:%02d:%02d\n" $((SECONDS/3600%24)) $((SECONDS/60%60)) \
+    $((SECONDS%60))
   echo "SHLVL: $SHLVL"
   echo ""
   echo "${red}Processes${plain}"
-  pstree `ps -o ppid= $$`|tail +2 | grep --color=auto -C 999 $$ | grep -v pstree
+  pstree `ps -o ppid= $$`|tail +2 | grep --color=auto -C 999 $$ | \
+    grep -v pstree
   w | tail +3
 }
 
@@ -210,7 +224,8 @@ self () {
   if [ $SECONDS -gt $((24*3600)) ]; then
     echo -n "$(($SECONDS/3600/24)) days and "
   fi
-  printf "%02d:%02d:%02d (SHLVL=$SHLVL)\n" $((SECONDS/3600%24)) $((SECONDS/60%60)) $((SECONDS%60))
+  printf "%02d:%02d:%02d (SHLVL=$SHLVL)\n" $((SECONDS/3600%24)) \
+    $((SECONDS/60%60)) $((SECONDS%60))
   #echo
   echo "Jobs in backround:"
   if [ `jobs|wc -l` -ne 0 ]; then jobs; else echo "None"; fi
@@ -264,7 +279,8 @@ if [ "$BASH" != "" ]; then
             case `file --mime --dereference --brief "$FILE"` in
               text/*|application/x-sh)
                 if [ 50 -gt `wc -l <"$FILE"` ]; then cat "$FILE"
-                else echo "$FILE is quite a long text file. I will not cat it."; fi
+                else echo "$FILE is quite a long text file. I will not cat it."
+	       	fi
                 ;;
               application/*)
                 echo "$FILE is a compiled executable or unsupported format."
@@ -319,7 +335,8 @@ elif [ "$ZSH_NAME" = zsh ]; then
             case `file --mime --dereference --brief "$FILE"` in
               text/*|application/x-sh)
                 if [ 50 -gt `wc -l <"$FILE"` ]; then cat "$FILE"
-                else echo "$FILE is quite a long text file. I will not cat it."; fi
+                else echo "$FILE is quite a long text file. I will not cat it."
+	       	fi
                 ;;
               application/*)
                 echo "$FILE is a compiled executable or unsupported format."
