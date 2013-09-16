@@ -2,11 +2,12 @@
 # author:  luc
 # vim:     foldmethod=marker
 # credits: many thanks to the people from
-#          http://stevelosh.com/blog/2010/02/my-extravagant-zsh-prompt
 #          http://aperiodic.net/phil/prompt
-#          http://crunchbanglinux.org/forums/topic/4062/zsh-is-awesome
-#          http://www.sourceguru.net/ssh-host-completion-zsh-stylee
+#          http://briancarper.net/blog/570
+#          http://crunchbang.org/forums/viewtopic.php?id=4062
 #          http://serverfault.com/questions/170346
+#          http://stevelosh.com/blog/2010/02/my-extravagant-zsh-prompt
+#          http://www.sourceguru.net/ssh-host-completion-zsh-stylee
 #          https://maze.io/2008/08/03/remote-tabcompletion-using-openssh-and-zsh
 # and the zsh manual:
 #          http://zsh.sourceforge.net/Doc/
@@ -283,15 +284,17 @@ zstyle ':vcs_info:*' enable git svn cvs hg
 zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:*' stagedstr '%F{yellow}'
 zstyle ':vcs_info:*' unstagedstr '%F{red}'
-# turn the name 'git' into '±'
+
+# turn the name 'git' into '±' {{{3
 #zstyle ':vcs_info:git+set-message:*' hooks fixgitstring
 function +vi-fixgitstring() {
   hook_com[vcs]='±'
 }
-zstyle ':vcs_info:git+set-message:*' hooks git-add-untracked-files
 
+# Add information about untracked files to the branch information {{{3
+# idea from http://briancarper.net/blog/570
+zstyle ':vcs_info:git+set-message:*' hooks git-add-untracked-files
 function +vi-git-add-untracked-files () {
-  # http://briancarper.net/blog/570/git-info-in-your-zsh-prompt
   if [[ -n $(git ls-files --other --exclude-standard 2> /dev/null) ]]; then
     hook_com[branch]+='%F{red}!%f'
   fi
