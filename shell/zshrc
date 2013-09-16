@@ -288,6 +288,14 @@ zstyle ':vcs_info:*' unstagedstr '%F{red}'
 function +vi-fixgitstring() {
   hook_com[vcs]='±'
 }
+zstyle ':vcs_info:git+set-message:*' hooks git-add-untracked-files
+
+function +vi-git-add-untracked-files () {
+  # http://briancarper.net/blog/570/git-info-in-your-zsh-prompt
+  if [[ -n $(git ls-files --other --exclude-standard 2> /dev/null) ]]; then
+    hook_com[branch]+='%F{red}!%f'
+  fi
+}
 
 # starting the completion system {{{2
 autoload -Uz compinit
