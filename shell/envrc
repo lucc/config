@@ -99,14 +99,17 @@ case `uname` in
     export COPY_EXTENDED_ATTRIBUTES_DISABLE BROWSER HTMLPAGER
 
     if [ -z "$GPG_AGENT_INFO" ] && which gpg-agent | grep -q MacGPG2; then
-      pid=`psgrep -n -o pid,args gpg-agent`
-      if [ "$ZSH_NAME" = zsh ]; then
-	pid=`echo $=pid`
-	pid=${pid%% *}
-      else
-	pid=`echo $pid`
-	pid=${pid% *}
-      fi
+      #pid=`psgrep -n -o pid,args gpg-agent`
+      #if [ "$ZSH_NAME" = zsh ]; then
+      #  pid=`echo $=pid`
+      #  pid=${pid%% *}
+      #else
+      #  pid=`echo $pid`
+      #  pid=${pid% *}
+      #fi
+      #pid=`psgrep -n -o pid,args gpg-agent|grep -o '[0-9][0-9]\+'`
+      pid=`launchctl list org.gpgtools.macgpg2.gpg-agent | \
+	grep PID | grep --only-matching '[0-9]\+'`
       if [ -S $HOME/.gnupg/S.gpg-agent ]; then
 	export GPG_AGENT_INFO=$HOME/.gnupg/S.gpg-agent:$pid:1
       fi
