@@ -17,7 +17,7 @@ set mbox      = +old
 #set record    = +sent
 set record    = +inbox
 set postponed = +draft
-#set mask='!^\.[^.]'
+#set mask = '!^\.[^.]'
 #set force_name
 
 # sourcing private definitions {{{2
@@ -61,7 +61,7 @@ mailboxes +sent
 mailboxes +wg
 
 # sorting email {{{2
-reply-hook ".*" set record="^"
+reply-hook ".*" set record = "^"
 set reply_regexp = "^((re([\[0-9\]+])*|aw|antw\.):[ \t]*)+"
 
 #save-hook . +inbox
@@ -114,79 +114,55 @@ set my_gpg = "gpg2 --batch --quiet --output - --status-fd=2 %?p?--passphrase-fd=
 # --no-verbose
 set my_sign_opts = "--armor --textmode %?a?--local-user %a?"
 set my_encrypt_opts = "--encrypt --armor --textmode --always-trust --encrypt-to $pgp_sign_as"
-#set my_gpg_mini   = "$my_gpg_cmd --no-verbose"
-#set my_gpg_batch  = "$my_gpg_cmd --no-verbose --batch"
-#set my_gpg = "$my_gpg_batch --output - --status-fd=2 --quiet"
 
 # reciving pgp stuff {{{3
 # decode application/pgp
-#set pgp_decode_command="gpg --status-fd=2 %?p?--passphrase-fd 0? --no-verbose --quiet --batch --output - %f"
-#set pgp_decode_command="$my_gpg %?p?--passphrase-fd 0? %f"
-set pgp_decode_command="$my_gpg %f"
+set pgp_decode_command = "$my_gpg %f"
 
 # verify a pgp/mime signature
-#set pgp_verify_command="gpg --status-fd=2 --no-verbose --quiet --batch --output - --verify %s %f"
-set pgp_verify_command="$my_gpg --verify %s %f"
+set pgp_verify_command = "$my_gpg --verify %s %f"
 
 # decrypt a pgp/mime attachment
-#set pgp_decrypt_command="gpg --status-fd=2 %?p?--passphrase-fd 0? --no-verbose --quiet --batch --output - %f"
-#set pgp_decrypt_command="$my_gpg %?p?--passphrase-fd 0? %f"
-set pgp_decrypt_command="$my_gpg %f"
+set pgp_decrypt_command = "$my_gpg %f"
 
 # creating pgp stuff {{{3
 # create a pgp/mime signed attachment
-#set pgp_sign_command="gpg-2comp --comment '' --no-verbose --batch --output - %?p?--passphrase-fd 0? --armor --detach-sign --textmode %?a?-u %a? %f"
-#set pgp_sign_command="gpg --no-verbose --batch --quiet --output - %?p?--passphrase-fd 0? --armor --detach-sign --textmode %?a?-u %a? %f"
-#set pgp_sign_command = "$my_gpg %?p?--passphrase-fd 0? --armor --detach-sign --textmode %?a?--local-user %a? %f"
 set pgp_sign_command = "$my_gpg $my_sign_opts --detach-sign %f"
 
 # create a application/pgp signed (old-style) message
-#set pgp_clearsign_command="gpg-2comp --comment '' --no-verbose --batch --output - %?p?--passphrase-fd 0? --armor --textmode --clearsign %?a?-u %a? %f"
-#set pgp_clearsign_command="gpg --no-verbose --batch --quiet --output - %?p?--passphrase-fd 0? --armor --textmode --clearsign %?a?-u %a? %f"
-#set pgp_clearsign_command="$my_gpg %?p?--passphrase-fd 0? --armor --textmode --clearsign %?a?--local-user %a? %f"
-set pgp_clearsign_command="$my_gpg $my_sign_opts --clearsign %f"
+set pgp_clearsign_command = "$my_gpg $my_sign_opts --clearsign %f"
 
 # create a pgp/mime encrypted attachment
-#set pgp_encrypt_only_command="pgpewrap gpg-2comp -v --batch --output - --encrypt --textmode --armor --always-trust -- -r %r -- %f"
-#set pgp_encrypt_only_command="pgpewrap gpg --batch --quiet --no-verbose --output - --encrypt --textmode --armor --always-trust -- -r %r -- %f"
-set pgp_encrypt_only_command="pgpewrap $my_gpg $my_encrypt_opts -- -r %r -- %f"
+set pgp_encrypt_only_command = "pgpewrap $my_gpg $my_encrypt_opts -- -r %r -- %f"
 
 # create a pgp/mime encrypted and signed attachment
-#set pgp_encrypt_sign_command="pgpewrap gpg-2comp %?p?--passphrase-fd 0? -v --batch --output - --encrypt --sign %?a?-u %a? --armor --always-trust -- -r %r -- %f"
-#set pgp_encrypt_sign_command="pgpewrap gpg %?p?--passphrase-fd 0? --batch --quiet --no-verbose --textmode --output - --encrypt --sign %?a?-u %a? --armor --always-trust -- -r %r -- %f"
-#set pgp_encrypt_sign_command="pgpewrap $my_gpg %?p?--passphrase-fd 0? --textmode --encrypt --sign %?a?--local-user %a? --armor --always-trust --encrypt-to $pgp_sign_as -- -r %r -- %f"
-set pgp_encrypt_sign_command="pgpewrap $my_gpg $my_encrypt_opts --sign -- -r %r -- %f"
+set pgp_encrypt_sign_command = "pgpewrap $my_gpg $my_encrypt_opts --sign -- -r %r -- %f"
 
 # key management {{{3
 # import a key into the public key ring
-#set pgp_import_command="gpg --no-verbose --import %f"
-set pgp_import_command="$my_gpg --import -v %f"
+set pgp_import_command = "$my_gpg --import -v %f"
 
 # export a key from the public key ring
-#set pgp_export_command="gpg --no-verbose --export --armor %r"
-set pgp_export_command="$my_gpg --export --armor %r"
+set pgp_export_command = "$my_gpg --export --armor %r"
 
 # verify a key
-set pgp_verify_key_command="$my_gpg --verbose --fingerprint --check-sigs %r"
-#set pgp_verify_key_command="$my_gpg_batch --fingerprint --check-sigs %r"
+set pgp_verify_key_command = "$my_gpg --verbose --fingerprint --check-sigs %r"
 
 # read in the public key ring
-set pgp_list_pubring_command="$my_gpg --with-colons --list-keys %r"
-#set pgp_list_pubring_command="$my_gpg_b --with-colons --list-keys %r"
+set pgp_list_pubring_command = "$my_gpg --with-colons --list-keys %r"
 
 # read in the secret key ring
-set pgp_list_secring_command="$my_gpg --with-colons --list-secret-keys %r"
-#set pgp_list_secring_command="$my_gpg_b --with-colons --list-secret-keys %r"
+set pgp_list_secring_command = "$my_gpg --with-colons --list-secret-keys %r"
 
 # fetch keys
-# set pgp_getkeys_command="pkspxycwrap %r"
+# set pgp_getkeys_command = "pkspxycwrap %r"
 
 # pattern for good signature - may need to be adapted to locale! {{{3
 
-# set pgp_good_sign="^gpgv?: Good signature from "
+# set pgp_good_sign = "^gpgv?: Good signature from "
 
 # OK, here's a version which uses gnupg's message catalog:
-# set pgp_good_sign="`gettext -d gnupg -s 'Good signature from "' | tr -d '"'`"
+# set pgp_good_sign = "`gettext -d gnupg -s 'Good signature from "' | tr -d '"'`"
 
 # it's a regexp used against the GPG output: if it matches some line of the
 # output then mutt considers the message a good signed one (ignoring the GPG
@@ -198,14 +174,14 @@ set pgp_good_sign = "^gpg: Good signature from"
 
 # auto stuff {{{3
 set crypt_autosign = yes
-set crypt_replyencrypt=yes
+set crypt_replyencrypt = yes
 #set crypt_use_gpgme = yes
 set pgp_use_gpg_agent = yes
 
 # timeout {{{3
 # this set the number of seconds to keep in memory the passpharse used to
 # encrypt/sign the more the less secure it will be
-set pgp_timeout = 900
+set pgp_timeout = 0
 
 # header {{{3
 my_hdr X-PGP-Key: 0x001A41A1 http://luc42.lima-city.de/files/public.asc
