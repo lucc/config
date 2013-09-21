@@ -54,6 +54,7 @@ alias tbz2='tar -cjv --exclude .DS_Store'
 alias tgz='tar -czv --exclude .DS_Store'
 alias up='date +"%F `uptime`"'
 alias bk='backup.make fullbk'
+alias uz=aunpack
 
 # other
 alias ctw-muc='ctw GMXX0087'
@@ -130,7 +131,6 @@ elif [ "$ZSH_NAME" = zsh ]; then
   if [ `uname` = Darwin ]; then
     alias -s jpg=open
     alias -s pdf=open
-    alias umall='for v in ~v/*~/Volumes/System(N); diskutil unmount $v'
     alias e='for v in ~v/*~/Volumes/System(N); diskutil unmount $v'
     urlopen () { open "http://$*"; }
     # directory hash table
@@ -175,43 +175,60 @@ conf () {
   $REHASH
 }
 
-if [ -n "$DISPLAY" ]; then
-vi () {
-  if [ $# -eq 0 ]; then
-    if [ "`vim --serverlist`" = "" ]; then
-      vim -g
-    else
-      vim -g --remote-send '<C-\><C-N>:call foreground()<CR>'
-    fi
-  else
-    vim -g --remote-silent "$@"
-  fi
+selff2() {
+  clear
+  date +"$fg[red]Date:$reset_color %F %H:%M:%S$reset_color"
+  echo "$fg[red]Uptime:$reset_color `uptime | \
+    sed -E 's/[ 0-9:]*up ([0-9days,.: ]*), [0-9]* user.*/\1/;s/ +/ /g'`"
+  echo ""
+  echo "$fg[green]Machine$reset_color"
+  echo "$fg[green]Host:$reset_color `hostname`"
+  echo "$fg[green]Arch:$reset_color `machine`"
+  echo ""
+  echo "$fg[blue]System$reset_color"
+  echo "$fg[blue]Kern:$reset_color `uname -s`"
+  echo "$fg[blue]Vers:$reset_color `uname -r`"
+  echo ""
+  echo "$fg[yellow]Shell$reset_color"
+  echo "$fg[yellow]Shell:$reset_color `ps -o command= -p $$`"
+  printf "$fg[yellow]Running:$reset_color %02d:%02d:%02d\n" $((SECONDS/3600%24)) $((SECONDS/60%60)) \
+    $((SECONDS%60))
+  echo "$fg[yellow]SHLVL:$reset_color $SHLVL"
+  echo -n "$fg[yellow]Jobs in backround:$reset_color"
+  if [ `jobs|wc -l` -ne 0 ]; then echo; jobs; else echo " None"; fi
+  echo ""
+  echo "$fg[magenta]Processes$reset_color"
+  pstree `ps -o ppid= $$`
+  w | tail +3
 }
-fi
 
 selff() {
-  local red= #"\033\[31m"
-  local plain= #"\033\[m"
+  color_field () { printf "$fg[$1]$2$reset_color $3\n" "$@[4,-1]"; }
+  blue () { printf "$fg[blue]$1$reset_color $2\n" "$@[3,-1]"; }
+  green () { printf "$fg[green]$1$reset_color $2\n" "$@[3,-1]"; }
   clear
-  date +"%F %H:%M:%S"
-  echo ""
-  echo "${red}Machine${plain}"
-  echo "Host: `hostname`"
-  echo "Arch: `machine`"
-  echo ""
-  echo "${red}System${plain}"
-  echo "Kern: `uname -s`"
-  echo "Vers: `uname -r`"
-  echo ""
-  echo "${red}Shell${plain}"
-  echo "Shell: `ps -o command= -p $$`"
-  printf "Running: %02d:%02d:%02d\n" $((SECONDS/3600%24)) $((SECONDS/60%60)) \
+  blue Date: `date +"%F %H:%M:%S"`
+  echo -n "$fg[blue]Uptime:$reset_color "
+  uptime | sed -E 's/[ 0-9:]*up ([0-9days,.: ]*), [0-9]* user.*/\1/;s/ +/ /g'
+  echo
+  green Machine
+  blue Host: `hostname`
+  blue Arch: `machine`
+  echo
+  green System
+  blue Kern: `uname -s`
+  blue Vers: `uname -r`
+  echo
+  green Shell
+  blue Shell: `ps -o command= -p $$`
+  blue Running: %02d:%02d:%02d $((SECONDS/3600%24)) $((SECONDS/60%60)) \
     $((SECONDS%60))
-  echo "SHLVL: $SHLVL"
+  blue SHLVL: $SHLVL
+  echo -n "$fg[blue]Jobs:$reset_color"
+  if [ `jobs|wc -l` -ne 0 ]; then echo; jobs; else echo " None"; fi
   echo ""
-  echo "${red}Processes${plain}"
-  pstree `ps -o ppid= $$`|tail +2 | grep --color=auto -C 999 $$ | \
-    grep -v pstree
+  green Processes
+  pstree `ps -o ppid= $$`
   w | tail +3
 }
 
@@ -229,21 +246,6 @@ self () {
   #echo
   echo "Jobs in backround:"
   if [ `jobs|wc -l` -ne 0 ]; then jobs; else echo "None"; fi
-}
-
-print_ifi() {
-  if [ $# -eq 0 ] || [ "$1" = -h ]; then
-    echo "usage: print_ifi file [lp-options]" >&2
-    return 1
-  fi
-  if [ -f "$1" ]; then
-    local FILE="$1"
-    shift
-    ssh ifi "lp -o sides=two-sided-long-edge ${1+"$@"} -- -" < "$FILE"
-  else
-    echo "Error: $1 is not a valid file." 1>&2
-    return 1
-  fi
 }
 
 #  functions (shell specific) {{{1
