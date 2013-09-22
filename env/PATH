@@ -11,3 +11,4 @@
 /opt/local/bin
 /opt/local/sbin
 $HOME/src/shell
+$HOME/.cabal/bin

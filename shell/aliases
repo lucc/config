@@ -26,6 +26,7 @@ alias mv='mv -i'
 alias scp='scp -p'
 alias mkdir='mkdir -p'
 alias nload='nload -i 6144 -o 1024'
+alias diff=colordiff
 
 # view documentation
 alias info='transparent-gvim.sh --info'

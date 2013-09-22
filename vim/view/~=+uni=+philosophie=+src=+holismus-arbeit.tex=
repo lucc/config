@@ -1,0 +1,55 @@
+let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
+argglobal
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+3,19fold
+24,47fold
+98,102fold
+48,222fold
+275,307fold
+308,333fold
+334,352fold
+353,384fold
+385,434fold
+223,434fold
+457,462fold
+493,500fold
+446,507fold
+508,540fold
+555,558fold
+541,591fold
+592,619fold
+620,677fold
+435,677fold
+678,955fold
+48
+normal! zo
+48
+normal! zc
+223
+normal! zo
+223
+normal! zc
+435
+normal! zo
+446
+normal! zo
+446
+normal! zc
+541
+normal! zo
+541
+normal! zc
+435
+normal! zc
+lcd ~/uni/philosophie
+let &so = s:so_save | let &siso = s:siso_save
+doautoall SessionLoadPost
+" vim: set ft=vim :
