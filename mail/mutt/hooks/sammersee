@@ -2,4 +2,4 @@
 # vim: filetype=muttrc
 
 source ~/.mutt/hooks/lists
-fcc-save-hook "~Lverteiler@sammersee-festival\.de" +lists/sammersee-`date +%Y`"
+fcc-save-hook "~Lverteiler@sammersee-festival\.de" +sammersee/`date +%Y`

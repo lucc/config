@@ -67,10 +67,10 @@ set reply_regexp = "^((re([\[0-9\]+])*|aw|antw\.):[ \t]*)+"
 #save-hook . +inbox
 
 # changing display for some special folders {{{2
-folder-hook .                      "source ~/.mutt/hooks/default"
-folder-hook +\(lists/\)?grillchill "source ~/.mutt/hooks/grillchill"
-folder-hook +\(lists/\)?sammersee  "source ~/.mutt/hooks/sammersee"
-folder-hook +lists/.*              "source ~/.mutt/hooks/lists"
+folder-hook .                              "source ~/.mutt/hooks/default"
+#folder-hook +\(lists/\)?grillchill        "source ~/.mutt/hooks/grillchill"
+folder-hook +\(lists/\)?sammersee\(/.*\)?  "source ~/.mutt/hooks/lists"
+folder-hook +lists/.*                      "source ~/.mutt/hooks/lists"
 
 # gpg settings {{{1
 

@@ -1,10 +1,9 @@
 # config file for mutt to organize folders containing mail from mailing lists
 # vim: filetype=muttrc
 
-set index_format="$my_index_format_1 %-15.15L $my_index_format_2"
+set index_format = "$my_index_format_1 %-15.15L $my_index_format_2"
 
-fcc-save-hook "~Lgrillchill@googlegroups\.com"     +lists/grillchill
-fcc-save-hook "~Ltanzhans@googlegroups\.com"       +lists/tanzhans
-fcc-save-hook "~Lverteiler@sammersee-festival\.de" +lists/sammersee
+fcc-save-hook '~Lgrillchill@googlegroups\.com'     +lists/grillchill
+fcc-save-hook '~Ltanzhans@googlegroups\.com'       +lists/tanzhans
+fcc-save-hook '~Lverteiler@sammersee-festival\.de' +sammersee/current
 
-save-hook '~Lmail@claudia-hoffmann.com' +claudia-hoffmann
