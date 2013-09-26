@@ -9,77 +9,49 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
-1,65fold
-67,84fold
-89,98fold
-85,102fold
-103,141fold
-160,160fold
-161,161fold
-144,171fold
-172,193fold
-216,221fold
-210,240fold
-250,258fold
-241,281fold
-194,281fold
-336,341fold
-350,356fold
-287,364fold
-365,429fold
-282,429fold
-142,429fold
-478,478fold
-430,492fold
-522,534fold
-535,540fold
-541,543fold
-493,543fold
-544,549fold
-551,565fold
-566,702fold
-1
+1,75fold
+77,94fold
+99,108fold
+95,112fold
+113,151fold
+172,172fold
+173,173fold
+154,183fold
+184,207fold
+230,237fold
+224,256fold
+266,275fold
+257,301fold
+208,301fold
+358,365fold
+377,386fold
+307,394fold
+395,463fold
+302,463fold
+152,463fold
+476,482fold
+516,525fold
+532,550fold
+557,560fold
+590,599fold
+553,606fold
+464,606fold
+614,615fold
+616,617fold
+618,640fold
+641,657fold
+658,659fold
+607,659fold
+660,665fold
+667,681fold
+682,818fold
+464
 normal! zo
-85
+553
 normal! zo
-85
-normal! zc
-142
+590
 normal! zo
-144
-normal! zo
-144
-normal! zc
-194
-normal! zo
-210
-normal! zo
-210
-normal! zc
-241
-normal! zo
-241
-normal! zc
-194
-normal! zc
-282
-normal! zo
-287
-normal! zo
-287
-normal! zc
-282
-normal! zc
-142
-normal! zc
-430
-normal! zo
-478
-normal! zo
-493
-normal! zo
-493
-normal! zc
+lcd ~/uni/philosophie
 let &so = s:so_save | let &siso = s:siso_save
 doautoall SessionLoadPost
 " vim: set ft=vim :

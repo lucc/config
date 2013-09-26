@@ -14,8 +14,8 @@ is_link        = $(shell cd && if [ -L $(1) ]; then echo $(1); fi)
 SEP         = :
 DIR         = $(strip $(subst $(HOME)/, , \
 	      $(realpath $(dir $(firstword $(MAKEFILE_LIST))))))
-LN          = ln -s
-	       
+LN          = ln -sv
+
 # linking files to $HOME {{{1
 
 # these targets uses the variable CONFIGS and OTHER
