@@ -16,8 +16,8 @@
 if [ "$ZSH_NAME" = zsh ]; then setopt SH_WORD_SPLIT; fi
 set_var_from_file () {
   # The file should contain the values for the variable one per line. They
-  # will be read in duplicates wiill be removed and the variable will be set
-  # colon delmited.
+  # will be read in duplicates will be removed and the variable will be set
+  # colon delimited.
   local var=$1 file=$2 item=
   # get the original value of the variable
   eval local tmp='$'$var

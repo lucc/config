@@ -859,8 +859,9 @@ nmap <Leader>v :call
   \ LucHandleURI('http://www.vim.org/scripts/script.php?script_id=' .
   \ matchstr(matchstr(expand('<cword>'), '[0-9]\+[^0-9]*$'), '^[0-9]*'))<CR>
 
-nmap <Leader>d :call LucPutISODate()<CR>
-imap <Leader>d <C-O>:call LucPutISODate()<CR>
+"nmap <Leader>d :call LucPutISODate()<CR>
+"imap <Leader>d <C-O>:call LucPutISODate()<CR>
+nmap <Leader>d "=strftime('%F')<CR>p
 
 " easy compilation {{{2
 nmap          <F2>        :silent update <BAR> call LucQuickMake('', 0)<CR>
@@ -1388,7 +1389,9 @@ Bundle 'davidmfoley/tslime.vim'
 Bundle 'Limp'
 
 " plugins: markdown {{{1
-Bundle 'vim-pandoc/vim-markdownfootnotes'
+" unconditionally binds <Leader>f and <Leader>r (also in insert mode=bad for
+" latex)
+"Bundle 'vim-pandoc/vim-markdownfootnotes'
 
 " strange folding
 "Bundle 'plasticboy/vim-markdown'
@@ -1958,3 +1961,5 @@ if has('syntax')
     endif
   endif
 endif
+
+[^3]:  a

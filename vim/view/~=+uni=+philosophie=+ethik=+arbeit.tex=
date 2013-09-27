@@ -29,29 +29,75 @@ silent! normal! zE
 395,463fold
 302,463fold
 152,463fold
-476,482fold
-516,525fold
 532,550fold
-557,560fold
-590,599fold
-553,606fold
-464,606fold
-614,615fold
-616,617fold
-618,640fold
-641,657fold
-658,659fold
-607,659fold
-660,665fold
-667,681fold
-682,818fold
+467,552fold
+577,592fold
+594,623fold
+624,647fold
+553,647fold
+464,647fold
+648,669fold
+697,697fold
+698,698fold
+699,721fold
+722,738fold
+670,738fold
+739,744fold
+746,760fold
+761,904fold
+95
+normal! zo
+95
+normal! zc
+152
+normal! zo
+154
+normal! zo
+154
+normal! zc
+208
+normal! zo
+224
+normal! zo
+224
+normal! zc
+257
+normal! zo
+257
+normal! zc
+208
+normal! zc
+302
+normal! zo
+307
+normal! zo
+307
+normal! zc
+302
+normal! zc
+152
+normal! zc
 464
 normal! zo
+467
+normal! zo
+467
+normal! zc
 553
 normal! zo
-590
+648
 normal! zo
-lcd ~/uni/philosophie
+670
+normal! zo
+697
+normal! zo
+698
+normal! zo
+699
+normal! zo
+722
+normal! zo
+lcd ~/uni/philosophie/ethik
 let &so = s:so_save | let &siso = s:siso_save
 doautoall SessionLoadPost
 " vim: set ft=vim :

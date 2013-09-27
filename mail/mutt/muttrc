@@ -62,7 +62,9 @@ mailboxes +wg
 
 # sorting email {{{2
 reply-hook ".*" set record = "^"
-set reply_regexp = "^((re([\[0-9\]+])*|aw|antw\.):[ \t]*)+"
+# default: "^(re([\[0-9\]+])*|aw):[ \t]*"
+# TODO ISO... stuff
+set reply_regexp = "^(([Rr]e|RE|[Aa]w|AW|antw\.|F(WD|wd)):[[:space:]]*)+"
 
 #save-hook . +inbox
 
