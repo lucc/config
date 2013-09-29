@@ -1,0 +1,6 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='/Users/luc/.config/vim/bundle/PopupBuffer.vim/plugin'
+let g:netrw_dirhist_2='/Users/luc/.config/secure'
+let g:netrw_dirhist_3='/Users/luc/.config/vim/plugin'
+let g:netrw_dirhist_4='/Users/luc'
