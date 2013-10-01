@@ -186,7 +186,7 @@ set pgp_use_gpg_agent = yes
 set pgp_timeout = 0
 
 # header {{{3
-my_hdr X-PGP-Key: 0x001A41A1 http://luc42.lima-city.de/files/public.asc
+my_hdr X-PGP-Key: http://luc42.lima-city.de/files/public.asc
 
 # other stuff {{{1
 set edit_headers
