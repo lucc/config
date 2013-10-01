@@ -307,12 +307,20 @@ compdef gpg2=gpg
 
 # aoutoloading stuff {{{1
 autoload colors
-autoload checkmail
+#autoload checkmail
 unalias run-help
 autoload run-help
 HELPDIR=~/zsh_help
 bindkey -M viins '\C-h' run-help
 bindkey -M vicmd '\C-h' run-help
+
+# directory hash table
+######################
+#hash -d i=~/Pictures
+#hash -d m=~/Music
+hash -d t=~/tmp
+hash -d u=~/uni
+hash -d v=/Volumes
 
 # load zsh modules {{{1
 zmodload zsh/sched

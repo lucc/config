@@ -135,12 +135,6 @@ elif [ "$ZSH_NAME" = zsh ]; then
     alias -s pdf=open
     alias e='for v in ~v/*~/Volumes/System(N); diskutil unmount $v'
     urlopen () { open "http://$*"; }
-    # directory hash table
-    ######################
-    hash -d i=~/Pictures
-    hash -d m=~/Music
-    hash -d u=~/uni
-    hash -d v=/Volumes
   fi
 fi
 
