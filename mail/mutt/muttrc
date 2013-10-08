@@ -64,7 +64,7 @@ mailboxes +wg
 reply-hook ".*" set record = "^"
 # default: "^(re([\[0-9\]+])*|aw):[ \t]*"
 # TODO ISO... stuff
-set reply_regexp = "^(([Rr]e|RE|[Aa]w|AW|antw\.|F(WD|wd)):[[:space:]]*)+"
+set reply_regexp = "^(([Rr]e|RE|[Aa]w|AW|antw\.|F(WD|wd)|WG):[[:space:]]*)+"
 
 #save-hook . +inbox
 

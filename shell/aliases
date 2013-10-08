@@ -104,6 +104,7 @@ if [ `uname` = "Darwin" ] ; then # (Mac OS X, 10.6)
   alias truecrypt=/Applications/TrueCrypt.app/Contents/MacOS/TrueCrypt
   alias sp='open -a System\ Preferences'
   alias quit_finder='osascript -e tell\ app\ \"Finder\"\ to\ quit'
+  alias d='display.scpt iterm'
 elif [ `uname` = Linux ]; then
   alias pstree='pstree -n'
 fi

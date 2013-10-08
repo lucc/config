@@ -22,6 +22,9 @@ set_var_from_file () {
   # get the original value of the variable
   eval local tmp='$'$var
   cat $file | while read line; do
+    # if line starts with # discard it
+    if echo "$line" | grep '^[[:space:]]*#' >/dev/null ; then continue; fi
+    if [ -z $line ]; then continue; fi
     # expand variable references in $line
     item=`eval echo $line`
     # only add existing dirs

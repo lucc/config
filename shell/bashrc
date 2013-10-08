@@ -65,7 +65,7 @@ PS1="[ $FG\u$FC@$FB\h $RS| $FC\W $RS| \t | \`[[ \$? -ne 0 ]]&&echo '$FR'\`\$_r $
 set -o vi		# use vi like line editing. (start with ESC)
 shopt -s checkwinsize 	# check window size after a process completes
 shopt -u force_fignore 	# don't complete w/ <TAB> iff other files available
-shopt -s extglob 	# ?: "<=1", *: "any", +: "<0", @: "=", !: "not" 
+shopt -s extglob 	# ?: "<=1", *: "any", +: "<0", @: "=", !: "not"
 #shopt -s gnu_errfmt 	# what would it do??
 #shopt -s hostcomplete 	# why is this sop buggy??
 
@@ -80,3 +80,50 @@ shopt -s extglob 	# ?: "<=1", *: "any", +: "<0", @: "=", !: "not"
 ##############################################################################
 unset BREW PREFIX
 unset RS HI UL {F,B}{N,R,G,Y,B,P,C,W}		# dont clutter env
+
+##############################################################################
+# moving these function definitions from .alias
+##############################################################################
+
+comp () { #compare the speed of two ($1, $2) commands (loop $3 times)
+  #if [ $# -ne 3 ]; then return 1; fi
+  type $1 >/dev/null 2>&1 || return 2
+  type $2 >/dev/null 2>&1 || return 3
+  printf 1
+  time (for ((i=0; i<${3:-10}; i++)) ; do $1 ; done >/dev/null 2>&1)
+  printf 2
+  time (for ((i=0; i<${3:-10}; i++)) ; do $2 ; done >/dev/null 2>&1)
+}
+
+fnd () { find . ${1:+-name "${@}"}; }
+
+fndr () { find . -name "${@:?Give an argument.}" -delete; }
+
+h () {
+  for ARG; do
+    case `type -t "$ARG"` in
+      alias)    alias "$ARG";;
+      builtin)  help $ARG;;
+      function) type -a $ARG;;
+      keyword)  help "$ARG" || type -a "$ARG";;
+      file)
+	man "$ARG" || info "$ARG"
+	if [ $? -ne 0 ]; then
+	  FILE=`which "$ARG"`
+	  case `file --mime --dereference --brief "$FILE"` in
+	    text/*|application/x-sh)
+	      if [ 50 -gt `wc -l <"$FILE"` ]; then cat "$FILE"
+	      else echo "$FILE is quite a long text file. I will not cat it."
+	      fi
+	      ;;
+	    application/*)
+	      echo "$FILE is a compiled executable or unsupported format."
+	      echo "It does not have a man page installed. Try '$FILE --help' or '-h'."
+	      ;;
+	  esac
+	fi
+	;;
+      *) echo "Not found: $ARG";;
+    esac
+  done
+}

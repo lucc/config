@@ -1,3 +1,6 @@
+# This file contains directories one per line which can be used for the PATH
+# environement variable
+
 /usr/local/share/python3
 /usr/texbin
 /sbin
@@ -12,3 +15,5 @@
 /opt/local/sbin
 $HOME/src/shell
 $HOME/.cabal/bin
+
+# vim: ft=conf nobackup
