@@ -74,6 +74,8 @@ alias mail='mail||mutt'
 alias :q='echo You are not in vi. Use \"exit\", \"logout\" or CTRL-D.; false'
 alias D='date +%F'
 alias m=ncmpcpp
+alias play='mpc play'
+alias pause='mpc pause'
 
 # old
 #alias ba='clear && cd ~/files/uni/mathe/ba/ && ls -lT'
