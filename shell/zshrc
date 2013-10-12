@@ -100,8 +100,9 @@ PS1="[ %F{green}%n%F{cyan}@%F{blue}%m%f | %F{cyan}%1~%f | %D{%H:%M:%S} %(?..| %F
 PS1="[ %F{green}%n%F{cyan}@%F{blue}%m%f | %F{cyan}%1~%f | %D{%H:%M:%S} | %(?..%F{red})%?%f ] "
 PS1="[ %F{green}%n%F{cyan}@%F{blue}%m%f | %F{cyan}%1~%f | %D{%H:%M:%S} %(?..| %F{red}%?%f )] "
 PS1="[ %(?.%F{green}%n%F{cyan}@%F{blue}%m%f | %F{cyan}%1~%f | %D{%H:%M:%S}.%F{blue}\$history[\$[HISTCMD-1]]%f -> %F{red}%?%f) ] "
-# current version:
 PS1="[ %F{green}%n%F{cyan}@%F{blue}%m%f | %F{cyan}%1~%f | %D{%H:%M:%S} ] "
+# current version:
+PS1="[ %(!.%F{red}.%F{green})%n%F{cyan}@%F{blue}%m%f | %F{cyan}%1~%f | %D{%H:%M:%S} ] "
 
 # RPS1 prompt
 RPROMPT='%(?.$(right-prompt-function).%F{red}Error: %?)'
