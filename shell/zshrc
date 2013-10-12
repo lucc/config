@@ -59,27 +59,9 @@ done
 # prompt {{{1
 # functions for the prompt {{{2
 
-# check for mail
-function check-mail-gmx () {
-  [[ `ls ~/mail/gmx/new 2>/dev/null | wc -l` -ne 0 ]]
-  # FIXME somehow the zsh version is much slower
-  #[[ -n `checkmail ~/mail/gmx` ]]
-}
-
-function check-mail-all () {
-  mailcheck 2>/dev/null | grep -q " new "
-  # FIXME somehow the zsh version is much slower
-  #[[ -n `checkmail ~/mail/^spam` ]]
-  #[[ `ls -d ~/mail/{inbox,landheim,lists/*,uni/{mathe,lmu}}/new/*(N)` != . ]]
-}
-
 # functions to dispay info in the prompts
 function right-prompt-function () {
-  if check-mail-gmx; then
-    echo '%B%F{red}Mail for mac_fan@gmx.de!%f%b'
-  elif check-mail-all; then
-    echo '%B%F{blue}You have mail!%f%b'
-  elif [[ `uname` = Darwin ]]; then
+  if [[ `uname` = Darwin ]]; then
     echo "${vcs_info_msg_0_} `battery.sh -bce zsh`"
   else
     echo "$vcs_info_msg_0_"
@@ -93,15 +75,6 @@ precmd () { vcs_info }
 # main prompt {{{2
 
 # PS1 prompt
-# old versions:
-PS1="%(?..%F{red}Error: %?%f
-)[ %F{green}%n%F{cyan}@%F{blue}%m%f | %F{cyan}%1~%f | %D{%H:%M:%S} ] "
-PS1="[ %F{green}%n%F{cyan}@%F{blue}%m%f | %F{cyan}%1~%f | %D{%H:%M:%S} %(?..| %F{red}%?%f )] "
-PS1="[ %F{green}%n%F{cyan}@%F{blue}%m%f | %F{cyan}%1~%f | %D{%H:%M:%S} | %(?..%F{red})%?%f ] "
-PS1="[ %F{green}%n%F{cyan}@%F{blue}%m%f | %F{cyan}%1~%f | %D{%H:%M:%S} %(?..| %F{red}%?%f )] "
-PS1="[ %(?.%F{green}%n%F{cyan}@%F{blue}%m%f | %F{cyan}%1~%f | %D{%H:%M:%S}.%F{blue}\$history[\$[HISTCMD-1]]%f -> %F{red}%?%f) ] "
-PS1="[ %F{green}%n%F{cyan}@%F{blue}%m%f | %F{cyan}%1~%f | %D{%H:%M:%S} ] "
-# current version:
 PS1="[ %(!.%F{red}.%F{green})%n%F{cyan}@%F{blue}%m%f | %F{cyan}%1~%f | %D{%H:%M:%S} ] "
 
 # RPS1 prompt
