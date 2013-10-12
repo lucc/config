@@ -1,0 +1,16 @@
+# vim: ft=zsh
+
+local oldshwordsplit=
+if setopt | grep -q '^shwordsplit$'; then
+  oldshwordsplit=shwordsplit
+else
+  oldshwordsplit=noshwordsplit
+fi
+setopt shwordsplit
+type ${1%% *} > /dev/null 2>&1 || return 2
+type ${2%% *} > /dev/null 2>&1 || return 3
+printf 1
+time ( for ((i=0; i<${3:-10}; i++)); do $1; done > /dev/null 2>&1 )
+printf 2
+time ( for ((i=0; i<${3:-10}; i++)); do $2; done > /dev/null 2>&1 )
+setopt $oldshwordsplit
