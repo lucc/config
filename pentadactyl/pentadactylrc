@@ -17,10 +17,10 @@ set defsearch=d
 
 map ! :!
 map B :bmarks!
+command! vpn !vpn.sh
 
 source ~/.pentadactyl/colors/pentadactyl-solarized/colors/solarized-light.penta
 source ~/.pentadactyl/colors/pentadactyl-solarized/colors/solarized-dark.penta
 
-"echoerr "hans"
 
 " vim: ft=pentadactyl syntax=vim
