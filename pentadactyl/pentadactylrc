@@ -18,6 +18,8 @@ set defsearch=d
 map ! :!
 map B :bmarks!
 command! vpn !vpn.sh
+command! wlan !wlan.sh
+command! fs set fullscreen! guioptions+=s
 
 source ~/.pentadactyl/colors/pentadactyl-solarized/colors/solarized-light.penta
 source ~/.pentadactyl/colors/pentadactyl-solarized/colors/solarized-dark.penta
