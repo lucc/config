@@ -17,12 +17,13 @@ set defsearch=d
 
 map ! :!
 map B :bmarks!
-command! vpn !vpn.sh
-command! wlan !wlan.sh
+command! vpn silent !vpn.sh
+command! wlan silent !wlan.sh
 command! fs set fullscreen! guioptions+=s
+command! darkcss source ~/src/css/reader.css | source ~/src/css/solarized-dark.css
+command! lightcss source ~/src/css/reader.css | source ~/src/css/solarized-light.css
 
 source ~/.pentadactyl/colors/pentadactyl-solarized/colors/solarized-light.penta
 source ~/.pentadactyl/colors/pentadactyl-solarized/colors/solarized-dark.penta
-
 
 " vim: ft=pentadactyl syntax=vim
