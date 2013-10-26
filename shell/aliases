@@ -47,6 +47,7 @@ alias ip='curl --silent http://luc42.lima-city.de/ip.php'
 
 # connecting to remote servers
 alias lima='ftp ftp.lima-city.de'
+alias limalog="PAGER=/bin/cat ftp -Vi ftp.lima-city.de <<<more\ .log$'\n'quit"
 
 # backup and statistics
 alias b='battery.sh -v'
