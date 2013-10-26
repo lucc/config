@@ -84,7 +84,7 @@ if [ -r $HOME/.gpg-agent-info ]; then
   GPG_TTY=$(tty)
 fi
 
-export EDITOR="transparent-gvim.sh --tab '+call LucRemoteEditor(0)'"
+export EDITOR="transparent-gvim.sh --tab '+call luc.misc.RemoteEditor(0)'"
 export HISTSIZE=2000
 export PYTHONSTARTUP=~/.pystartup
 

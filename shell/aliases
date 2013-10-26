@@ -169,7 +169,6 @@ conf () {
     ze|zenv|zshenv) FILE=$DOTDOR/zshenv;;
     *)              echo Give an arguemnt. 1>&2; return 2;;
   esac
-#set editor = "vim --remote-tab-wait-silent '+call LucRemoteEditor()|$'"
   $EDITOR $HOME/$FILE
   $SOURCE $SARG $HOME/$FILE
   $REHASH
