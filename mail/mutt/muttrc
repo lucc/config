@@ -238,11 +238,11 @@ auto_view text/html
 alternative_order text/plain text/html
 
 # sidebar {{{2
-set sidebar_width = 24
-set sidebar_sort = yes
-set sidebar_shortpath = yes
-set sidebar_folderindent = yes
-source ~/.mutt/switches/sidebar-on
+#set sidebar_width = 24
+#set sidebar_sort = yes
+#set sidebar_shortpath = yes
+#set sidebar_folderindent = yes
+#source ~/.mutt/switches/sidebar-on
 
 # last steps {{{1
 source ~/.mutt/profiles/webde
