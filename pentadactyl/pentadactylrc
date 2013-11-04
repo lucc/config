@@ -15,8 +15,9 @@ endif
 
 set defsearch=d
 
-map ! :!
-map B :bmarks!
+map ! -ex !
+map B -ex bmarks!
+map E <silent> -ex execute '!www-text-browser.sh ' + buffer.URL.toString()
 command! vpn silent !vpn.sh
 command! wlan silent !wlan.sh
 command! darkcss source ~/src/css/reader.css | source ~/src/css/solarized-dark.css
