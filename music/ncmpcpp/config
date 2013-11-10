@@ -1,2 +1,30 @@
+# configuration file for ncmpcpp by luc
+# vim: ft=config
+
 mpd_music_dir = "~/.mpd/music"
-song_list_format = "{%D	$2%a$9 - $5%t$9$R%l}|{%f$R%l}"
+
+# all avaliable formats                   and colors
+#
+#  %l - length                             0 - default window color
+#  %f - filename                           1 - black
+#  %D - directory                          2 - red
+#  %a - artist                             3 - green
+#  %A - album artist                       4 - yellow
+#  %t - title                              5 - blue
+#  %b - album                              6 - magenta
+#  %y - date                               7 - cyan
+#  %n - track number (01/12 -> 01)         8 - white
+#  %N - full track info (01/12 -> 01/12)   9 - end of current color
+#  %g - genre
+#  %c - composer
+#  %p - performer
+#  %d - disc
+#  %C - comment
+#  %P - priority
+#  $R - begin right alignment
+
+
+#song_list_format = "{%D	$2%a$9 - $5%t$9$R%l}|{%f$R%l}"
+song_list_format = "{$2%a$9 $3%b$9 %N $5%t$9$R%l}|{$2%a$9 $3%b$9 $5%t$9$R%l}|{$2%a$9 $5%t$9$R%l}|{%f$R%l}"
+
+#fancy_scrolling = yes
