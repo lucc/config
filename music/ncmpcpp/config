@@ -18,7 +18,7 @@
 ## (eg. ncmpc) also use that location.
 ##
 
-#lyrics_directory = "~/.lyrics"
+lyrics_directory = "~/.lyrics"
 
 ##### connection settings #####
 
@@ -210,8 +210,8 @@ alternative_header_second_line_format = "alternative_header_second_line_format{{
 
 #browser_playlist_prefix = "$2playlist$9 "
 
-selected_item_prefix = "selected_item_prefix $6"
-selected_item_suffix = "selected_item_suffix $9"
+selected_item_prefix = "$6"
+selected_item_suffix = "$9"
 modified_item_prefix = "modified_item_prefix $3> $9"
 
 ## colors are not supported for below variable
@@ -255,7 +255,7 @@ song_window_title_format = "song_window_title_format {%a - }{%t}|{%f}"
 ##
 
 #song_columns_list_format = "song_columns_list_format(7f)[green]{l} (25)[cyan]{a} (40)[]{t|f} (30)[red]{b}"
-song_columns_list_format = "(25)[cyan]{a} (30)[red]{b} (5f)[]{y} (40)[]{t|f} (7f)[green]{lr}"
+song_columns_list_format = "(25)[cyan]{a} (30)[red]{b} (5f)[]{yE} (40)[]{t|f} (7f)[green]{lr}"
 
 ##### various settings #####
 
@@ -269,29 +269,17 @@ song_columns_list_format = "(25)[cyan]{a} (30)[red]{b} (5f)[]{y} (40)[]{t|f} (7f
 #execute_on_song_change = ""
 
 #playlist_show_remaining_time = "no"
-
 #playlist_shorten_total_times = "no"
-
 #playlist_separate_albums = "no"
-
 #playlist_display_mode = "classic" (classic/columns)
-
 #browser_display_mode = "classic" (classic/columns)
-
 #search_engine_display_mode = "classic" (classic/columns)
-
 #playlist_editor_display_mode = "classic" (classic/columns)
-
 #discard_colors_if_item_is_selected = "yes"
-
 #incremental_seeking = "yes"
-
 #seek_time = "1"
-
 #volume_change_step = "1"
-
 #autocenter_mode = "no"
-
 #centered_cursor = "no"
 
 ##
@@ -328,9 +316,9 @@ song_columns_list_format = "(25)[cyan]{a} (30)[red]{b} (5f)[]{y} (40)[]{t|f} (7f
 
 #lines_scrolled = "2"
 
-#follow_now_playing_lyrics = "no"
+follow_now_playing_lyrics = "yes"
 
-#fetch_lyrics_for_current_song_in_background = "no"
+fetch_lyrics_for_current_song_in_background = "yes"
 
 #store_lyrics_in_song_dir = "no"
 
@@ -440,7 +428,7 @@ song_columns_list_format = "(25)[cyan]{a} (30)[red]{b} (5f)[]{y} (40)[]{t|f} (7f
 ##       in database and local one for searching in current playlist)
 ##
 
-#search_engine_default_search_mode = "1"
+search_engine_default_search_mode = "2"
 
 #external_editor = ""
 
