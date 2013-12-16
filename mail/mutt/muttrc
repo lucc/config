@@ -200,6 +200,7 @@ set save_history = 100
 set history = 100
 set beep_new
 set include = yes
+set wait_key = no
 
 mime_lookup application/save-as
 
