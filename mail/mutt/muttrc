@@ -207,7 +207,8 @@ mime_lookup application/save-as
 
 # alias configuration {{{1
 set alias_file    = ~/.mutt/aliases
-set query_command = "emails.sh -ms"
+set query_command = "emails.sh -mb"
+#set query_command = "lbdbq -bm"
 source $alias_file
 
 # appearance {{{1
