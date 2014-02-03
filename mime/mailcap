@@ -26,6 +26,7 @@ application/pdf;      mupdf %s; test=test -n "$DISPLAY"
 application/x-pdf;    mupdf %s; test=test -n "$DISPLAY"
 application/acrobat;  mupdf %s; test=test -n "$DISPLAY"
 application/vnd.pdf;  mupdf %s; test=test -n "$DISPLAY"
+# ps2ascii does not handle german umlauts correctly (apearently)
 application/pdf;      pdftotext %s /dev/stdout; copiousoutput;
 application/x-pdf;    pdftotext %s /dev/stdout; copiousoutput;
 application/pdf;      pdftotext %s /dev/stdout; copiousoutput;
