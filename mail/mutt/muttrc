@@ -194,7 +194,8 @@ set use_envelope_from
 #folder-hook . "exec collapse-all"
 set send_charset = us-ascii:utf-8
 set certificate_file = ~/.mutt/certificates
-set editor = "transparent-gvim.sh --tab '+call luc.misc.RemoteEditor(1)'"
+set editor = "gvim.sh --tab '+call luc.misc.RemoteEditor(1)'"
+#set editor = vim
 set history_file = ~/.mutt/history
 set save_history = 100
 set history = 100
@@ -224,7 +225,7 @@ macro index,pager <esc><tab>   ":source ~/.mutt/color/plain<return>"
 
 # the default is index_format is "%4C %Z %{%b %d} %-15.15L (%?l?%4l&%4c?) %s"
 # these variables will be used by the hooks
-set my_index_format_1 = "%4C %Z %{%b %d %R}"
+set my_index_format_1 = "%4C %Z %[%b %d %R]"
 set my_index_format_2 = "(%?l?%4l&%4c?) %s"
 
 # We save the default status format for usage in the profile switching files.
@@ -240,6 +241,7 @@ auto_view text/html application/pdf
 alternative_order text/plain text/html
 
 # sidebar {{{2
+# FIXME: The sidbar patch was removed from Homebrew!
 #set sidebar_width = 24
 #set sidebar_sort = yes
 #set sidebar_shortpath = yes
