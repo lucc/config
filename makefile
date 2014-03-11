@@ -27,7 +27,6 @@ CONFIGS = \
           antiword$(SEP).antiword   \
           elinks$(SEP).elinks       \
           emacs.d$(SEP).emacs.d     \
-          gitconfig$(SEP).gitconfig \
 
 # limafiles {{{3
 LIMAFILES = \
