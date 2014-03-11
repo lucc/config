@@ -1,5 +1,0 @@
-# config file for mutt to organize folders containing mail from mailing lists
-# vim: filetype=muttrc
-
-source ~/.mutt/hooks/lists
-fcc-save-hook "~Lverteiler@sammersee-festival\.de" +sammersee/`date +%Y`

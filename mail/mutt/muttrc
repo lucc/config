@@ -7,9 +7,7 @@
 # Recources:
 #
 
-# basic setup {{{1
-
-# maildir options {{{2
+# maildir options {{{1
 set mbox_type = Maildir
 set folder    = ~/mail
 set spoolfile = +inbox
@@ -20,63 +18,48 @@ set postponed = +draft
 #set mask = '!^\.[^.]'
 #set force_name
 
-# sourcing private definitions {{{2
+# sourcing private definitions {{{1
 source ~/.mutt/private
 
-# mailboxes {{{2
-
-# mailboxes which might contain new mail
+# mailboxes which might contain new mail {{{1
 mailboxes +inbox
-mailboxes +sammersee/current
-mailboxes +lists/grillchill
-mailboxes +lists/tanzhans
-mailboxes +lists/jongl-muenchen
 mailboxes +uni/mathe
-mailboxes +uni/lmu
-mailboxes +uni/ifi
-mailboxes +uni/philosophie
-mailboxes +uni/rewi
 mailboxes +landheim
 mailboxes +gmx
-#mailboxes /var/mail/lucas
-#mailboxes /var/mail/luc
 mailboxes +system-mailbox
 
-# other mailboxes
-mailboxes +aikido
-mailboxes +booklooker
-mailboxes +computer
-mailboxes +congstar
-mailboxes +draft
-mailboxes +gmx
-mailboxes +gruppen/jongleure
-mailboxes +gruppen/mathematiker
-mailboxes +gruppen/physiker
-mailboxes +gruppen/rewis
-mailboxes +gsc
-mailboxes +jonglieren
-mailboxes +login
-mailboxes +old
-mailboxes +sent
-mailboxes +wg
-
-# sorting email {{{2
+# sorting email {{{1
 reply-hook ".*" set record = "^"
 # default: "^(re([\[0-9\]+])*|aw):[ \t]*"
 # TODO ISO... stuff
 set reply_regexp = "^(([Rr]e|RE|[Aa]w|AW|antw\.|F(WD|wd)|WG):[[:space:]]*)+"
+set reply_regexp = "^((RE|Re|re|AW|Aw|aw|antw\.|FWD|Fwd|WG):[[:space:]]*)+"
 
-#save-hook . +inbox
+# changing display for some special folders {{{1
+folder-hook .                   source ~/.mutt/hooks/default
+folder-hook +sammersee\(/.*\)?  source ~/.mutt/hooks/lists
+folder-hook +lists/.*           source ~/.mutt/hooks/lists
 
-# changing display for some special folders {{{2
-folder-hook .                              "source ~/.mutt/hooks/default"
-#folder-hook +\(lists/\)?grillchill        "source ~/.mutt/hooks/grillchill"
-folder-hook +\(lists/\)?sammersee\(/.*\)?  "source ~/.mutt/hooks/lists"
-folder-hook +lists/.*                      "source ~/.mutt/hooks/lists"
+# writing emails {{{1
+set edit_headers
+set use_envelope_from
+set send_charset = us-ascii:utf-8
+set editor = "gvim.sh --tab '+call luc.misc.RemoteEditor(1)'"
+set include = yes
+set ssl_force_tls = yes
+unset ssl_starttls
+
+# viewing email{{{1
+mime_lookup application/save-as
+auto_view text/html application/pdf
+alternative_order text/plain text/html
+
+# history {{{1
+set history_file = ~/.mutt/history
+set save_history = 100
+set history = 100
 
 # gpg settings {{{1
-
-#source ~/.mutt/gpg2.rc
 
 # internet recources {{{2
 # https://wiki.archlinux.org/index.php/Mutt#Passwords_management
@@ -189,21 +172,11 @@ set pgp_timeout = 0
 #my_hdr X-PGP-Key: http://luc42.lima-city.de/files/public.asc
 
 # other stuff {{{1
-set edit_headers
-set use_envelope_from
 #folder-hook . "exec collapse-all"
-set send_charset = us-ascii:utf-8
 set certificate_file = ~/.mutt/certificates
-set editor = "gvim.sh --tab '+call luc.misc.RemoteEditor(1)'"
 #set editor = vim
-set history_file = ~/.mutt/history
-set save_history = 100
-set history = 100
 set beep_new
-set include = yes
 #set wait_key = no
-
-mime_lookup application/save-as
 
 
 # alias configuration {{{1
@@ -214,14 +187,14 @@ source $alias_file
 
 # appearance {{{1
 
-# colors {{{2
+# colors {{{1
 #source ~/.mutt/color/plain
 source ~/.mutt/color/for-solarized-terminal
-macro index,pager <esc><space> ":source ~/.mutt/color/colorful<return>"
-macro index,pager <esc><tab>   ":source ~/.mutt/color/plain<return>"
+macro index,pager <esc><space> "<enter-command>source ~/.mutt/color/colorful<return>"
+macro index,pager <esc><tab>   "<enter-command>source ~/.mutt/color/plain<return>"
 
 
-# format for displaying {{{2
+# the index {{{1
 
 # the default is index_format is "%4C %Z %{%b %d} %-15.15L (%?l?%4l&%4c?) %s"
 # these variables will be used by the hooks
@@ -237,8 +210,6 @@ set my_default_status_format = $status_format
 set sort          = threads
 set sort_aux      = last-date-received
 set sort_browser  = unsorted
-auto_view text/html application/pdf
-alternative_order text/plain text/html
 
 # sidebar {{{2
 # FIXME: The sidbar patch was removed from Homebrew!
@@ -249,4 +220,8 @@ alternative_order text/plain text/html
 #source ~/.mutt/switches/sidebar-on
 
 # last steps {{{1
-source ~/.mutt/profiles/webde
+folder-hook +in(box)? source ~/.mutt/profiles/webde
+#source ~/.mutt/profiles/webde
+
+
+#`zsh -c 'echo type y >&2; if read -q ; then echo source /dev/null ; else echo push q; fi'`

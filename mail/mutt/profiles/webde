@@ -5,3 +5,6 @@ set smtp_url=$my_web_smtp_url
 set from=$my_web_from
 #color status $my_web_fg $my_web_bg
 set status_format="${my_default_status_format} ${my_web_status_string}"
+
+# by default sign outgoing messages
+set crypt_autosign = yes

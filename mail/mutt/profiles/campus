@@ -5,3 +5,6 @@ set smtp_url=$my_campus_smtp_url
 set from=$my_campus_from
 #color status $my_campus_fg $my_campus_bg
 set status_format="${my_default_status_format} ${my_campus_status_string}"
+
+# do not sign messages to uni people
+set crypt_autosign = no
