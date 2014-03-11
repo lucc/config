@@ -41,9 +41,9 @@ application/vnd.pdf;  pdftotext %s /dev/stdout; copiousoutput;
 ##############################################################################
 
 #image/*;              qiv %s; edit=gimp %s; test=RunningX;
-image/tiff;           open --wait-apps -a Preview %s; nametemplate=%s.tiff
-image/jpeg;           open --wait-apps -a Preview %s; nametemplate=%s.jpeg
-image/*;              open --wait-apps -a Preview %s
+image/tiff;           open -n --wait-apps -a Preview %s; nametemplate=%s.tiff
+image/jpeg;           open -n --wait-apps -a Preview %s; nametemplate=%s.jpeg
+image/*;              open -n --wait-apps -a Preview %s
 #image/*;              feh --scale-down %s;
 
 # text/* {{{1
