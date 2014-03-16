@@ -36,15 +36,15 @@ set reply_regexp = "^(([Rr]e|RE|[Aa]w|AW|antw\.|F(WD|wd)|WG):[[:space:]]*)+"
 set reply_regexp = "^((RE|Re|re|AW|Aw|aw|antw\.|FWD|Fwd|WG):[[:space:]]*)+"
 
 # changing display for some special folders {{{1
-folder-hook .                   source ~/.mutt/hooks/default
-folder-hook +sammersee\(/.*\)?  source ~/.mutt/hooks/lists
-folder-hook +lists/.*           source ~/.mutt/hooks/lists
+#folder-hook .                   source ~/.mutt/hooks/default
+#folder-hook +sammersee\(/.*\)?  source ~/.mutt/hooks/lists
+#folder-hook +lists/.*           source ~/.mutt/hooks/lists
 
 # writing emails {{{1
 set edit_headers
 set use_envelope_from
 set send_charset = us-ascii:utf-8
-set editor = "gvim.sh --tab '+call luc.misc.RemoteEditor(1)'"
+set editor = 'gvim.sh --mail'
 set include = yes
 set ssl_force_tls = yes
 unset ssl_starttls
@@ -198,15 +198,25 @@ macro index,pager <esc><tab>   "<enter-command>source ~/.mutt/color/plain<return
 
 # the default is index_format is "%4C %Z %{%b %d} %-15.15L (%?l?%4l&%4c?) %s"
 # these variables will be used by the hooks
+set index_format =               "%4C"            # the current message number
+set index_format = "$index_format %Z"             # message status flags
+set index_format = "$index_format %[%b %d %R]"    # time in local timezone
+set index_format = "$index_format %?L?%-15.15n (list)&%-22.22L?"       # TODO
+set index_format = "$index_format (%?l?%4l&%4c?)" # TODO
+set index_format = "$index_format %s"             # the subject
+
+#set index_format = "%?L?1? $index_format"
+
 set my_index_format_1 = "%4C %Z %[%b %d %R]"
 set my_index_format_2 = "(%?l?%4l&%4c?) %s"
+
+#set index_format = '%4C %[%F %R] [31m%-15.15n %-15.15t %s %*  %Z %4c'
 
 # We save the default status format for usage in the profile switching files.
 set my_default_status_format = $status_format
 
 #set pager_context = 1
 #set menu_context  = 1
-#set index_format  = "%4C %Z %{%b %d} %-20.20n %-20.20t (%?l?%4l&%4c?) %s"
 set sort          = threads
 set sort_aux      = last-date-received
 set sort_browser  = unsorted
