@@ -177,7 +177,13 @@ set certificate_file = ~/.mutt/certificates
 #set editor = vim
 set beep_new
 #set wait_key = no
+set header_cache = ~/mail/.cache
 
+## open the html documentation by pressing F1
+macro generic,index,compose,pager,postpone <F1> \
+  "<shell-escape>elinks /usr/local/Cellar/mutt/*/share/doc/mutt/manual.html<enter>"
+macro generic,index,compose,pager,postpone ^<F1> \
+  "<shell-escape>open /usr/local/Cellar/mutt/*/share/doc/mutt/manual.html<enter>"
 
 # alias configuration {{{1
 set alias_file    = ~/.mutt/aliases
@@ -202,7 +208,8 @@ set index_format =               "%4C"            # the current message number
 set index_format = "$index_format %Z"             # message status flags
 set index_format = "$index_format %[%b %d %R]"    # time in local timezone
 set index_format = "$index_format %?L?%-15.15n (list)&%-22.22L?"       # TODO
-set index_format = "$index_format (%?l?%4l&%4c?)" # TODO
+#set index_format = "$index_format (%?l?%4l&%4c?)" # TODO
+set index_format = "$index_format (%4c)" # TODO
 set index_format = "$index_format %s"             # the subject
 
 #set index_format = "%?L?1? $index_format"
