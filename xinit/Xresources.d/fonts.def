@@ -1,0 +1,24 @@
+! Define some font strings for easy selection of fonts.
+
+! DejaVu font family
+#define FONT_DEJAVU         DejaVu Sans Mono:size=10
+#define FONT_DEJAVU_PL      DejaVu Sans Mono for Powerline:size=10
+
+! Menlo font family
+#define FONT_MENLO          Menlo:size=11
+#define FONT_MENLO_PL       Menlo for Powerline:size=10
+#define FONT_MESLO          Meslo LG S:size=10
+#define FONT_MESLO_PL       Meslo LG S for Powerline:size=10
+
+! Terminus font family
+#define FONT_TERMINUS_XFT   Terminus:style=Regular:size=9
+#define FONT_TERMINUS       -*-terminus-*-*-*-*-*-*-*-*-*-*-*-*
+
+! Inconsolata font family
+#define FONT_INCONSOLATA    Inconsolata
+#define FONT_INCONSOLATA_PL Inconsolata for Powerline
+
+! Dina font family
+#define FONT_DINA           -*-dina-medium-r-*-*-12-*-*-*-*-*-*-*
+
+! vim: filetype=xdefaults

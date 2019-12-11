@@ -1,0 +1,8 @@
+! vim: filetype=xdefaults
+
+! set some preprocessor constants automatically {{{1
+#if TERM == XTERM
+#  define TERM_NAME xterm
+#elif TERM == URXVT
+#  define TERM_NAME URxvt
+#endif

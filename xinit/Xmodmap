@@ -1,11 +1,15 @@
+!! xmodmap file by luc
+
+!! Use the CAPLSLOCK keys as additional ctrl key
 remove Lock = Caps_Lock
-!keysym Caps_Lock = Escape
-!remove Lock = Caps_Lock
 keysym Caps_Lock = Control_L
 add Control = Control_L
 
 
+!! one could also put esc in place of capslock.
+!keysym Caps_Lock = Escape
+
+!! Notes
 !clear Lock
 !keycode 0x7e = Control_R
-!add Control = Control_R         
-
+!add Control = Control_R

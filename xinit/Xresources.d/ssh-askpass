@@ -1,0 +1,20 @@
+
+! x11-ssh-askpass {{{1
+!x11-ssh-askpass*font:                   Terminus
+x11-ssh-askpass*background:             BACKGROUND
+x11-ssh-askpass*foreground:             FOREGROUND
+x11-ssh-askpass*shadowThickness:        0
+x11-ssh-askpass.*borderWidth:           0
+x11-ssh-askpass*Button.borderWidth:     1
+x11-ssh-askpass*Button.borderColor:     COLOR0
+x11-ssh-askpass*Indicator.background:   COLOR0
+x11-ssh-askpass*title:                  Password Dialog
+
+x11-ssh-askpass*font:                   FONT_TERMINUS
+!x11-ssh-askpass*background:             #000000
+!x11-ssh-askpass*foreground:             #ffffff
+!x11-ssh-askpass.Button*background:      #000000
+!x11-ssh-askpass.Indicator*foreground:   #ff9900
+!x11-ssh-askpass.Indicator*background:   #090909
+
+! vim: ft=xdefaults

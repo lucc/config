@@ -1,0 +1,13 @@
+! Settings for xft fonts.
+
+! copied from http://crunchbang.org/forums/viewtopic.php?pid=196047#p196047
+Xft.autohint: 0
+Xft.antialias: 1
+Xft.hinting: false
+!Xft.hintstyle: hintslight
+!Xft.hintstyle: hintfull
+Xft.dpi: 96
+Xft.rgba: rgb
+Xft.lcdfilter: lcddefault
+
+! vim: ft=xdefaults

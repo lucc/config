@@ -1,0 +1,111 @@
+! vim: ft=xdefaults
+
+! color definitions copied from https://github.com/jonathanfilip/lucius
+#if TONE == BLACK || TONE == DARK //{{{3
+#  if TONE == BLACK
+#    define BACKGROUND  #121212
+#    define COLOR0      #121212
+#    define COLOR8      #121212
+#  elif TONE == DARK
+#    define BACKGROUND  #303030
+#    define COLOR0      #303030
+#    define COLOR8      #303030
+#  endif
+#  if CONTRAST == NONE
+#    define FOREGROUND  #d7d7d7
+#    define CURSORCOLOR #87afd7
+#    define COLOR1      #ff5f5f
+#    define COLOR2      #afd787
+#    define COLOR3      #d7d7af
+#    define COLOR4      #87d7ff
+#    define COLOR5      #d7afd7
+#    define COLOR6      #87d7af
+#    define COLOR7      #d7d7d7
+#    define COLOR9      #ff5f5f
+#    define COLOR10     #afd787
+#    define COLOR11     #d7d7af
+#    define COLOR12     #87d7ff
+#    define COLOR13     #d7afd7
+#    define COLOR14     #87d7af
+#    define COLOR15     #d7d7d7
+#  elif CONTRAST == HIGH
+#    define FOREGROUND  #eeeeee
+#    define CURSORCOLOR #afd7ff
+#    define COLOR1      #ff8787
+#    define COLOR2      #d7ffaf
+#    define COLOR3      #ffffd7
+#    define COLOR4      #afffff
+#    define COLOR5      #ffd7ff
+#    define COLOR6      #afffd7
+#    define COLOR7      #eeeeee
+#    define COLOR9      #ff8787
+#    define COLOR10     #d7ffaf
+#    define COLOR11     #ffffd7
+#    define COLOR12     #afffff
+#    define COLOR13     #ffd7ff
+#    define COLOR14     #afffd7
+#    define COLOR15     #eeeeee
+#  elif CONTRAST == LOW
+#    define FOREGROUND  #bcbcbc
+#    define CURSORCOLOR #5f87af
+#    define COLOR1      #d75f5f
+#    define COLOR2      #87af5f
+#    define COLOR3      #afaf87
+#    define COLOR4      #5fafd7
+#    define COLOR5      #af87af
+#    define COLOR6      #5faf87
+#    define COLOR7      #bcbcbc
+#    define COLOR9      #d75f5f
+#    define COLOR10     #87af5f
+#    define COLOR11     #afaf87
+#    define COLOR12     #5fafd7
+#    define COLOR13     #af87af
+#    define COLOR14     #5faf87
+#    define COLOR15     #bcbcbc
+#  endif
+#elif TONE == LIGHT || TONE == WHITE //{{{3
+#  if TONE == LIGHT
+#    define BACKGROUND  #eeeeee
+#    define COLOR7      #eeeeee
+#    define COLOR15     #eeeeee
+#  elif TONE == WHITE
+#    define BACKGROUND  #ffffff
+#    define COLOR7      #ffffff
+#    define COLOR15     #ffffff
+#  endif
+#  if CONTRAST == NONE
+#    define FOREGROUND  #444444
+#    define CURSORCOLOR #5f87af
+#    define COLOR0      #444444
+#    define COLOR1      #af0000
+#    define COLOR2      #008700
+#    define COLOR3      #af5f00
+#    define COLOR4      #005faf
+#    define COLOR5      #870087
+#    define COLOR6      #008787
+#    define COLOR8      #444444
+#    define COLOR9      #af0000
+#    define COLOR10     #008700
+#    define COLOR11     #af5f00
+#    define COLOR12     #005faf
+#    define COLOR13     #870087
+#    define COLOR14     #008787
+#  elif CONTRAST == LOW
+#    define FOREGROUND  #626262
+#    define CURSORCOLOR #87afd7
+#    define COLOR0      #626262
+#    define COLOR1      #d70000
+#    define COLOR2      #00af00
+#    define COLOR3      #d78700
+#    define COLOR4      #0087d7
+#    define COLOR5      #af00af
+#    define COLOR6      #00afaf
+#    define COLOR8      #626262
+#    define COLOR9      #d70000
+#    define COLOR10     #00af00
+#    define COLOR11     #d78700
+#    define COLOR12     #0087d7
+#    define COLOR13     #af00af
+#    define COLOR14     #00afaf
+#  endif
+#endif

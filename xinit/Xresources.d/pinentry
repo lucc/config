@@ -1,0 +1,6 @@
+
+
+! pinentry {{{1
+pinentry*background: BACKGROUND
+pinentry*foreground: #aaaaaa
+pinentry*shadowThickness:        0

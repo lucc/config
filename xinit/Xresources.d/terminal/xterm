@@ -1,0 +1,11 @@
+
+xterm*faceName:          FONT
+xterm*scrollKey:         true
+xterm*scrollTtyOutput:   false
+xterm*saveLines:         1000000
+! old xdefaults file
+!XTerm.fullscreen: true
+!XTerm*faceName: Menlo
+!XTerm*faceSize: 11
+
+! vim: filetype=xdefaults
