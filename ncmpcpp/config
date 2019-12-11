@@ -1,5 +1,4 @@
-# configuration file for ncmpcpp by luc
-# This file was copied from the example file of the ncmpcpp distribution.
+# config file for ncmpcpp by luc
 
 ##### directories ######
 ##
@@ -9,26 +8,31 @@
 ## line setting for alternative location to config
 ## file which defines that while launching ncmpcpp.
 ##
-
-#ncmpcpp_directory = "~/.ncmpcpp"
-
+#
+#ncmpcpp_directory = ~/.config/ncmpcpp
+#
 ##
 ## Directory for storing downloaded lyrics. It
 ## defaults to ~/.lyrics since other MPD clients
 ## (eg. ncmpc) also use that location.
 ##
-
-lyrics_directory = "~/.lyrics"
-
+#
+lyrics_directory = ~/.lyrics
+#
 ##### connection settings #####
-
-# set it in order to make tag editor and renaming files work properly
-mpd_host = "localhost"
-mpd_port = "6600"
-mpd_music_dir = "~/.mpd/music"
-#mpd_connection_timeout = "5"
-#mpd_crossfade_time = "5"
-
+#
+#mpd_host = localhost
+#
+#mpd_port = 6600
+#
+#mpd_connection_timeout = 5
+#
+## Needed for tag editor and file operations to work.
+##
+mpd_music_dir = ~/.config/mpd/music
+#
+#mpd_crossfade_time = 5
+#
 ##### music visualizer #####
 ##
 ## Note: In order to make music visualizer work you'll
@@ -39,20 +43,14 @@ mpd_music_dir = "~/.mpd/music"
 ##
 ## audio_output {
 ##        type            "fifo"
-##        name            "My FIFO"
+##        name            "Visualizer feed"
 ##        path            "/tmp/mpd.fifo"
 ##        format          "44100:16:2"
 ## }
 ##
-
-##
-## If you set format to 44100:16:2, make it 'yes'.
-##
-
-#visualizer_in_stereo = "no"
-
-#visualizer_fifo_path = ""
-
+#
+#visualizer_fifo_path = /tmp/mpd.fifo
+#
 ##
 ## Note: Below parameter is needed for ncmpcpp
 ## to determine which output provides data for
@@ -60,9 +58,20 @@ mpd_music_dir = "~/.mpd/music"
 ## visualization and sound as currently there
 ## are some problems with it.
 ##
-
-#visualizer_output_name = ""
-
+#
+#visualizer_output_name = Visualizer feed
+#
+##
+## If you set format to 44100:16:2, make it 'yes'.
+##
+#visualizer_in_stereo = yes
+#
+##
+## Multiply received samples by given value. Very
+## useful for proper visualization of quiet music.
+##
+#visualizer_sample_multipler = 1
+#
 ##
 ## Note: Below parameter defines how often ncmpcpp
 ## has to "synchronize" visualizer and audio outputs.
@@ -70,18 +79,20 @@ mpd_music_dir = "~/.mpd/music"
 ## synchronization problems, set it to lower value.
 ## Keep in mind that sane values start with >=10.
 ##
-
-#visualizer_sync_interval = "30"
-
+#
+#visualizer_sync_interval = 30
+#
 ##
 ## Note: To enable spectrum frequency visualization
 ## you need to compile ncmpcpp with fftw3 support.
 ##
-
-#visualizer_type = "wave" (spectrum/wave)
-
-#visualizer_look = "◆│"
-
+#
+## Available values: spectrum, wave.
+##
+#visualizer_type = wave
+#
+#visualizer_look = ●▮
+#
 ##### system encoding #####
 ##
 ## ncmpcpp should detect your charset encoding
@@ -92,21 +103,24 @@ mpd_music_dir = "~/.mpd/music"
 ## supports charset detection by checking output
 ## of `ncmpcpp --version`.
 ##
-## Note: Since MPD uses utf8 by default, setting
+## Note: Since MPD uses UTF-8 by default, setting
 ## this option makes sense only if your encoding
 ## is different.
 ##
-
+#
 #system_encoding = ""
-
+#
 ##### delays #####
-
-## delay after playlist highlighting will be disabled (0 = don't disable)
-playlist_disable_highlight_delay = "0"
-
-## defines how long various messages are supposed to be visible
-message_delay_time = "0"
-
+#
+## Time of inactivity (in seconds) after playlist
+## highlighting will be disabled (0 = always on).
+##
+#playlist_disable_highlight_delay = 5
+#
+## Defines how long messages are supposed to be visible.
+##
+#message_delay_time = 5
+#
 ##### song format #####
 ##
 ## for song format you can use:
@@ -142,9 +156,9 @@ message_delay_time = "0"
 ## you'll get nothing.
 ##
 ## text can also have different color than the main window has,
-## eg. if you want length to be green, write $3%l$9
+## eg. if you want length to be green, write "$3%l$9".
 ##
-## available values:
+## Available values:
 ##
 ## - 0 - default window color (discards all other colors)
 ## - 1 - black
@@ -159,25 +173,27 @@ message_delay_time = "0"
 ##
 ## Note: colors can be nested.
 ##
-
-song_list_format = "{$2%a$9{ $3%b{ (%y)}$9{ %N}} $5%t$9$R%l}|{$2%a$9 $5%t$9$R%l}|{%f$R%l}"
-song_status_format = "{$2%a$9{ $3%b{ (%y)}$9{ %N}} $5%t$9}|{{%a{ \"%b\"{ (%y)}} - }{%t}}|{%f}"
-song_library_format = "{%N - }{%t}|{%f}"
-
-#tag_editor_album_format = "{(%y) }%b"
-tag_editor_album_format = "tag_editor_album_format %y %b"
-
+#
+#song_list_format = {%a - }{%t}|{$8%f$9}$R{$3(%l)$9}
+#
+#song_status_format = {{%a{ "%b"{ (%y)}} - }{%t}}|{%f}
+#
+#song_library_format = {%n - }{%t}|{%f}
+#
+#tag_editor_album_format = {(%y) }%b
+#
 ##
 ## Note: Below variables are used for sorting songs in browser.
 ## The sort mode determines how songs are sorted, and can be used
 ## in combination with a sort format to specify a custom sorting format.
-## Possible values for browser_sort_mode are "name", "mtime" and "format".
+## Available values for browser_sort_mode are "name", "mtime", "format"
+## and "noop".
 ##
-
-#browser_sort_mode = "name"
-
-#browser_sort_format = "{%a - }{%t}|{%f} {(%l)}"
-
+#
+#browser_sort_mode = name
+#
+#browser_sort_format = {%a - }{%t}|{%f} {(%l)}
+#
 ##
 ## Note: Below variables are for alternative version of user's interface.
 ## Their syntax supports all tags and colors listed above plus some extra
@@ -194,30 +210,31 @@ tag_editor_album_format = "tag_editor_album_format %y %b"
 ## e.g. {$b%t$/b}|{$r%f$/r} will display bolded title tag or filename
 ## with reversed colors.
 ##
-
-alternative_header_first_line_format = "alternative_header_first_line_format$b$1$aqqu$/a$9 {%t}|{%f} $1$atqq$/a$9$/b"
-
-alternative_header_second_line_format = "alternative_header_second_line_format{{$4$b%a$/b$9}{ - $7%b$9}{ ($4%y$9)}}|{%D}"
-
+#
+#alternative_header_first_line_format = $b$1$aqqu$/a$9 {%t}|{%f} $1$atqq$/a$9$/b
+#
+#alternative_header_second_line_format = {{$4$b%a$/b$9}{ - $7%b$9}{ ($4%y$9)}}|{%D}
+#
 ##
-## Note: Below variables also supports
-## text attributes listed above.
+## Note: below variables also support text attributes listed above.
 ##
-
-## display the currently playing song with these atributes:
-#now_playing_prefix = "$b"
-#now_playing_suffix = "$/b"
-
+#
+#now_playing_prefix = $b
+#
+#now_playing_suffix = $/b
+#
 #browser_playlist_prefix = "$2playlist$9 "
-
-selected_item_prefix = "$6"
-selected_item_suffix = "$9"
-modified_item_prefix = "modified_item_prefix $3> $9"
-
-## colors are not supported for below variable
-
-song_window_title_format = "song_window_title_format {%a - }{%t}|{%f}"
-
+#
+#selected_item_prefix = $6
+#
+#selected_item_suffix = $9
+#
+#modified_item_prefix = $3> $9
+#
+## Note: colors are not supported for below variable.
+##
+#song_window_title_format = {%a - }{%t}|{%f}
+#
 ##### columns settings #####
 ##
 ## syntax of song columns list format is "column column etc."
@@ -253,12 +270,11 @@ song_window_title_format = "song_window_title_format {%a - }{%t}|{%f}"
 ##   tag and then composer and performer if previous ones are
 ##   not available.
 ##
-
-#song_columns_list_format = "song_columns_list_format(7f)[green]{l} (25)[cyan]{a} (40)[]{t|f} (30)[red]{b}"
-song_columns_list_format = "(25)[cyan]{a} (30)[red]{b} (5f)[]{yE} (40)[]{t|f} (7f)[green]{lr}"
-
+#
+#song_columns_list_format = (20)[]{a} (6f)[green]{NE} (50)[white]{t|f:Title} (20)[cyan]{b} (7f)[magenta]{l}
+#
 ##### various settings #####
-
+#
 ##
 ## Note: Custom command that will be executed each
 ## time song changes. Useful for notifications etc.
@@ -267,63 +283,91 @@ song_columns_list_format = "(25)[cyan]{a} (30)[red]{b} (5f)[]{yE} (40)[]{t|f} (7
 ## Use `ncmpcpp --now-playing SONG_FORMAT` instead.
 ##
 #execute_on_song_change = ""
-
-#playlist_show_remaining_time = "no"
-#playlist_shorten_total_times = "no"
-#playlist_separate_albums = "no"
-#playlist_display_mode = "classic" (classic/columns)
-#browser_display_mode = "classic" (classic/columns)
-#search_engine_display_mode = "classic" (classic/columns)
-#playlist_editor_display_mode = "classic" (classic/columns)
-#discard_colors_if_item_is_selected = "yes"
-#incremental_seeking = "yes"
-#seek_time = "1"
-#volume_change_step = "1"
-#autocenter_mode = "no"
-#centered_cursor = "no"
-
+#
+#playlist_show_remaining_time = no
+#
+#playlist_shorten_total_times = no
+#
+#playlist_separate_albums = no
+#
+##
+## Note: Possible display modes: classic, columns.
+##
+#playlist_display_mode = columns
+#
+#browser_display_mode = classic
+#
+#search_engine_display_mode = classic
+#
+#playlist_editor_display_mode = classic
+#
+#discard_colors_if_item_is_selected = yes
+#
+#incremental_seeking = yes
+#
+#seek_time = 1
+#
+#volume_change_step = 2
+#
+#autocenter_mode = no
+#
+#centered_cursor = no
+#
 ##
 ## Note: You can specify third character which will
 ## be used to build 'empty' part of progressbar.
 ##
-#progressbar_look = "=>"
-
-#progressbar_boldness = "yes"
-
-#default_place_to_search_in = "database" (database/playlist)
-
-#user_interface = "classic" (classic/alternative)
-
-#media_library_left_column = "a" (possible values: a,y,g,c,p, legend above)
-
-#default_find_mode = "wrapped" (wrapped/normal)
-
-#default_space_mode = "add" (add/select)
-
-#default_tag_editor_pattern = "%n - %t"
-
-#header_visibility = "yes"
-
-#statusbar_visibility = "yes"
-
-#titles_visibility = "yes"
-
-#header_text_scrolling = "yes"
-
-#fancy_scrolling = "yes"
-
-#cyclic_scrolling = "no"
-
-#lines_scrolled = "2"
-
-follow_now_playing_lyrics = "yes"
-
-fetch_lyrics_for_current_song_in_background = "yes"
-
-#store_lyrics_in_song_dir = "no"
-
-#generate_win32_compatible_filenames = "yes"
-
+#progressbar_look = =>
+#
+#progressbar_boldness = yes
+#
+## Available values: database, playlist.
+##
+#default_place_to_search_in = database
+#
+## Available values: classic, alternative.
+##
+#user_interface = classic
+#
+#data_fetching_delay = yes
+#
+## Available values: artist, album_artist, date, genre, composer, performer.
+##
+#media_library_primary_tag = artist
+#
+## Available values: wrapped, normal.
+##
+#default_find_mode = wrapped
+#
+## Available values: add, select.
+##
+#default_space_mode = add
+#
+#default_tag_editor_pattern = %n - %t
+#
+#header_visibility = yes
+#
+#statusbar_visibility = yes
+#
+#titles_visibility = yes
+#
+#header_text_scrolling = yes
+#
+#cyclic_scrolling = no
+#
+#lines_scrolled = 2
+#
+#follow_now_playing_lyrics = no
+#
+fetch_lyrics_for_current_song_in_background = yes
+#
+# TODO
+store_lyrics_in_song_dir = no
+#
+#generate_win32_compatible_filenames = yes
+#
+#allow_for_physical_item_deletion = no
+#
 ##
 ## Note: If you set this variable, ncmpcpp will try to
 ## get info from last.fm in language you set and if it
@@ -332,90 +376,79 @@ fetch_lyrics_for_current_song_in_background = "yes"
 ##
 ## Note: Language has to be expressed as an ISO 639 alpha-2 code.
 ##
-#lastfm_preferred_language = ""
-
-#ncmpc_like_songs_adding = "no" (enabled - add/remove, disabled - always add)
-
-#show_hidden_files_in_local_browser = "no"
-
-#display_screens_numbers_on_start = "yes"
-
+#lastfm_preferred_language = en
+#
+## Available values: add_remove, always_add.
 ##
-## How shall key_screen_switcher work?
+#space_add_mode = always_add
+#
+#show_hidden_files_in_local_browser = no
+#
 ##
-## - "previous" - switch between current and last used screen
-## - "sequence: 2 -> 9 -> 5" - switch between given sequence of screens.
+## How shall screen switcher work?
 ##
-## Screen numbers you can use after 'sequence' keyword are:
+## - "previous" - switch between the current and previous screen.
+## - "screen1,...,screenN" - switch between given sequence of screens.
 ##
-## - 1 - help
-## - 2 - playlist
-## - 3 - browser
-## - 4 - search engine
-## - 5 - media library
-## - 6 - playlist editor
-## - 7 - tag editor
-## - 8 - outputs
-## - 9 - visualizer
-## - 10 - clock
+## Screens available for use: help, playlist, browser, search_engine,
+## media_library, playlist_editor, tag_editor, outputs, visualizer, clock.
 ##
-## As you can see, above example will switch between
-## playlist, visualizer and media library screens.
+#screen_switcher_mode = playlist, browser
+#
 ##
-#screen_switcher_mode = "sequence: 2 -> 3"
-
+## Note: You can define startup screen for ncmpcpp
+## by choosing screen from the list above.
+##
+#startup_screen = playlist
+#
 ##
 ## Default width of locked screen (in %).
 ## Acceptable values are from 20 to 80.
 ##
-
-#locked_screen_width_part = "50"
-
-#ask_for_locked_screen_width_part = "yes"
-
+#
+#locked_screen_width_part = 50
+#
+#ask_for_locked_screen_width_part = yes
+#
+#jump_to_now_playing_song_at_start = yes
+#
+#ask_before_clearing_playlists = yes
+#
+#clock_display_seconds = no
+#
+#display_volume_level = yes
+#
+#display_bitrate = no
+#
+#display_remaining_time = no
+#
+## Available values: none, basic, extended.
 ##
-## Note: You can define startup screen for ncmpcpp
-## by choosing screen number from the list above.
-##
-#startup_screen = "2"
-
-#jump_to_now_playing_song_at_start = "yes"
-
-#ask_before_clearing_main_playlist = "no"
-
-#clock_display_seconds = "no"
-
-#display_volume_level = "yes"
-
-#display_bitrate = "no"
-
-#display_remaining_time = "no"
-
-#regular_expressions = "none" (none/basic/extended)
-
+#regular_expressions = none
+#
 ##
 ## Note: If below is enabled, ncmpcpp will ignore leading
 ## "The" word while sorting items in browser, tags in
 ## media library, etc.
 ##
-#ignore_leading_the = "no"
-
-#block_search_constraints_change_if_items_found = "yes"
-
-#mouse_support = "yes"
-
-#mouse_list_scroll_whole_page = "yes"
-
-#empty_tag_marker = "<empty>"
-
+#ignore_leading_the = no
+#
+#block_search_constraints_change_if_items_found = yes
+#
+#mouse_support = yes
+#
+#mouse_list_scroll_whole_page = yes
+#
+#empty_tag_marker = <empty>
+#
 #tags_separator = " | "
-
-#tag_editor_extended_numeration = "no"
-
-#media_library_sort_by_mtime = "no"
-
-#enable_window_title = "yes"
-
+#
+#tag_editor_extended_numeration = no
+#
+#media_library_sort_by_mtime = no
+#
+#enable_window_title = yes
+#
 ##
 ## Note: You can choose default search mode for search
 ## engine. Available modes are:
@@ -427,47 +460,50 @@ fetch_lyrics_for_current_song_in_background = "yes"
 ## - 3 - match only exact values (this mode uses mpd function for searching
 ##       in database and local one for searching in current playlist)
 ##
-
-search_engine_default_search_mode = "2"
-
-#external_editor = ""
-
-#use_console_editor = "no" (set to yes, if your editor is console app)
-
+#
+#search_engine_default_search_mode = 1
+#
+#external_editor = nano
+#
+## Note: set to yes if external editor is a console application.
+##
+#use_console_editor = yes
+#
 ##### colors definitions #####
-
-#colors_enabled = "yes"
-
-#empty_tag_color = "cyan"
-
-#header_window_color = "default"
-
-#volume_color = "default"
-
-#state_line_color = "default"
-
-#state_flags_color = "default"
-
-#main_window_color = "yellow"
-
-#color1 = "white"
-
-#color2 = "green"
-
-#main_window_highlight_color = "yellow"
-
-#progressbar_color = "default"
-
-#progressbar_elapsed_color = "default"
-
-#statusbar_color = "default"
-
-#alternative_ui_separator_color = "black"
-
-#active_column_color = "red"
-
-#visualizer_color = "yellow"
-
-#window_border_color = "green"
-
-#active_window_border = "red"
+#
+#colors_enabled = yes
+#
+#empty_tag_color = cyan
+#
+#header_window_color = default
+#
+#volume_color = default
+#
+#state_line_color = default
+#
+#state_flags_color = default
+#
+#main_window_color = yellow
+#
+#color1 = white
+#
+#color2 = green
+#
+#main_window_highlight_color = yellow
+#
+#progressbar_color = black
+#
+#progressbar_elapsed_color = green
+#
+#statusbar_color = default
+#
+#alternative_ui_separator_color = black
+#
+#active_column_color = red
+#
+#visualizer_color = yellow
+#
+#window_border_color = green
+#
+#active_window_border = red
+#
