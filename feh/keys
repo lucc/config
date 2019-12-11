@@ -1,2 +1,4 @@
-remove comma
-delete period
+#remove comma
+#delete period
+#save_filelist F
+#toggle_fullscreen f
