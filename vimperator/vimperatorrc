@@ -1,0 +1,24 @@
+" Vimperator config file by luc
+" vm: ft=vimperator syntax=vim
+
+set runtimepath+=~/.config/vimperator
+
+runtime functions.js
+runtime plugin/cookiemgr.js
+
+noremap <C-T> :set gui=invnavigation<CR>
+noremap "'" gn
+
+set gui=none
+set complete=stlf
+set! browser.tabs.closeWindowWithLastTab=false
+
+command! startreader   emenu View.Enter Reader View
+command! stopreader    emenu View.Close Reader View
+command! privatewindow emenu File.New Private Window
+command! video         execute '!mpv '  + EscapedURL()
+command! dlv           execute '!tmux-youtube-dl.sh ' + EscapedURL()
+command! otherbrowser  execute '!browser -n guest ' + EscapedURL()
+command! com       execute 'open ' + SwitchTDL(buffer.URL.toString(), 'com')
+command! de        execute 'open ' + SwitchTDL(buffer.URL.toString(), 'de')
+command! org       execute 'open ' + SwitchTDL(buffer.URL.toString(), 'org')
