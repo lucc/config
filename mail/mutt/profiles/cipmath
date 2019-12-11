@@ -1,7 +1,0 @@
-# mutt settings for cipmath account
-# vim: ft=muttrc foldmethod=marker
-
-set smtp_url=$my_cipmath_smtp_url
-set from=$my_cipmath_from
-#color status $my_cipmath_fg $my_cipmath_bg
-set status_format="${my_default_status_format} ${my_cipmath_status_string}"

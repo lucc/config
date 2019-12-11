@@ -1,7 +1,0 @@
-# mutt settings for cipifi account
-# vim: ft=muttrc foldmethod=marker
-
-set smtp_url=$my_cipifi_smtp_url
-set from=$my_cipifi_from
-#color status $my_cipifi_fg $my_cipifi_bg
-set status_format="${my_default_status_format} ${my_cipifi_status_string}"

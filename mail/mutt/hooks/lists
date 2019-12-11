@@ -1,4 +1,0 @@
-# config file for mutt to organize folders containing mail from mailing lists
-# vim: filetype=muttrc
-
-#set index_format = "$my_index_format_1 %-20.20n $my_index_format_2"

@@ -1,5 +1,0 @@
-# plain color scheme by luc
-# vim: ft=muttrc
-
-# reset colors and load the defaults
-source ~/.mutt/color/default
