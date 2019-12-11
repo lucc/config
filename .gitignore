@@ -1,0 +1,6 @@
+# gitignore file for the ~/.config folder
+
+# These have their own repositories
+awesome
+nvim
+zsh
