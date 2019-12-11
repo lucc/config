@@ -1,0 +1,25 @@
+#!/bin/sh
+
+SHARE=~/.local/share/rofi
+HISTFILE=$SHARE/shell-pugin-history-file
+
+# Bootstrap: created the data directory
+if [ ! -d "$SHARE" ]; then
+  mkdir -p "$SHARE"
+fi
+if [ ! -f "$HISTFILE" ]; then
+  touch "$HISTFILE"
+fi
+
+if [ "$1" ]; then
+  (echo "$@" | bash &) >/dev/null 2>&1
+  #(echo "$@" | HISTCONTROL=ignoreboth:erasedups bash -o history &) #>/dev/null 2>&1
+  #(echo "$@" | HISTSIZE=1000 SAVEHIST=1000 zsh -o hist_save_no_dups -o hist_reduce_blanks -o hist_ignore_all_dups -o append_history &) #>/dev/null 2>&1
+  echo "$@" | awk '!seen[$0]++' - "$HISTFILE" | sponge "$HISTFILE"
+else
+  cat "$HISTFILE"
+fi
+
+
+# TODO how to differentiate if the user wants to execut a new command that
+# only is similar to a command from history?  Rofi will completet that for us!
