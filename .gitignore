@@ -4,3 +4,10 @@
 awesome
 nvim
 zsh
+
+# these hold sensitive data
+/ssh
+/pass
+/fetchmail
+/alot
+/mutt
