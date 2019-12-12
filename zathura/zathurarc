@@ -1,0 +1,11 @@
+set window-title-home-tilde true
+set statusbar-home-tilde true
+set smooth-scroll true
+# This is necessary because the status line is not considered and some text is
+# hidden by it.
+set scroll-full-overlap 0.05
+
+set page-cache-size 100
+
+#set synctex true
+#set synctex-editor-command "nvr -todo %{input} +%{line}"
