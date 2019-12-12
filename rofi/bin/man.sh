@@ -1,5 +1,5 @@
-#!/bin/bash
-if [ $# = 0 ]; then
+#!/bin/sh
+if [ $# -eq 0 ]; then
   apropos .
   exit
 else
