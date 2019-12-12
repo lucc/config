@@ -9,6 +9,8 @@
 [push]
   default = simple
 [alias]
+  pick = cherry-pick
+
   amend = commit --amend --no-edit
   ap = add -p
   cm = commit -m
@@ -20,7 +22,7 @@
 	ls = ls-files
 	nice-merge = !git merge --no-ff --no-ed \"$@\" && git branch -d
 	stash2branch = !set -x && branch=$* && branch=${branch// /-} && git stash branch \"$branch\" && git commit --message=\"$*\" . && :
-	repush = !git fetch --all --tags && git rebase origin/master && git push
+	repush = !git fa && git rebase @{upstream} && git push
 	ra = rebase --abort
 	rc = rebase --continue
 [core]
