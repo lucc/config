@@ -1,0 +1,76 @@
+# user git config file by luc
+# vim: ft=gitconfig
+
+[user]
+	name = Lucas Hoffmann
+	email = lucc@posteo.de
+[color]
+  ui = true
+[push]
+  default = simple
+[alias]
+  amend = commit --amend --no-edit
+  ap = add -p
+  cm = commit -m
+  co = checkout
+  root = rev-parse --show-toplevel
+  fa = fetch --all --prune
+  commit-random = !git commit -m \"$(curl -s http://whatthecommit.com/index.txt)\"
+  autocommit = commit --all --message=autocommit
+	ls = ls-files
+	nice-merge = !git merge --no-ff --no-ed \"$@\" && git branch -d
+	stash2branch = !set -x && branch=$* && branch=${branch// /-} && git stash branch \"$branch\" && git commit --message=\"$*\" . && :
+	repush = !git fetch --all --tags && git rebase origin/master && git push
+	ra = rebase --abort
+	rc = rebase --continue
+[core]
+  excludesfile = ~/.config/git/ignore
+  #askpass = ~/bin/git-pass
+[diff]
+  tool = vimdiff
+  guitool = gvimdiff
+[diff "gpg"]
+  binary = true
+  #textconv = gpg2 -d --quiet --yes --compress-algo=none --no-encrypt-to --batch --use-agent
+  textconv = gpg --decrypt --quiet --batch
+[sendemail]
+  smtpserver = /home/luc/.local/bin/sendmail.sh
+	from = lucc@posteo.de
+	envelopesender = lucc@posteo.de
+[format]
+  attach
+  thread = true
+[credential]
+  helper = pass
+[trailer "see"]
+  key = "See-also: "
+  command = git log -1 --oneline --format=\"%h (%s)\" --abbrev-commit --abbrev=14 $ARG
+  ifMissing = doNothing
+[trailer "sign"]
+  key = Signed-off-by
+[trailer "help"]
+  key = Helped-by
+[trailer]
+  ifmissing = doNothing
+
+[tig]
+  # options
+  mouse = true
+  ignore-case = true
+  main-view = line-number:no,interval=5 id:no date:default author:full,width=20 commit-title:yes,graph,refs,overflow=no
+
+[tig "bind"]
+  # keys
+  generic = <C-T> @git tag "%(prompt tag name: )" %(commit)
+
+[tig "color"]
+  #main-remote = green default normal
+
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+[color "grep"]
+	match = red bold
+	filename = magenta
