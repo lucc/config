@@ -2,7 +2,7 @@
 ! vim: filetype=xdefaults
 
 ! "Enabled modi" Set from: Default
-rofi.modi: combi,shell:~/.config/rofi/bin/shell,window,run,mru:~/.config/rofi/bin/mru.sh,ssh,fb:/usr/share/doc/rofi/examples/rofi-file-browser.sh,man:~/.config/rofi/bin/man.sh,test:~/.config/rofi/bin/test.sh
+rofi.modi: combi,shell:~/.config/rofi/bin/shell,window,run,mru:~/.config/rofi/bin/mru.sh,ssh,fb:~/.config/rofi/bin/man.sh,test:~/.config/rofi/bin/test.sh
 !,sms:~/.config/rofi/bin/sms.sh
 !,calc:qalc +u8 -nocurrencies
 ! "Window width" Set from: Default
