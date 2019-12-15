@@ -46,15 +46,7 @@ settings:
   content.media.video_capture:
     https://meet1.schule-infoportal.de: true
   content.notifications:
-    https://kinox.to: false
-    https://manhwa-manga.com: false
-    https://my.taadd.com: false
-    https://smutty.com: false
-    https://streamz.vg: false
-    https://www.reddit.com: false
-    https://www.sueddeutsche.de: false
-    https://www.taadd.com: false
-    https://www.wetteronline.de: false
+    global: false
   content.proxy:
     global: system
   downloads.location.directory:
