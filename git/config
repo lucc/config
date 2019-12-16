@@ -2,8 +2,8 @@
 # vim: ft=gitconfig
 
 [user]
-	name = Lucas Hoffmann
-	email = lucc@posteo.de
+  email = luc@artsoftandmore.com
+  name = Lucas Hoffmann
 [color]
   ui = true
 [push]
