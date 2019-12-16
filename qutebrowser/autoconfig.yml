@@ -232,10 +232,6 @@ settings:
     global: true
   tabs.position:
     global: top
-  tabs.show:
-    global: never
-  url.default_page:
-    global: http://wetterstationen.meteomedia.de/messnetz/vorhersagegrafik/108650.png
   url.searchengines:
     global:
       DEFAULT: https://duckduckgo.com/?q={}
