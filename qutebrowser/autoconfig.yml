@@ -142,7 +142,10 @@ settings:
     https://meet.schule-infoportal.de: true
     https://meet1.schule-infoportal.de: true
   content.notifications.enabled:
+    https://cloud.artsoftandmore.com: true
     global: false
+  content.register_protocol_handler:
+    https://cloud.artsoftandmore.com#subscribe_to_webcal?url=%25s: false
   content.proxy:
     global: system
   downloads.location.directory:
@@ -150,9 +153,11 @@ settings:
   editor.command:
     global:
     - term
-    - -fe
+    - -e
     - nvim
-    - '{}'
+    - '{file}'
+    - -c
+    - normal!{line}G{column0}l
   fonts.default_family:
     global:
     - DejaVu Sans Mono
@@ -193,10 +198,6 @@ settings:
     global: true
   tabs.position:
     global: top
-  tabs.show:
-    global: never
-  url.default_page:
-    global: http://wetterstationen.meteomedia.de/messnetz/vorhersagegrafik/108650.png
   url.searchengines:
     global:
       DEFAULT: https://html.duckduckgo.com/html?q={}
