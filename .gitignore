@@ -13,5 +13,8 @@
 /mutt
 /certs
 /gpg
+# these contain api token
 /hub
 /lab.hcl
+# holds the passwords to log into freenode/nickserv
+/weechat
