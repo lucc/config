@@ -7,34 +7,34 @@ application/ms-tnef;  tnef -t %s && read ans;
 application/x-sh;     less %s; needsterminal
 
 # application/msword {{{2
-application/msword;   libreoffice %s; nametemplate=%s.doc; test=runningx;
+application/msword;   libreoffice %s; nametemplate=%s.doc; test=RunningX;
 application/msword;   wvText %s /dev/stdout; copiousoutput;
 #application/msword;   antiword %s; copiousoutput;
 application/vnd.openxmlformats-officedocument.wordprocessingml.document; \
   libreoffice %s;                                                        \
   nametemplate=%s.docx;                                                  \
-  test=runningx;
+  test=RunningX;
 application/vnd.openxmlformats-officedocument.wordprocessingml.document; \
   docx2txt.pl < %s;                                                      \
   nametemplate=%s.docx;                                                  \
   copiousoutput;
 application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;       \
   libreoffice --copy %s;                                                 \
-  test=runningx;
+  test=RunningX;
 application/vnd.oasis.opendocument.spreadsheet;                          \
   libreoffice %s;                                                        \
-  test=runningx;
+  test=RunningX;
 application/vnd.oasis.opendocument.text;                                 \
   libreoffice %s;                                                        \
   nametemplate=%s.odt;                                                   \
-  test=runningx;
+  test=RunningX;
 
 # application/pdf {{{2
-application/acrobat;  zathura %s; test=runningx;
-application/pdf;      zathura %s; test=runningx;
-application/vnd.pdf;  zathura %s; test=runningx;
-application/x-pdf;    zathura %s; test=runningx;
-#application/pdf;      xpdf -q %s; test=runningx;
+application/acrobat;  zathura %s; test=RunningX;
+application/pdf;      zathura %s; test=RunningX;
+application/vnd.pdf;  zathura %s; test=RunningX;
+application/x-pdf;    zathura %s; test=RunningX;
+#application/pdf;      xpdf -q %s; test=RunningX;
 #application/pdf;      open -a Preview %s; nametemplate=%s.pdf;
 # ps2ascii does not handle german umlauts correctly (apearently)
 application/acrobat;  pdftotext %s /dev/stdout; copiousoutput;
@@ -43,11 +43,11 @@ application/vnd.pdf;  pdftotext %s /dev/stdout; copiousoutput;
 application/x-pdf;    pdftotext %s /dev/stdout; copiousoutput;
 
 # image/* {{{1
-#image/*;              qiv %s; edit=gimp %s; test=runningx;
+#image/*;              qiv %s; edit=gimp %s; test=RunningX;
 #image/tiff;           open -n --wait-apps -a Preview %s; nametemplate=%s.tiff
 #image/jpeg;           open -n --wait-apps -a Preview %s; nametemplate=%s.jpeg
 #image/*;              open -n --wait-apps -a Preview %s
-image/*;              feh --scale-down %s; edit=gimp %s; test=runningx;
+image/*;              feh --scale-down %s; edit=gimp %s; test=RunningX;
 
 # text/* {{{1
 # text/html {{{2
@@ -56,7 +56,7 @@ image/*;              feh --scale-down %s; edit=gimp %s; test=runningx;
 #text/html;              \
 #  xdg-open %s;          \
 #  nametemplate=%s.html; \
-#  test=runningx;
+#  test=RunningX;
 #text/html; w3m -o document_charset=%{charset}       %s; nametemplate=%s.html;
 #text/html; w3m -o document_charset=%{charset} -dump %s; nametemplate=%s.html; copiousoutput
 #text/html; w3m -I %{charset} -dump -T text/html     %s; nametemplate=%s.html; copiousoutput; description=HTML Text;
@@ -80,4 +80,4 @@ text/*;  less %s; needsterminal;
 text/*;  cat %s; copiousoutput;
 # audio/* & video/* {{{1
 audio/*;              mpv %s; needsterminal;
-video/*;              mpv %s; needsterminal; test=runningx
+video/*;              mpv %s; needsterminal; test=RunningX
