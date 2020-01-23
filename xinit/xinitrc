@@ -42,10 +42,13 @@ autostart () {
   sleep 20 && systemctl --user start mpd-notification &
   browser &
 }
+load_env_to_systemd () {
+  systemctl --user import-environment GNUPGHOME DISPLAY
+}
 
 # We can either go into a full WM/DE wnvironment or a kisosk mode.
 full_setup () {
-  #set_env
+  load_env_to_systemd
   setup_pulseaudio
   ask_yes "Do you want a full start?" && autostart &
   sleep 60 && load_ssh_keys &
