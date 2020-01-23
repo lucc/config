@@ -21,19 +21,6 @@ ask_no () {
   esac
 }
 
-set_env () {
-  # The custom theme variables used by other scripts (awesome rc files and
-  # colorscheme.sh).
-  export THEME=${THEME:-SOLARIZED}
-  export theme=${theme:-solarized}
-  export TONE=${TONE:-DARK}
-  export tone=${tone:-dark}
-}
-setup_urxvt () {
-  #export RXVT_SOCKET="$ddir/urxvt/urxvtd-`hostname`"
-  export RXVT_SOCKET=$XDG_RUNTIME_DIR/urxvtd.socket
-  #systemctl --user start urxvtd.socket
-}
 setup_pulseaudio () {
   pactl load-module module-x11-bell
 }
@@ -47,25 +34,11 @@ source_global_xinit () {
     unset f
   fi
 }
-setup_keyboard () {
-  setxkbmap -option terminate:ctrl_alt_bksp -layout de
-  xmodmap "$dir/Xmodmap"
-}
-setup_colors () {
-  xrdb -merge -DTONE="$TONE" -DTHEME="$THEME" "$dir/Xresources"
-}
-cbatticon_power_manager () {
-  # use cbatticon as a simple power manager
-  cbatticon \
-    --low-level 10 \
-    --command-critical-level "sh -c 'check-suspend.sh -d 30'" &
-}
 load_ssh_keys () {
   SSH_ASKPASS=$(which pass-as-ssh-askpass.sh) \
     ssh-add "$HOME"/.ssh/*id_rsa < /dev/null
 }
 autostart () {
-  #systemctl --user start urxvtd
   sleep 20 && systemctl --user start mpd-notification &
   browser &
 }
@@ -74,15 +47,11 @@ autostart () {
 full_setup () {
   #set_env
   setup_pulseaudio
-  #setup_urxvt
-  #setup_keyboard
-  #setup_colors
   ask_yes "Do you want a full start?" && autostart &
   sleep 60 && load_ssh_keys &
 }
 kiosk_setup () {
   setup_pulseaudio
-  #setup_keyboard
 }
 
 # first call some general initialisation code that should be run for every
