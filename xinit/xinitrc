@@ -69,27 +69,10 @@ fi
 if [ $# -eq 1 ]; then
   # run some WM/DE specific init functions and set the command to exec
   case "$1" in
-    awesome|openbox|xmonad|i3|qtile)
+    awesome|xmonad|i3)
       auto-xrandr &
       full_setup
-      #cbatticon_power_manager &
       ;;
-    gnome)
-      full_setup
-      set gnome-session;;
-    kde)
-      full_setup
-      set startkde;;
-    lxde)
-      full_setup
-      if which startlxde; then set startlxde
-      else set lxsession
-      fi;;
-    xfce)
-      full_setup
-      if which startxfce4; then set startxfce4
-      else set xfce4-session
-      fi;;
     music-kiosk)
       kiosk_setup
       set cantata;;
