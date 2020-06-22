@@ -76,3 +76,5 @@
 [color "grep"]
 	match = red bold
 	filename = magenta
+[pull]
+	rebase = false
