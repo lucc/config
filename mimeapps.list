@@ -1,17 +1,21 @@
-
 [Default Applications]
 application/epub+zip=org.pwmt.zathura.desktop
 application/octet-stream=FoxitReader.desktop
 application/ogg=mpv.desktop
-application/pdf=org.pwmt.zathura.desktop
 application/pdf=org.pwmt.zathura.desktop
 application/postscript=org.pwmt.zathura.desktop
 application/ppdf=FoxitReader.desktop
 application/ps=org.pwmt.zathura.desktop
 application/vnd.oasis.opendocument.text=writer.desktop
 application/vnd.openxmlformats-officedocument.wordprocessingml.document=writer.desktop
+application/x-extension-htm=org.qutebrowser.qutebrowser.desktop
+application/x-extension-html=org.qutebrowser.qutebrowser.desktop
+application/x-extension-shtml=org.qutebrowser.qutebrowser.desktop
+application/x-extension-xht=org.qutebrowser.qutebrowser.desktop
+application/x-extension-xhtml=org.qutebrowser.qutebrowser.desktop
 application/x-iso9660-image=vlc.desktop
 application/x-ogg=mpv.desktop
+application/xhtml+xml=org.qutebrowser.qutebrowser.desktop
 audio/AMR=mpv.desktop
 audio/aac=mpv.desktop
 audio/ac3=mpv.desktop
@@ -94,7 +98,9 @@ video/x-ms-wvxvideo=mpv.desktop
 video/x-msvideo=mpv.desktop
 video/x-ogm+ogg=mpv.desktop
 video/x-theora=mpv.desktop
+x-scheme-handler/chrome=firefox.desktop
 x-scheme-handler/file=org.qutebrowser.qutebrowser.desktop
+x-scheme-handler/ftp=org.qutebrowser.qutebrowser.desktop
 x-scheme-handler/http=org.qutebrowser.qutebrowser.desktop
 x-scheme-handler/https=org.qutebrowser.qutebrowser.desktop
 x-scheme-handler/mailto=alot-mailto.desktop
