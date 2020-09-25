@@ -41,12 +41,6 @@ settings:
   content.javascript.enabled:
     '*://bindings/*': false
     global: true
-    #content.media.audio_capture:
-    #  https://meet1.schule-infoportal.de: true
-    #content.media.audio_video_capture:
-    #  https://meet1.schule-infoportal.de: true
-    #content.media.video_capture:
-    #  https://meet1.schule-infoportal.de: true
   content.media_capture:
     https://meet.ffmuc.net: true
     https://meet1.schule-infoportal.de: true
@@ -83,6 +77,11 @@ settings:
     global: never
   scrolling.smooth:
     global: true
+  spellcheck.languages:
+    global:
+    - de-DE
+    - en-GB
+    - en-US
   statusbar.padding:
     global:
       bottom: 1
