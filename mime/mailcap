@@ -43,11 +43,11 @@ application/vnd.pdf;  pdftotext %s /dev/stdout; copiousoutput;
 application/x-pdf;    pdftotext %s /dev/stdout; copiousoutput;
 
 # image/* {{{1
-#image/*;              qiv %s; edit=gimp %s; test=RunningX;
-#image/tiff;           open -n --wait-apps -a Preview %s; nametemplate=%s.tiff
-#image/jpeg;           open -n --wait-apps -a Preview %s; nametemplate=%s.jpeg
-#image/*;              open -n --wait-apps -a Preview %s
-image/*;              feh --scale-down %s; edit=gimp %s; test=RunningX;
+#image/*;     qiv %s; edit=gimp %s; test=RunningX;
+#image/tiff;  open -n --wait-apps -a Preview %s; nametemplate=%s.tiff
+#image/jpeg;  open -n --wait-apps -a Preview %s; nametemplate=%s.jpeg
+#image/*;     open -n --wait-apps -a Preview %s
+image/*;      feh --scale-down %s; edit=gimp %s; test=RunningX;
 
 # text/* {{{1
 # text/html {{{2
@@ -79,5 +79,5 @@ text/x-vCalendar;     mutt-ics; copiousoutput
 text/*;  less %s; needsterminal;
 text/*;  cat %s; copiousoutput;
 # audio/* & video/* {{{1
-audio/*;              mpv %s; needsterminal;
-video/*;              mpv %s; needsterminal; test=RunningX
+audio/*; mpv %s; needsterminal;
+video/*; mpv %s; needsterminal; test=RunningX
