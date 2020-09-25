@@ -117,6 +117,7 @@ settings:
       k: https://kinox.to/Search.html?q={}
       kinox: https://kinox.to/Search.html?q={}
       libgen: http://gen.lib.rus.ec/search.php?req={}
+      nix: https://discourse.nixos.org/search?q={}
       osm: http://www.openstreetmap.org/search?query={}
       pip: https://pypi.org/search/?q={}
       w: https://en.wikipedia.org/w/index.php?search={}
