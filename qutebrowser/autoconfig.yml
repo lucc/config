@@ -118,7 +118,7 @@ settings:
       kinox: https://kinox.to/Search.html?q={}
       libgen: http://gen.lib.rus.ec/search.php?req={}
       osm: http://www.openstreetmap.org/search?query={}
-      pip: https://pypi.python.org/pypi?Aaction=search&term={}
+      pip: https://pypi.org/search/?q={}
       w: https://en.wikipedia.org/w/index.php?search={}
       wd: https://de.wikipedia.org/w/index.php?search={}
       x: https://www.explainxkcd.com/wiki/index.php?search={}
