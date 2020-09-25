@@ -67,6 +67,8 @@
 
 [tig "color"]
   #main-remote = green default normal
+  main-head = red default bold
+  main-tracked = red default
 
 [filter "lfs"]
 	smudge = git-lfs smudge -- %f
