@@ -47,6 +47,8 @@ settings:
     https://meet1.schule-infoportal.de: true
   content.media.video_capture:
     https://meet1.schule-infoportal.de: true
+  content.media_capture:
+    https://meet.ffmuc.net: true
   content.notifications:
     global: false
   content.proxy:
