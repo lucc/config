@@ -2,7 +2,7 @@
 ! vim: filetype=xdefaults
 
 ! "Enabled modi" Set from: Default
-rofi.modi: combi,shell:~/.config/rofi/bin/shell,window,run,mru:~/.config/rofi/bin/mru.sh,ssh,fb:~/.config/rofi/bin/man.sh,test:~/.config/rofi/bin/test.sh
+rofi.modi: combi,mpc:~/.config/rofi/bin/mpc.sh,shell:~/.config/rofi/bin/shell,window,run,mru:~/.config/rofi/bin/mru.sh,ssh,fb:~/.config/rofi/bin/man.sh,test:~/.config/rofi/bin/test.sh
 !,sms:~/.config/rofi/bin/sms.sh
 !,calc:qalc +u8 -nocurrencies
 ! "Window width" Set from: Default
@@ -68,7 +68,7 @@ rofi.terminal:                       term
 ! "Parse known_hosts file for ssh mode" Set from: Default
 ! rofi.parse-known-hosts:              true
 ! "Set the modi to combine in combi mode" Set from: Default
-rofi.combi-modi:                     window,drun,mru,run
+rofi.combi-modi:                     window,mpc,drun,mru,run
 #,calc
 ! "Set the matching algorithm. (normal, regex, glob, fuzzy)" Set from: Default
 rofi.matching:                       fuzzy
