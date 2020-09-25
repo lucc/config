@@ -112,6 +112,7 @@ settings:
       DEFAULT: https://duckduckgo.com/?q={}
       aur: https://aur.archlinux.org/packages/?K={}
       aw: https://wiki.archlinux.org/index.php?title=Special%3ASearch&search={}
+      ctan: https://ctan.org/search?phrase={}
       gm: https://www.google.de/maps?hl=en&q={}
       k: https://kinox.to/Search.html?q={}
       kinox: https://kinox.to/Search.html?q={}
