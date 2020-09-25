@@ -30,6 +30,8 @@ settings:
     global: -1
   content.cache.size:
     global: null
+  content.cookies.accept:
+    global: all
   content.geolocation:
     https://hitchwiki.org: false
     https://www.deutschepost.de: false
@@ -77,7 +79,7 @@ settings:
   scrolling.bar:
     global: never
   scrolling.smooth:
-    global: false
+    global: true
   spellcheck.languages:
     global:
     - de-DE
@@ -91,6 +93,8 @@ settings:
       top: 1
   statusbar.position:
     global: bottom
+  statusbar.show:
+    global: always
   tabs.background:
     global: true
   tabs.position:
