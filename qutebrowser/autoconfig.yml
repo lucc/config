@@ -33,16 +33,24 @@ settings:
     global: null
   content.geolocation:
     https://hitchwiki.org: false
+    https://www.deutschepost.de: false
   content.host_blocking.enabled:
     global: true
   content.javascript.enabled:
     '*://bindings/*': false
     global: true
+  content.media.audio_capture:
+    https://meet1.schule-infoportal.de: true
+  content.media.audio_video_capture:
+    https://meet1.schule-infoportal.de: true
+  content.media.video_capture:
+    https://meet1.schule-infoportal.de: true
   content.notifications:
     https://kinox.to: false
     https://manhwa-manga.com: false
     https://my.taadd.com: false
     https://smutty.com: false
+    https://streamz.vg: false
     https://www.reddit.com: false
     https://www.sueddeutsche.de: false
     https://www.taadd.com: false
