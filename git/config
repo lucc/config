@@ -84,3 +84,5 @@
 	filename = magenta
 [pull]
 	rebase = false
+[diff "image"]
+	command = git-imgdiff
