@@ -82,14 +82,20 @@ settings:
   content.javascript.enabled:
     '*://*.acroyoga-workspace.slack.com/*': true
     '*://accounts.bahn.de/*': true
+    '*://accounts.meister.co/*': true
+    '*://admin.artsoftandmore.com/*': true
+    '*://admin2.artsoftandmore.com/*': true
     '*://alot.readthedocs.io/*': true
     '*://archlinuxarm.org/*': true
+    '*://asamdemo2.eltern-portal.org/*': true
     '*://asciinema.org/*': true
     '*://askubuntu.com/*': true
     '*://banking.umweltbank.de/*': true
+    '*://beta.schule-infoportal.de/*': true
     '*://book.local/*': true
     '*://cloud.artsoftandmore.com/*': true
-    '*://codenames.game/*': true
+    '*://community.jitsi.org/*': true
+    '*://console.hetzner.cloud/*': true
     '*://cryptpad.fr/*': true
     '*://cs.stackexchange.com/*': true
     '*://dba.stackexchange.com/*': true
@@ -97,23 +103,31 @@ settings:
     '*://detexify.kirelabs.org/*': true
     '*://devops.stackexchange.com/*': true
     '*://discourse.nixos.org/*': true
+    '*://dns.hetzner.com/*': true
     '*://docs.google.com/*': true
+    '*://docs.hetzner.com/*': true
     '*://drive.google.com/*': true
     '*://duckduckgo.com/*': true
     '*://efa.mvv-muenchen.de/*': true
     '*://en.wikipedia.org/*': true
+    '*://galaxy.ansible.com/*': true
     '*://git.artsoftandmore.com/*': true
     '*://github.com/*': true
     '*://gitlab.com/*': true
     '*://gitlab.redox-os.org/*': true
+    '*://hub.docker.com/*': true
     '*://hydra.nixos.org/*': true
     '*://impfdashboard.de/*': true
     '*://kachelmannwetter.com/*': true
+    '*://konsoleh.your-server.de/*': true
     '*://login.o2online.de/*': true
+    '*://localhost/*': true
     '*://math.stackexchange.com/*': true
     '*://media.ccc.de/*': true
     '*://meet.artsoftandmore.com/*': true
     '*://meet.jit.si/*': true
+    '*://mermaid-js.github.io/*': true
+    '*://msd.schule-infoportal.de/*': true
     '*://nina-roeckelein.de/*': true
     '*://nixos.wiki/*': true
     '*://o2.box/*': true
@@ -122,6 +136,7 @@ settings:
     '*://readthedocs.org/*': true
     '*://reiseauskunft.bahn.de/*': true
     '*://retribe.de/*': true
+    '*://robot.your-server.de/*': true
     '*://schule-infoportal.de/*': true
     '*://search.nixos.org/*': true
     '*://security.stackexchange.com/*': true
@@ -132,6 +147,7 @@ settings:
     '*://stackexchange.com/*': true
     '*://stackoverflow.com/*': true
     '*://stars.przemeknowak.com/*': true
+    '*://status.hetzner.com/*': true
     '*://status.nixos.org/*': true
     '*://streaming.media.ccc.de/*': true
     '*://superuser.com/*': true
@@ -148,6 +164,7 @@ settings:
     '*://www.flixbus.de/*': true
     '*://www.jimev.de/*': true
     '*://www.kleinanzeigen.de/*': true
+    '*://www.meistertask.com/*': true
     '*://www.mvv-muenchen.de/*': true
     '*://www.o2online.de/*': true
     '*://www.openstreetmap.org/*': true
@@ -158,6 +175,8 @@ settings:
     '*://www.vr-ll.de/*': true
     '*://www.wetteronline.de/*': true
     '*://www.youtube.com/*': true
+    '*://xxs-infoportal.de/*': true
+    '*://xxs.localhost/*': true
     global: false
   content.javascript.prompt:
     global: true
@@ -176,10 +195,13 @@ settings:
     https://meet.artsoftandmore.com: true
     https://meet.ffmuc.net: true
     https://meet.google.com: true
+    https://teams.microsoft.com: true
   content.notifications.enabled:
     global: false
   content.pdfjs:
     global: false
+  content.prefers_reduced_motion:
+    global: true
   content.proxy:
     global: system
   downloads.location.directory:
