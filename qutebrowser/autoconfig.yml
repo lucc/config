@@ -9,10 +9,12 @@ settings:
   aliases:
     global:
       block: hint images userscript add-to-custom-blocked-hosts
+      chrome: spawn chromium {url}
       dlv: spawn tmux-youtube-dl.sh {url}
       elinks: spawn term -e elinks {url}
       firefox: spawn firefox {url}
       lynx: spawn term -e lynx {url}
+      opera: spawn opera {url}
       pw: spawn --userscript password_fill
       q: close
       w: session-save
