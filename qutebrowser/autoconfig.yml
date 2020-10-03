@@ -32,6 +32,8 @@ settings:
     global: null
   content.cookies.accept:
     global: all
+  content.desktop_capture:
+    https://meet1.schule-infoportal.de: true
   content.geolocation:
     https://hitchwiki.org: false
     https://www.deutschepost.de: false
