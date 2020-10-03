@@ -120,6 +120,7 @@ settings:
       nix: https://discourse.nixos.org/search?q={}
       osm: http://www.openstreetmap.org/search?query={}
       pip: https://pypi.org/search/?q={}
+      ubuntu: https://packages.ubuntu.com/search?keywords={}
       w: https://en.wikipedia.org/w/index.php?search={}
       wd: https://de.wikipedia.org/w/index.php?search={}
       x: https://www.explainxkcd.com/wiki/index.php?search={}
