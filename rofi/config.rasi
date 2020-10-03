@@ -1,0 +1,9 @@
+configuration {
+	modi: "combi,shell:~/.config/rofi/bin/shell,window,run,mru:~/.config/rofi/bin/mru.sh,ssh,fb:/usr/share/doc/rofi/examples/rofi-file-browser.sh,man:~/.config/rofi/bin/man.sh,test:~/.config/rofi/bin/test.sh";
+	show-icons: true;
+	terminal: "term";
+	combi-modi: "window,drun,mru,run";
+	matching: "fuzzy";
+	theme: "solarized";
+	kb-cancel: "Escape,Menu";
+}
