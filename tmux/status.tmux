@@ -3,7 +3,6 @@
 # Load a simple status line.
 
 set-option -g status on
-set-option -g status-utf8 on
 #set-option -g status-right '#(battery.sh -bce tmux) "#H" %F %H:%M:%S'
 #set-option -g status-interval 2
 #set-option -g status-left \
