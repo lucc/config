@@ -45,6 +45,7 @@ settings:
     global: true
   content.media_capture:
     https://meet.ffmuc.net: true
+    https://meet.lrz.de: true
     https://meet1.schule-infoportal.de: true
   content.notifications:
     global: false
