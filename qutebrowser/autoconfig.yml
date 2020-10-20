@@ -47,6 +47,7 @@ settings:
     https://meet.lrz.de: true
     https://meet.schule-infoportal.de: true
     https://meet1.schule-infoportal.de: true
+    https://video.port-zero.com: true
   content.geolocation:
     global: false
   content.javascript.enabled:
