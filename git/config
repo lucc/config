@@ -63,8 +63,8 @@
 
 [tig "bind"]
   # keys
-  generic = <C-T> @git tag "%(prompt tag name: )" %(commit)
-  generic = C     ?git cherry-pick %(commit)
+  generic = <Ctrl-T> @git tag \"%(prompt tag name: )\" %(commit)
+  generic = C        ?git cherry-pick %(commit)
 
 
 [tig "color"]
