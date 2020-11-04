@@ -103,7 +103,7 @@ settings:
     global: never
   url.searchengines:
     global:
-      DEFAULT: https://duckduckgo.com/?q={}
+      DEFAULT: https://html.duckduckgo.com/html?q={}
       aur: https://aur.archlinux.org/packages/?K={}
       aw: https://wiki.archlinux.org/index.php?title=Special%3ASearch&search={}
       ctan: https://ctan.org/search?phrase={}
