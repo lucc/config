@@ -33,6 +33,7 @@ settings:
   content.cookies.accept:
     global: all
   content.desktop_capture:
+    https://meet.lrz.de: true
     https://meet1.schule-infoportal.de: true
   content.geolocation:
     https://hitchwiki.org: false
@@ -41,9 +42,47 @@ settings:
   content.host_blocking.enabled:
     global: true
   content.javascript.enabled:
+    '*://*.reservierung.ub.uni-muenchen.de/*': false
+    '*://archlinuxarm.org/*': true
+    '*://askubuntu.com/*': true
     '*://bindings/*': false
-    global: true
-  content.media_capture:
+    '*://coronavirus.jhu.edu/*': true
+    '*://discourse.nixos.org/*': true
+    '*://en.wikipedia.org/*': true
+    '*://experience.arcgis.com/*': true
+    '*://git.artsoftandmore.com/*': true
+    '*://github.com/*': true
+    '*://gitlab.com/*': true
+    '*://kinox.to/*': true
+    '*://meet.lrz.de/*': true
+    '*://meet1.schule-infoportal.de/*': true
+    '*://nina-roeckelein.de/*': true
+    '*://posteo.de/*': true
+    '*://reservierung.ub.uni-muenchen.de/*': true
+    '*://seeacker.de/*': true
+    '*://serverfault.com/*': true
+    '*://stackoverflow.com/*': true
+    '*://stars.przemeknowak.com/*': true
+    '*://tex.stackexchange.com/*': true
+    '*://travis-ci.org/*': true
+    '*://unix.stackexchange.com/*': true
+    '*://vi.stackexchange.com/*': true
+    '*://vicious.readthedocs.io/*': true
+    '*://www.ebay-kleinanzeigen.de/*': true
+    '*://www.flixbus.de/*': true
+    '*://www.openstreetmap.org/*': true
+    '*://www.tagesschau.de/*': true
+    '*://www.youtube.com/*': true
+    global: false
+  content.media.audio_capture:
+    https://meet.ffmuc.net: true
+    https://meet.lrz.de: true
+    https://meet1.schule-infoportal.de: true
+  content.media.audio_video_capture:
+    https://meet.ffmuc.net: true
+    https://meet.lrz.de: true
+    https://meet1.schule-infoportal.de: true
+  content.media.video_capture:
     https://meet.ffmuc.net: true
     https://meet.lrz.de: true
     https://meet1.schule-infoportal.de: true
