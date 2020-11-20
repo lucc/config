@@ -43,9 +43,11 @@ settings:
     global: true
   content.javascript.enabled:
     '*://*.reservierung.ub.uni-muenchen.de/*': false
+    '*://alot.readthedocs.io/*': true
     '*://archlinuxarm.org/*': true
     '*://askubuntu.com/*': true
     '*://bindings/*': false
+    '*://book.local/*': true
     '*://coronavirus.jhu.edu/*': true
     '*://discourse.nixos.org/*': true
     '*://en.wikipedia.org/*': true
@@ -55,14 +57,17 @@ settings:
     '*://gitlab.com/*': true
     '*://kinox.to/*': true
     '*://meet.lrz.de/*': true
+    '*://meet.schule-infoportal.de/*': true
     '*://meet1.schule-infoportal.de/*': true
     '*://nina-roeckelein.de/*': true
     '*://posteo.de/*': true
     '*://reservierung.ub.uni-muenchen.de/*': true
+    '*://schule-infoportal.de/*': true
     '*://seeacker.de/*': true
     '*://serverfault.com/*': true
     '*://stackoverflow.com/*': true
     '*://stars.przemeknowak.com/*': true
+    '*://status.nixos.org/*': true
     '*://tex.stackexchange.com/*': true
     '*://travis-ci.org/*': true
     '*://unix.stackexchange.com/*': true
@@ -72,6 +77,7 @@ settings:
     '*://www.flixbus.de/*': true
     '*://www.openstreetmap.org/*': true
     '*://www.tagesschau.de/*': true
+    '*://www.vr-ll.de/*': true
     '*://www.youtube.com/*': true
     global: false
   content.media.audio_capture:
@@ -85,6 +91,7 @@ settings:
   content.media.video_capture:
     https://meet.ffmuc.net: true
     https://meet.lrz.de: true
+    https://meet.schule-infoportal.de: true
     https://meet1.schule-infoportal.de: true
   content.notifications:
     global: false
