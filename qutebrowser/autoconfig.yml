@@ -33,12 +33,11 @@ settings:
   content.cookies.accept:
     global: all
   content.desktop_capture:
+    https://conf.dfn.de: true
     https://meet.lrz.de: true
     https://meet1.schule-infoportal.de: true
   content.geolocation:
-    https://hitchwiki.org: false
-    https://www.deutschepost.de: false
-    https://www.dhl.de: false
+    global: false
   content.host_blocking.enabled:
     global: true
   content.javascript.enabled:
@@ -46,21 +45,30 @@ settings:
     '*://alot.readthedocs.io/*': true
     '*://archlinuxarm.org/*': true
     '*://askubuntu.com/*': true
+    '*://banking.umweltbank.de/*': true
     '*://bindings/*': false
     '*://book.local/*': true
     '*://coronavirus.jhu.edu/*': true
+    '*://cryptpad.fr/*': true
+    '*://de.wikipedia.org/*': true
+    '*://detexify.kirelabs.org/*': true
     '*://discourse.nixos.org/*': true
+    '*://efa.mvv-muenchen.de/*': true
     '*://en.wikipedia.org/*': true
     '*://experience.arcgis.com/*': true
     '*://git.artsoftandmore.com/*': true
     '*://github.com/*': true
     '*://gitlab.com/*': true
     '*://kinox.to/*': true
+    '*://lmuidp.lrz.de/*': true
+    '*://math.stackexchange.com/*': true
     '*://meet.lrz.de/*': true
     '*://meet.schule-infoportal.de/*': true
     '*://meet1.schule-infoportal.de/*': true
     '*://nina-roeckelein.de/*': true
+    '*://o2.box/*': true
     '*://posteo.de/*': true
+    '*://reiseauskunft.bahn.de/*': true
     '*://reservierung.ub.uni-muenchen.de/*': true
     '*://schule-infoportal.de/*': true
     '*://seeacker.de/*': true
@@ -73,8 +81,10 @@ settings:
     '*://unix.stackexchange.com/*': true
     '*://vi.stackexchange.com/*': true
     '*://vicious.readthedocs.io/*': true
+    '*://www.bahn.de/*': true
     '*://www.ebay-kleinanzeigen.de/*': true
     '*://www.flixbus.de/*': true
+    '*://www.mvv-muenchen.de/*': true
     '*://www.openstreetmap.org/*': true
     '*://www.tagesschau.de/*': true
     '*://www.vr-ll.de/*': true
@@ -85,6 +95,7 @@ settings:
     https://meet.lrz.de: true
     https://meet1.schule-infoportal.de: true
   content.media.audio_video_capture:
+    https://conf.dfn.de: true
     https://meet.ffmuc.net: true
     https://meet.lrz.de: true
     https://meet1.schule-infoportal.de: true
@@ -147,6 +158,8 @@ settings:
     global: top
   tabs.show:
     global: never
+  url.default_page:
+    global: http://wetterstationen.meteomedia.de/messnetz/vorhersagegrafik/108650.png
   url.searchengines:
     global:
       DEFAULT: https://html.duckduckgo.com/html?q={}
@@ -165,3 +178,5 @@ settings:
       wd: https://de.wikipedia.org/w/index.php?search={}
       x: https://www.explainxkcd.com/wiki/index.php?search={}
       y: https://www.youtube.com/results?search_query={}
+  url.start_pages:
+    global: http://wetterstationen.meteomedia.de/messnetz/vorhersagegrafik/108650.png
