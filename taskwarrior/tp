@@ -1,0 +1,2 @@
+include ~/.config/taskwarrior/main
+include /usr/share/doc/task/rc/solarized-dark-256.theme
