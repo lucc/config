@@ -45,29 +45,36 @@ settings:
     '*://meet.lrz.de/*': true
     https://conf.dfn.de: true
     https://meet.lrz.de: true
+    https://meet.jit.si: true
     https://meet.schule-infoportal.de: true
     https://meet1.schule-infoportal.de: true
     https://video.port-zero.com: true
   content.geolocation:
     global: false
   content.javascript.enabled:
+    '*://admin.artsoftandmore.com/*': true
     '*://alot.readthedocs.io/*': true
     '*://archlinuxarm.org/*': true
+    '*://asamdemo2.eltern-portal.org/*': true
     '*://askubuntu.com/*': true
     '*://banking.umweltbank.de/*': true
+    '*://beta.schule-infoportal.de/*': true
     '*://book.local/*': true
     '*://cloud.artsoftandmore.com/*': true
     '*://codenames.game/*': true
     '*://conf.dfn.de/*': true
+    '*://console.hetzner.cloud/*': true
     '*://coronavirus.jhu.edu/*': true
     '*://cryptpad.fr/*': true
     '*://cs.stackexchange.com/*': true
     '*://de.wikipedia.org/*': true
     '*://detexify.kirelabs.org/*': true
     '*://discourse.nixos.org/*': true
+    '*://dns.hetzner.com/*': true
     '*://efa.mvv-muenchen.de/*': true
     '*://en.wikipedia.org/*': true
     '*://experience.arcgis.com/*': true
+    '*://galaxy.ansible.com/*': true
     '*://gather.town/*': true
     '*://git.artsoftandmore.com/*': true
     '*://github.com/*': true
@@ -78,12 +85,22 @@ settings:
     '*://hydra.nixos.org/*': true
     '*://kinox.to/*': true
     '*://lmuidp.lrz.de/*': true
+    '*://localhost/*': true
     '*://math.stackexchange.com/*': true
     '*://media.ccc.de/*': true
+    '*://meet.jit.si/*': true
+    '*://meet.lab.port-zero.com/*': true
     '*://meet.lrz.de/*': true
     '*://meet.schule-infoportal.de/*': true
+    '*://meet.shard1.schule-infoportal.de/*': true
+    '*://meet.shard2.schule-infoportal.de/*': true
+    '*://meet.shard3.schule-infoportal.de/*': true
     '*://meet1.schule-infoportal.de/*': true
+    '*://mermaid-js.github.io/*': true
     '*://monitor.prod.schule-infoportal.de/*': true
+    '*://monitor.shard1.schule-infoportal.de/*': true
+    '*://monitor.shard2.schule-infoportal.de/*': true
+    '*://monitor.shard3.schule-infoportal.de/*': true
     '*://nina-roeckelein.de/*': true
     '*://nixos.wiki/*': true
     '*://o2.box/*': true
@@ -92,12 +109,14 @@ settings:
     '*://readthedocs.org/*': true
     '*://reiseauskunft.bahn.de/*': true
     '*://reservierung.ub.uni-muenchen.de/*': true
+    '*://robot.your-server.de/*': true
     '*://schule-infoportal.de/*': true
     '*://search.nixos.org/*': true
     '*://security.stackexchange.com/*': true
     '*://seeacker.de/*': true
     '*://serverfault.com/*': true
     '*://service.discotel.de/*': true
+    '*://shard1.meet.lab.schule-infoportal.de/*': true
     '*://stackexchange.com/*': true
     '*://stackoverflow.com/*': true
     '*://stars.przemeknowak.com/*': true
@@ -111,6 +130,7 @@ settings:
     '*://unix.stackexchange.com/*': true
     '*://vi.stackexchange.com/*': true
     '*://vicious.readthedocs.io/*': true
+    '*://video.port-zero.com/*': true
     '*://www.bahn.de/*': true
     '*://www.ebay-kleinanzeigen.de/*': true
     '*://www.flixbus.de/*': true
@@ -128,24 +148,39 @@ settings:
     https://discord.com: true
     https://gather.town: true
     https://meet.ffmuc.net: true
+    https://meet.jit.si: true
+    https://meet.lab.schule-infoportal.de: true
     https://meet.lrz.de: true
     https://meet.schule-infoportal.de: true
+    https://meet.shard1.schule-infoportal.de: true
+    https://meet.shard2.schule-infoportal.de: true
+    https://meet.shard3.schule-infoportal.de: true
+    https://meet1.prod.schule-infoportal.de: true
     https://meet1.schule-infoportal.de: true
+    https://shard1.meet.lab.schule-infoportal.de: true
+    https://video.port-zero.com: true
   content.media.audio_video_capture:
     https://conf.dfn.de: true
     https://meet.ffmuc.net: true
+    https://meet.jit.si: true
+    https://meet.lab.port-zero.com: true
+    https://meet.lab.schule-infoportal.de: true
     https://meet.lrz.de: true
     https://meet.schule-infoportal.de: true
+    https://meet.shard1.schule-infoportal.de: true
+    https://meet.shard2.schule-infoportal.de: true
+    https://meet.shard3.schule-infoportal.de: true
+    https://meet1.prod.schule-infoportal.de: true
     https://meet1.schule-infoportal.de: true
+    https://shard1.meet.lab.schule-infoportal.de: true
+    https://video.port-zero.com: true
     https://www.wonder.me: true
   content.media.video_capture:
     https://discord.com: true
     https://gather.town: true
     https://meet.ffmuc.net: true
-    https://meet.lrz.de: true
-    https://meet.schule-infoportal.de: true
-  content.media_capture:
     https://meet.lab.schule-infoportal.de: true
+    https://meet.lrz.de: true
     https://meet.schule-infoportal.de: true
     https://meet1.prod.schule-infoportal.de: true
     https://meet1.schule-infoportal.de: true
