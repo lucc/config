@@ -19,12 +19,14 @@
   fa = fetch --all --prune
   commit-random = !git commit -m \"$(curl -s http://whatthecommit.com/index.txt)\"
   autocommit = commit --all --message=autocommit
-	ls = ls-files
-	nice-merge = !git merge --no-ff --no-ed \"$@\" && git branch -d
-	stash2branch = !set -x && branch=$* && branch=${branch// /-} && git stash branch \"$branch\" && git commit --message=\"$*\" . && :
-	repush = !git fa && git rebase @{upstream} && git push
-	ra = rebase --abort
-	rc = rebase --continue
+  ls = ls-files
+  nice-merge = !git merge --no-ff --no-ed \"$@\" && git branch -d
+  stash2branch = !set -x && branch=$* && branch=${branch// /-} && git stash branch \"$branch\" && git commit --message=\"$*\" . && :
+  repush = !git fa && git rebase @{upstream} && git push
+  ra = rebase --abort
+  rc = rebase --continue
+  tig = !tig
+  t = !tig --all
 [core]
   excludesfile = ~/.config/git/ignore
   #askpass = ~/bin/git-pass
