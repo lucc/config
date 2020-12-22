@@ -48,6 +48,7 @@ settings:
     '*://banking.umweltbank.de/*': true
     '*://bindings/*': false
     '*://book.local/*': true
+    '*://conf.dfn.de/*': true
     '*://coronavirus.jhu.edu/*': true
     '*://cryptpad.fr/*': true
     '*://de.wikipedia.org/*': true
@@ -59,24 +60,33 @@ settings:
     '*://git.artsoftandmore.com/*': true
     '*://github.com/*': true
     '*://gitlab.com/*': true
+    '*://homeworker.li/*': true
+    '*://hydra.nixos.org/*': true
     '*://kinox.to/*': true
     '*://lmuidp.lrz.de/*': true
     '*://math.stackexchange.com/*': true
+    '*://media.ccc.de/*': true
     '*://meet.lrz.de/*': true
     '*://meet.schule-infoportal.de/*': true
     '*://meet1.schule-infoportal.de/*': true
+    '*://monitor.prod.schule-infoportal.de/*': true
     '*://nina-roeckelein.de/*': true
     '*://o2.box/*': true
     '*://posteo.de/*': true
+    '*://rc3.world/*': true
+    '*://readthedocs.org/*': true
     '*://reiseauskunft.bahn.de/*': true
     '*://reservierung.ub.uni-muenchen.de/*': true
     '*://schule-infoportal.de/*': true
     '*://seeacker.de/*': true
     '*://serverfault.com/*': true
+    '*://stackexchange.com/*': true
     '*://stackoverflow.com/*': true
     '*://stars.przemeknowak.com/*': true
     '*://status.nixos.org/*': true
+    '*://streaming.media.ccc.de/*': true
     '*://tex.stackexchange.com/*': true
+    '*://travis-ci.com/*': true
     '*://travis-ci.org/*': true
     '*://unix.stackexchange.com/*': true
     '*://vi.stackexchange.com/*': true
@@ -86,19 +96,25 @@ settings:
     '*://www.flixbus.de/*': true
     '*://www.mvv-muenchen.de/*': true
     '*://www.openstreetmap.org/*': true
+    '*://www.paypal.com/*': true
     '*://www.tagesschau.de/*': true
     '*://www.vr-ll.de/*': true
+    '*://www.wetteronline.de/*': true
+    '*://www.wolframalpha.com/*': false
     '*://www.youtube.com/*': true
     global: false
   content.media.audio_capture:
     https://meet.ffmuc.net: true
     https://meet.lrz.de: true
+    https://meet.schule-infoportal.de: true
     https://meet1.schule-infoportal.de: true
   content.media.audio_video_capture:
     https://conf.dfn.de: true
     https://meet.ffmuc.net: true
     https://meet.lrz.de: true
+    https://meet.schule-infoportal.de: true
     https://meet1.schule-infoportal.de: true
+    https://www.wonder.me: true
   content.media.video_capture:
     https://meet.ffmuc.net: true
     https://meet.lrz.de: true
@@ -169,6 +185,7 @@ settings:
       gm: https://www.google.de/maps?hl=en&q={}
       k: https://kinox.to/Search.html?q={}
       kinox: https://kinox.to/Search.html?q={}
+      koch: https://www.chefkoch.de/suche.php?suche={}
       libgen: http://gen.lib.rus.ec/search.php?req={}
       nix: https://discourse.nixos.org/search?q={}
       osm: http://www.openstreetmap.org/search?query={}
