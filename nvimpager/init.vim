@@ -18,4 +18,5 @@ let g:loaded_python3_provider = 1
 
 " try stuff for issue 21 (follow file like tail -f)
 set autoread
-autocmd CursorHold * checktime
+"autocmd CursorHold * checktime
+call timer_start(300, {id -> nvim_command("silent checktime")}, {"repeat": -1})
