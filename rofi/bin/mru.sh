@@ -5,7 +5,6 @@ read_xdg_cache () {
     | sort --uniq --stable --key 2
 }
 read_zathura_cache () {
-  #sed -n 's/^\[\(.*\)\]$/\1/p' ~/.local/share/zathura/history | stest -f | tac
   sed 's/^\[\(.*\)\]$/file=\1/p; /^time=[0-9]*$/p' -n ~/.local/share/zathura/history \
     | sed '/^file=/ { N; s/^file=\(.*\)\ntime=\([0-9]*\)$/\2 \1/; }'
 }

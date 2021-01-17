@@ -2,8 +2,8 @@ configuration {
 	modi: "combi,mpc:~/.config/rofi/bin/mpc.sh,shell:~/.config/rofi/bin/shell,window,run,mru:~/.config/rofi/bin/mru.sh,ssh,man:~/.config/rofi/bin/man.sh,test:~/.config/rofi/bin/test.sh";
 	show-icons: true;
 	terminal: "term";
-	combi-modi: "window,drun,mru,run";
+	combi-modi: "window,mpc,drun,mru,run";
 	matching: "fuzzy";
 	theme: "solarized";
-	kb-cancel: "Escape,Menu";
+	kb-cancel: "Escape,Menu,Print";
 }
