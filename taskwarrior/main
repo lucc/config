@@ -12,3 +12,4 @@
 data.location = ~/.local/share/task
 
 search.case.sensitive = no
+verbose=footnote,label,new-id,affected,edit,special,project,sync,unwait,override
