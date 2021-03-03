@@ -25,21 +25,28 @@ settings:
     global:
       normal:
         ;D: hint all delete
+        aba: set -p content.blocking.method auto
+        abh: set -tp content.blocking.method hosts
         b: set-cmd-text -s :buffer
+  colors.webpage.prefers_color_scheme_dark:
+    global: true
   completion.cmd_history_max_items:
     global: -1
+  content.blocking.enabled:
+    global: true
+  content.blocking.method:
+    global: auto
   content.cache.size:
     global: null
   content.cookies.accept:
     global: all
   content.desktop_capture:
+    '*://meet.lrz.de/*': true
     https://conf.dfn.de: true
     https://meet.lrz.de: true
     https://meet1.schule-infoportal.de: true
   content.geolocation:
     global: false
-  content.host_blocking.enabled:
-    global: true
   content.javascript.enabled:
     '*://*.reservierung.ub.uni-muenchen.de/*': false
     '*://alot.readthedocs.io/*': true
@@ -48,6 +55,8 @@ settings:
     '*://banking.umweltbank.de/*': true
     '*://bindings/*': false
     '*://book.local/*': true
+    '*://cloud.artsoftandmore.com/*': true
+    '*://codenames.game/*': true
     '*://conf.dfn.de/*': true
     '*://coronavirus.jhu.edu/*': true
     '*://cryptpad.fr/*': true
@@ -57,9 +66,12 @@ settings:
     '*://efa.mvv-muenchen.de/*': true
     '*://en.wikipedia.org/*': true
     '*://experience.arcgis.com/*': true
+    '*://gather.town/*': true
     '*://git.artsoftandmore.com/*': true
     '*://github.com/*': true
     '*://gitlab.com/*': true
+    '*://gitlab.redox-os.org/*': true
+    '*://gitlab2.cip.ifi.lmu.de/*': true
     '*://homeworker.li/*': true
     '*://hydra.nixos.org/*': true
     '*://kinox.to/*': true
@@ -80,11 +92,13 @@ settings:
     '*://schule-infoportal.de/*': true
     '*://seeacker.de/*': true
     '*://serverfault.com/*': true
+    '*://service.discotel.de/*': true
     '*://stackexchange.com/*': true
     '*://stackoverflow.com/*': true
     '*://stars.przemeknowak.com/*': true
     '*://status.nixos.org/*': true
     '*://streaming.media.ccc.de/*': true
+    '*://superuser.com/*': true
     '*://tex.stackexchange.com/*': true
     '*://travis-ci.com/*': true
     '*://travis-ci.org/*': true
@@ -104,6 +118,7 @@ settings:
     '*://www.youtube.com/*': true
     global: false
   content.media.audio_capture:
+    https://gather.town: true
     https://meet.ffmuc.net: true
     https://meet.lrz.de: true
     https://meet.schule-infoportal.de: true
@@ -116,6 +131,7 @@ settings:
     https://meet1.schule-infoportal.de: true
     https://www.wonder.me: true
   content.media.video_capture:
+    https://gather.town: true
     https://meet.ffmuc.net: true
     https://meet.lrz.de: true
     https://meet.schule-infoportal.de: true
