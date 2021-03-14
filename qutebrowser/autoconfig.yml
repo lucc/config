@@ -60,6 +60,7 @@ settings:
     '*://conf.dfn.de/*': true
     '*://coronavirus.jhu.edu/*': true
     '*://cryptpad.fr/*': true
+    '*://cs.stackexchange.com/*': true
     '*://de.wikipedia.org/*': true
     '*://detexify.kirelabs.org/*': true
     '*://discourse.nixos.org/*': true
@@ -83,6 +84,7 @@ settings:
     '*://meet1.schule-infoportal.de/*': true
     '*://monitor.prod.schule-infoportal.de/*': true
     '*://nina-roeckelein.de/*': true
+    '*://nixos.wiki/*': true
     '*://o2.box/*': true
     '*://posteo.de/*': true
     '*://rc3.world/*': true
@@ -90,6 +92,7 @@ settings:
     '*://reiseauskunft.bahn.de/*': true
     '*://reservierung.ub.uni-muenchen.de/*': true
     '*://schule-infoportal.de/*': true
+    '*://search.nixos.org/*': true
     '*://seeacker.de/*': true
     '*://serverfault.com/*': true
     '*://service.discotel.de/*': true
@@ -112,6 +115,7 @@ settings:
     '*://www.openstreetmap.org/*': true
     '*://www.paypal.com/*': true
     '*://www.tagesschau.de/*': true
+    '*://www.tk.de/*': true
     '*://www.vr-ll.de/*': true
     '*://www.wetteronline.de/*': true
     '*://www.wolframalpha.com/*': false
@@ -168,7 +172,7 @@ settings:
   scrolling.bar:
     global: never
   scrolling.smooth:
-    global: true
+    global: false
   spellcheck.languages:
     global:
     - de-DE
@@ -202,6 +206,7 @@ settings:
       k: https://kinox.to/Search.html?q={}
       kinox: https://kinox.to/Search.html?q={}
       koch: https://www.chefkoch.de/suche.php?suche={}
+      leo: https://dict.leo.org/german-english/{}
       libgen: http://gen.lib.rus.ec/search.php?req={}
       nix: https://discourse.nixos.org/search?q={}
       osm: http://www.openstreetmap.org/search?query={}
