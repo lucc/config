@@ -1,0 +1,8 @@
+[Unit]
+Description=Generate an ascii dump from khal
+After=network.target
+
+[Service]
+# To force khal to no break lines
+Environment=COLUMNS=10000
+ExecStart=/bin/sh -c 'khal --color calendar --format "{calendar-color}{cancelled}{start-end-time-style} {title}{repeat-symbol}{reset}" today 3d > ~/.cache/khal/ascii-dump.txt'

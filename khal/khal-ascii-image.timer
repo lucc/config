@@ -1,0 +1,10 @@
+[Unit]
+Description=Generate an ascii dump from khal
+#BindsTo=user-%U.slice
+
+[Timer]
+OnActiveSec=0
+OnUnitActiveSec=1800
+
+[Install]
+WantedBy=default.target
