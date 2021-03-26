@@ -43,16 +43,20 @@ settings:
     global: all
   content.desktop_capture:
     '*://meet.lrz.de/*': true
+    global: true
     https://conf.dfn.de: true
-    https://meet.lrz.de: true
     https://meet.jit.si: true
+    https://meet.lrz.de: true
     https://meet.schule-infoportal.de: true
     https://meet1.schule-infoportal.de: true
     https://video.port-zero.com: true
   content.geolocation:
     global: false
+  content.headers.custom:
+    global: null
   content.javascript.enabled:
     '*://admin.artsoftandmore.com/*': true
+    '*://admin2.artsoftandmore.com/*': true
     '*://alot.readthedocs.io/*': true
     '*://archlinuxarm.org/*': true
     '*://asamdemo2.eltern-portal.org/*': true
@@ -67,10 +71,12 @@ settings:
     '*://coronavirus.jhu.edu/*': true
     '*://cryptpad.fr/*': true
     '*://cs.stackexchange.com/*': true
+    '*://dba.stackexchange.com/*': true
     '*://de.wikipedia.org/*': true
     '*://detexify.kirelabs.org/*': true
     '*://discourse.nixos.org/*': true
     '*://dns.hetzner.com/*': true
+    '*://docs.hetzner.com/*': true
     '*://efa.mvv-muenchen.de/*': true
     '*://en.wikipedia.org/*': true
     '*://experience.arcgis.com/*': true
@@ -89,6 +95,7 @@ settings:
     '*://math.stackexchange.com/*': true
     '*://media.ccc.de/*': true
     '*://meet.jit.si/*': true
+    '*://meet.kfv-portal.org/*': true
     '*://meet.lab.port-zero.com/*': true
     '*://meet.lrz.de/*': true
     '*://meet.schule-infoportal.de/*': true
@@ -120,6 +127,7 @@ settings:
     '*://stackexchange.com/*': true
     '*://stackoverflow.com/*': true
     '*://stars.przemeknowak.com/*': true
+    '*://status.hetzner.com/*': true
     '*://status.nixos.org/*': true
     '*://streaming.media.ccc.de/*': true
     '*://superuser.com/*': true
@@ -143,6 +151,7 @@ settings:
     '*://www.vr-ll.de/*': true
     '*://www.wetteronline.de/*': true
     '*://www.youtube.com/*': true
+    '*://xxs-infoportal.de/*': true
     global: false
   content.media.audio_capture:
     https://discord.com: true
@@ -182,6 +191,7 @@ settings:
     https://meet.lab.schule-infoportal.de: true
     https://meet.lrz.de: true
     https://meet.schule-infoportal.de: true
+    https://meet.shard3.schule-infoportal.de: true
     https://meet1.prod.schule-infoportal.de: true
     https://meet1.schule-infoportal.de: true
   content.notifications.enabled:
