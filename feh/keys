@@ -8,8 +8,8 @@ scroll_down      Down
 scroll_up_page   Prior
 scroll_down_page Next
 
-
-
+jump_fwd         C-Down
+jump_back        C-Up
 
 #remove comma
 #delete period
