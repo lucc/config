@@ -24,12 +24,12 @@
     path = ~/.local/share/khard/main
     type = birthdays
     color = dark cyan
-  [[jim_treffen]]
-    path = ~/.local/share/khal/calendars/jimev/treffen
-  [[jim_events]]
-    path = ~/.local/share/khal/calendars/jimev/events
-  [[jim_workshops]]
-    path = ~/.local/share/khal/calendars/jimev/workshops
+  #[[jim_treffen]]
+  #  path = ~/.local/share/khal/calendars/jimev/treffen
+  #[[jim_events]]
+  #  path = ~/.local/share/khal/calendars/jimev/events
+  #[[jim_workshops]]
+  #  path = ~/.local/share/khal/calendars/jimev/workshops
   [[holidays]]
     path = ~/.local/share/khal/calendars/gmail/holidays
   [[ferien]]
