@@ -14,9 +14,7 @@ settings:
       firefox: spawn firefox {url}
       lynx: spawn term -e lynx {url}
       pw: spawn --userscript password_fill
-      q: quit
-      restart-with-inspector: spawn browser -p -- --enable-webengine-inspector :inspector
-        {url}
+      q: close
       w: session-save
       wq: quit --save
   auto_save.session:
