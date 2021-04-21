@@ -1,2 +1,2 @@
 include ~/.config/taskwarrior/main
-include /nix/store/f225am1w2rqlv0g0i42yq9qln7rkw3nh-taskwarrior-2.5.1/share/doc/task/rc/solarized-dark-256.theme
+include /nix/store/9l4qlfpgpi418zi7a1d2xgdc0l8dg0bf-taskwarrior-2.5.3/share/doc/task/rc/solarized-dark-256.theme
