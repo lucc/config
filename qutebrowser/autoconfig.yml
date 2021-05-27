@@ -26,8 +26,8 @@ settings:
         aba: set -p content.blocking.method auto
         abh: set -tp content.blocking.method hosts
         b: set-cmd-text -s :buffer
-  colors.webpage.prefers_color_scheme_dark:
-    global: true
+  colors.webpage.preferred_color_scheme:
+    global: dark
   completion.cmd_history_max_items:
     global: -1
   content.blocking.enabled:
@@ -46,12 +46,10 @@ settings:
   content.geolocation:
     global: false
   content.javascript.enabled:
-    '*://*.reservierung.ub.uni-muenchen.de/*': false
     '*://alot.readthedocs.io/*': true
     '*://archlinuxarm.org/*': true
     '*://askubuntu.com/*': true
     '*://banking.umweltbank.de/*': true
-    '*://bindings/*': false
     '*://book.local/*': true
     '*://cloud.artsoftandmore.com/*': true
     '*://codenames.game/*': true
@@ -116,7 +114,6 @@ settings:
     '*://www.tk.de/*': true
     '*://www.vr-ll.de/*': true
     '*://www.wetteronline.de/*': true
-    '*://www.wolframalpha.com/*': false
     '*://www.youtube.com/*': true
     global: false
   content.media.audio_capture:
@@ -138,7 +135,7 @@ settings:
     https://meet.lrz.de: true
     https://meet.schule-infoportal.de: true
     https://meet1.schule-infoportal.de: true
-  content.notifications:
+  content.notifications.enabled:
     global: false
   content.proxy:
     global: system
