@@ -158,6 +158,7 @@ settings:
     https://gather.town: true
     https://meet.ffmuc.net: true
     https://meet.jit.si: true
+    https://meet.kfv-portal.org: true
     https://meet.lab.schule-infoportal.de: true
     https://meet.lrz.de: true
     https://meet.schule-infoportal.de: true
@@ -166,12 +167,14 @@ settings:
     https://meet.shard3.schule-infoportal.de: true
     https://meet1.prod.schule-infoportal.de: true
     https://meet1.schule-infoportal.de: true
+    https://meet2.kfv-portal.org: true
     https://shard1.meet.lab.schule-infoportal.de: true
     https://video.port-zero.com: true
   content.media.audio_video_capture:
     https://conf.dfn.de: true
     https://meet.ffmuc.net: true
     https://meet.jit.si: true
+    https://meet.kfv-portal.org: true
     https://meet.lab.port-zero.com: true
     https://meet.lab.schule-infoportal.de: true
     https://meet.lrz.de: true
@@ -181,6 +184,7 @@ settings:
     https://meet.shard3.schule-infoportal.de: true
     https://meet1.prod.schule-infoportal.de: true
     https://meet1.schule-infoportal.de: true
+    https://meet2.kfv-portal.org: true
     https://shard1.meet.lab.schule-infoportal.de: true
     https://video.port-zero.com: true
     https://www.wonder.me: true
