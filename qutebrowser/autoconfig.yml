@@ -89,6 +89,7 @@ settings:
     '*://reservierung.ub.uni-muenchen.de/*': true
     '*://schule-infoportal.de/*': true
     '*://search.nixos.org/*': true
+    '*://security.stackexchange.com/*': true
     '*://seeacker.de/*': true
     '*://serverfault.com/*': true
     '*://service.discotel.de/*': true
@@ -100,6 +101,7 @@ settings:
     '*://superuser.com/*': true
     '*://tex.stackexchange.com/*': true
     '*://travis-ci.com/*': true
+    '*://travis-ci.community/*': true
     '*://travis-ci.org/*': true
     '*://unix.stackexchange.com/*': true
     '*://vi.stackexchange.com/*': true
@@ -112,11 +114,13 @@ settings:
     '*://www.paypal.com/*': true
     '*://www.tagesschau.de/*': true
     '*://www.tk.de/*': true
+    '*://www.travis-ci.com/*': true
     '*://www.vr-ll.de/*': true
     '*://www.wetteronline.de/*': true
     '*://www.youtube.com/*': true
     global: false
   content.media.audio_capture:
+    https://discord.com: true
     https://gather.town: true
     https://meet.ffmuc.net: true
     https://meet.lrz.de: true
@@ -130,6 +134,7 @@ settings:
     https://meet1.schule-infoportal.de: true
     https://www.wonder.me: true
   content.media.video_capture:
+    https://discord.com: true
     https://gather.town: true
     https://meet.ffmuc.net: true
     https://meet.lrz.de: true
