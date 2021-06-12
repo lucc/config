@@ -70,6 +70,7 @@ if [ $# -eq 1 ]; then
   # run some WM/DE specific init functions and set the command to exec
   case "$1" in
     awesome|xmonad|i3)
+      srandrd auto-xrandr &
       auto-xrandr &
       full_setup
       ;;
