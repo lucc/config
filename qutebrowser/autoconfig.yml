@@ -209,6 +209,7 @@ settings:
       leo: https://dict.leo.org/german-english/{}
       libgen: http://gen.lib.rus.ec/search.php?req={}
       nix: https://discourse.nixos.org/search?q={}
+      nw: https://nixos.wiki/index.php?search={}
       osm: http://www.openstreetmap.org/search?query={}
       pip: https://pypi.org/search/?q={}
       ubuntu: https://packages.ubuntu.com/search?keywords={}
