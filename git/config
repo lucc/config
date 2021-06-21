@@ -86,3 +86,7 @@
 	rebase = false
 [diff "image"]
 	command = git-imgdiff
+[difftool "diffpdf"]
+  cmd = diffpdf \"$LOCAL\" \"$REMOTE\"
+[difftool "diff-pdf"]
+  cmd = diff-pdf --view \"$LOCAL\" \"$REMOTE\"
