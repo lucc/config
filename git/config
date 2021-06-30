@@ -79,6 +79,9 @@
 	process = git-lfs filter-process
 	required = true
 	clean = git-lfs clean -- %f
+[filter "zeal-window-geometry"]
+  smudge = cat
+  clean = sed '/^window_geometry=/d'
 [color "grep"]
 	match = red bold
 	filename = magenta
