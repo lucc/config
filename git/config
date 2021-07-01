@@ -81,7 +81,7 @@
 	clean = git-lfs clean -- %f
 [filter "zeal-window-geometry"]
   smudge = cat
-  clean = "sed -e '/^window_geometry=/d;/^splitter_geometry=/d'"
+  clean = "sed -e '/^window_geometry=/d;/^splitter_geometry=/d;/^version=/d'"
 [color "grep"]
 	match = red bold
 	filename = magenta
