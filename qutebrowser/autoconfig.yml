@@ -90,6 +90,8 @@ settings:
     '*://homeworker.li/*': true
     '*://hydra.nixos.org/*': true
     '*://kinox.to/*': true
+    '*://lab.meet.schule-infoportal.de/*': true
+    '*://lab2.meet.schule-infoportal.de/*': true
     '*://lmuidp.lrz.de/*': true
     '*://localhost/*': true
     '*://math.stackexchange.com/*': true
@@ -103,6 +105,7 @@ settings:
     '*://meet.shard2.schule-infoportal.de/*': true
     '*://meet.shard3.schule-infoportal.de/*': true
     '*://meet1.schule-infoportal.de/*': true
+    '*://meet2.kfv-portal.org/*': true
     '*://mermaid-js.github.io/*': true
     '*://monitor.prod.schule-infoportal.de/*': true
     '*://monitor.shard1.schule-infoportal.de/*': true
@@ -152,10 +155,13 @@ settings:
     '*://www.wetteronline.de/*': true
     '*://www.youtube.com/*': true
     '*://xxs-infoportal.de/*': true
+    '*://xxs.localhost/*': true
     global: false
   content.media.audio_capture:
     https://discord.com: true
     https://gather.town: true
+    https://lab.meet.schule-infoportal.de: true
+    https://lab2.meet.schule-infoportal.de: true
     https://meet.ffmuc.net: true
     https://meet.jit.si: true
     https://meet.kfv-portal.org: true
@@ -172,6 +178,8 @@ settings:
     https://video.port-zero.com: true
   content.media.audio_video_capture:
     https://conf.dfn.de: true
+    https://lab.meet.schule-infoportal.de: true
+    https://lab2.meet.schule-infoportal.de: true
     https://meet.ffmuc.net: true
     https://meet.jit.si: true
     https://meet.kfv-portal.org: true
@@ -198,10 +206,11 @@ settings:
     https://meet.shard3.schule-infoportal.de: true
     https://meet1.prod.schule-infoportal.de: true
     https://meet1.schule-infoportal.de: true
+    https://video.port-zero.com: true
   content.notifications.enabled:
+    global: false
     https://cloud.artsoftandmore.com: true
     https://video.port-zero.com: true
-    global: false
   content.proxy:
     global: system
   content.register_protocol_handler:
