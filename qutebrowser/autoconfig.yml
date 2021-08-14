@@ -23,6 +23,7 @@ settings:
     global:
       normal:
         ;D: hint all delete
+        _: navigate next
         aba: set -p content.blocking.method auto
         abh: set -tp content.blocking.method hosts
         b: set-cmd-text -s :buffer
@@ -87,12 +88,14 @@ settings:
     '*://readthedocs.org/*': true
     '*://reiseauskunft.bahn.de/*': true
     '*://reservierung.ub.uni-muenchen.de/*': true
+    '*://retribe.de/*': true
     '*://schule-infoportal.de/*': true
     '*://search.nixos.org/*': true
     '*://security.stackexchange.com/*': true
     '*://seeacker.de/*': true
     '*://serverfault.com/*': true
     '*://service.discotel.de/*': true
+    '*://shop.flixbus.de/*': true
     '*://stackexchange.com/*': true
     '*://stackoverflow.com/*': true
     '*://stars.przemeknowak.com/*': true
