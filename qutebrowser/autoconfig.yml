@@ -72,6 +72,7 @@ settings:
     '*://gitlab2.cip.ifi.lmu.de/*': true
     '*://homeworker.li/*': true
     '*://hydra.nixos.org/*': true
+    '*://impfdashboard.de/*': true
     '*://kinox.to/*': true
     '*://lmuidp.lrz.de/*': true
     '*://math.stackexchange.com/*': true
