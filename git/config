@@ -21,7 +21,7 @@
   autocommit = commit --all --message=autocommit
   ls = ls-files
   nice-merge = !git merge --no-ff --no-ed \"$@\" && git branch -d
-  stash2branch = !set -x && branch=$* && branch=${branch// /-} && git stash branch \"$branch\" && git commit --message=\"$*\" . && :
+  stash2branch = !branch=$* && branch=${branch// /-} && git stash branch \"$branch\" && git commit --message=\"$*\" . && :
   repush = !git fa && git rebase @{upstream} && git push
   ra = rebase --abort
   rc = rebase --continue
