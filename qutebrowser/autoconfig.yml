@@ -48,9 +48,11 @@ settings:
     global: false
   content.javascript.enabled:
     '*://alot.readthedocs.io/*': true
+    '*://app.travis-ci.com/*': true
     '*://archlinuxarm.org/*': true
     '*://askubuntu.com/*': true
     '*://banking.umweltbank.de/*': true
+    '*://bbb.ifi.lmu.de/*': true
     '*://book.local/*': true
     '*://cloud.artsoftandmore.com/*': true
     '*://codenames.game/*': true
@@ -73,6 +75,7 @@ settings:
     '*://homeworker.li/*': true
     '*://hydra.nixos.org/*': true
     '*://impfdashboard.de/*': true
+    '*://kachelmannwetter.com/*': true
     '*://kinox.to/*': true
     '*://lmuidp.lrz.de/*': true
     '*://math.stackexchange.com/*': true
@@ -113,6 +116,7 @@ settings:
     '*://www.bahn.de/*': true
     '*://www.ebay-kleinanzeigen.de/*': true
     '*://www.flixbus.de/*': true
+    '*://www.jimev.de/*': true
     '*://www.mvv-muenchen.de/*': true
     '*://www.openstreetmap.org/*': true
     '*://www.paypal.com/*': true
@@ -124,12 +128,15 @@ settings:
     '*://www.youtube.com/*': true
     global: false
   content.media.audio_capture:
+    https://bbb.ifi.lmu.de: true
     https://discord.com: true
     https://gather.town: true
+    https://lmu-munich.zoom.us: true
     https://meet.ffmuc.net: true
     https://meet.lrz.de: true
     https://meet.schule-infoportal.de: true
     https://meet1.schule-infoportal.de: true
+    https://test.bigbluebutton.org: true
   content.media.audio_video_capture:
     https://conf.dfn.de: true
     https://meet.ffmuc.net: true
@@ -138,8 +145,10 @@ settings:
     https://meet1.schule-infoportal.de: true
     https://www.wonder.me: true
   content.media.video_capture:
+    https://bbb.ifi.lmu.de: true
     https://discord.com: true
     https://gather.town: true
+    https://lmu-munich.zoom.us: true
     https://meet.ffmuc.net: true
     https://meet.lrz.de: true
     https://meet.schule-infoportal.de: true
