@@ -23,6 +23,7 @@ settings:
     global:
       normal:
         ;D: hint all delete
+        <Ctrl+Space>: set-cmd-text -s :open
         _: navigate next
         aba: set -p content.blocking.method auto
         abh: set -tp content.blocking.method hosts
