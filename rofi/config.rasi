@@ -4,6 +4,7 @@ configuration {
 	terminal: "term";
 	combi-modi: "window,mpc,drun,mru,run";
 	matching: "fuzzy";
-	theme: "solarized";
 	kb-cancel: "Escape,Menu,Print";
 }
+
+@theme "solarized"
