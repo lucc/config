@@ -35,7 +35,7 @@ source_global_xinit () {
   fi
 }
 load_ssh_keys () {
-  SSH_ASKPASS=$(which pass-as-ssh-askpass.sh) \
+  SSH_ASKPASS=$PASSWORD_STORE_DIR/.extensions/ssh-askpass \
     ssh-add "$HOME"/.ssh/*id_rsa < /dev/null
 }
 autostart () {
