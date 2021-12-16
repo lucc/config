@@ -50,7 +50,7 @@ load_env_to_systemd () {
 full_setup () {
   load_env_to_systemd
   setup_pulseaudio
-  ask_yes "Do you want a full start?" && autostart &
+  #ask_yes "Do you want a full start?" && autostart &
   sleep 60 && load_ssh_keys &
 }
 kiosk_setup () {
@@ -70,7 +70,6 @@ if [ $# -eq 1 ]; then
   # run some WM/DE specific init functions and set the command to exec
   case "$1" in
     awesome|xmonad|i3)
-      xrandr --dpi 96
       srandrd auto-xrandr &
       auto-xrandr &
       full_setup
