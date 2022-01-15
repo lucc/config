@@ -114,6 +114,7 @@ settings:
     '*://unix.stackexchange.com/*': true
     '*://vi.stackexchange.com/*': true
     '*://vicious.readthedocs.io/*': true
+    '*://visit.rc3.world/*': true
     '*://www.bahn.de/*': true
     '*://www.ebay-kleinanzeigen.de/*': true
     '*://www.flixbus.de/*': true
@@ -132,28 +133,35 @@ settings:
     https://bbb.ifi.lmu.de: true
     https://discord.com: true
     https://gather.town: true
+    https://jitsi.rc3.world: true
     https://lmu-munich.zoom.us: true
     https://meet.ffmuc.net: true
     https://meet.lrz.de: true
     https://meet.schule-infoportal.de: true
     https://meet1.schule-infoportal.de: true
+    https://mumble.lassul.us: true
     https://test.bigbluebutton.org: true
+    https://visit.rc3.world: true
   content.media.audio_video_capture:
     https://conf.dfn.de: true
+    https://jitsi.rc3.world: true
     https://meet.ffmuc.net: true
     https://meet.lrz.de: true
     https://meet.schule-infoportal.de: true
     https://meet1.schule-infoportal.de: true
+    https://visit.rc3.world: true
     https://www.wonder.me: true
   content.media.video_capture:
     https://bbb.ifi.lmu.de: true
     https://discord.com: true
     https://gather.town: true
+    https://jitsi.rc3.world: true
     https://lmu-munich.zoom.us: true
     https://meet.ffmuc.net: true
     https://meet.lrz.de: true
     https://meet.schule-infoportal.de: true
     https://meet1.schule-infoportal.de: true
+    https://visit.rc3.world: true
   content.notifications.enabled:
     global: false
   content.proxy:
