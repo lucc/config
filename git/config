@@ -4,10 +4,27 @@
 [user]
   name = Lucas Hoffmann
   email = lucc@posteo.de
+[sendemail]
+  smtpserver = /home/luc/.local/bin/sendmail.sh
+  from = lucc@posteo.de
+  envelopesender = lucc@posteo.de
+
 [color]
   ui = true
+[color "grep"]
+  match = red bold
+  filename = magenta
+
+[core]
+  excludesfile = ~/.config/git/ignore
+  #askpass = ~/bin/git-pass
+[credential]
+  helper = pass
+[pull]
+  rebase = false
 [push]
   default = simple
+
 [alias]
   pick = cherry-pick
   amend = commit --amend --no-edit
@@ -24,9 +41,7 @@
   rc = rebase --continue
   tig = !tig
   t = !tig --all
-[core]
-  excludesfile = ~/.config/git/ignore
-  #askpass = ~/bin/git-pass
+
 [diff]
   tool = vimdiff
   guitool = gvimdiff
@@ -34,15 +49,25 @@
   binary = true
   #textconv = gpg2 -d --quiet --yes --compress-algo=none --no-encrypt-to --batch --use-agent
   textconv = gpg --decrypt --quiet --batch
-[sendemail]
-  smtpserver = /home/luc/.local/bin/sendmail.sh
-  from = lucc@posteo.de
-  envelopesender = lucc@posteo.de
+[diff "image"]
+  command = git-imgdiff
+[difftool "diffpdf"]
+  cmd = diffpdf \"$LOCAL\" \"$REMOTE\"
+[difftool "diff-pdf"]
+  cmd = diff-pdf --view \"$LOCAL\" \"$REMOTE\"
+
 [format]
   attach
   thread = true
-[credential]
-  helper = pass
+[filter "lfs"]
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
+  clean = git-lfs clean -- %f
+[filter "zeal-window-geometry"]
+  smudge = cat
+  clean = "sed -e '/^window_geometry=/d;/^splitter_geometry=/d;/^version=/d'"
+
 [trailer "see"]
   key = "See-also: "
   command = git log -1 --oneline --format=\"%h (%s)\" --abbrev-commit --abbrev=14 $ARG
@@ -54,6 +79,7 @@
 [trailer]
   ifmissing = doNothing
 
+## Options for tig ###########################################################
 [tig]
   # options
   mouse = true
@@ -69,23 +95,3 @@
   #main-remote = green default normal
   main-head = red default bold
   main-tracked = red default
-
-[filter "lfs"]
-  smudge = git-lfs smudge -- %f
-  process = git-lfs filter-process
-  required = true
-  clean = git-lfs clean -- %f
-[filter "zeal-window-geometry"]
-  smudge = cat
-  clean = "sed -e '/^window_geometry=/d;/^splitter_geometry=/d;/^version=/d'"
-[color "grep"]
-  match = red bold
-  filename = magenta
-[pull]
-  rebase = false
-[diff "image"]
-  command = git-imgdiff
-[difftool "diffpdf"]
-  cmd = diffpdf \"$LOCAL\" \"$REMOTE\"
-[difftool "diff-pdf"]
-  cmd = diff-pdf --view \"$LOCAL\" \"$REMOTE\"
