@@ -3,22 +3,10 @@
 # swap files for vim
 .*.sw?
 
-# LaTeX intermediate files
-*.aux
-*.bbl
-*.blg
-*.fdb_latexmk
-*.fls
-*.log
-*.nav
-*.out
-*.snm
-*.toc
 # folder of latexrun
 latex.out/
 
 # python cache and bytecode
-*.pyc
 __pycache__/
 *.egg-info/
 .eggs/
