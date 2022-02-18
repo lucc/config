@@ -5,7 +5,7 @@
   name = Lucas Hoffmann
   email = lucc@posteo.de
 [sendemail]
-  smtpserver = /home/luc/.local/bin/sendmail.sh
+  smtpserver = ~/.config/git/sendmail.sh
   from = lucc@posteo.de
   envelopesender = lucc@posteo.de
 
