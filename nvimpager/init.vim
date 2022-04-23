@@ -3,9 +3,8 @@ set ignorecase
 set smartcase
 
 " add some plugins from the editor
-set runtimepath+=~/.local/share/nvim/plugins/vim-colors-solarized
-set runtimepath+=~/.local/share/nvim/plugins/vim-pandoc-syntax
-set runtimepath+=~/.local/share/nvim/plugins/NeoSolarized
+set runtimepath+=~/.local/share/nvim/site/pack/packer/opt/vim-pandoc-syntax
+set runtimepath+=~/.local/share/nvim/site/pack/packer/opt/NeoSolarized
 
 " my normal colour settings
 set background=dark
