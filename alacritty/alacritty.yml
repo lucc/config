@@ -33,7 +33,7 @@ colors:
     white:   '#fdf6e3' # base3
 font:
   # The size to use.
-  size: 6.5
+  size: 9
   normal:
     #family: monospace
     #family: Liberation Mono
