@@ -28,6 +28,12 @@ settings:
         aba: set -p content.blocking.method auto
         abh: set -tp content.blocking.method hosts
         b: set-cmd-text -s :buffer
+  colors.webpage.darkmode.algorithm:
+    global: lightness-hsl
+  colors.webpage.darkmode.enabled:
+    global: false
+  colors.webpage.darkmode.threshold.background:
+    global: 200
   colors.webpage.preferred_color_scheme:
     global: dark
   completion.cmd_history_max_items:
@@ -48,6 +54,7 @@ settings:
   content.geolocation:
     global: false
   content.javascript.enabled:
+    '*://accounts.bahn.de/*': true
     '*://alot.readthedocs.io/*': true
     '*://app.travis-ci.com/*': true
     '*://archlinuxarm.org/*': true
@@ -88,6 +95,7 @@ settings:
     '*://nina-roeckelein.de/*': true
     '*://nixos.wiki/*': true
     '*://o2.box/*': true
+    '*://oc.netzguerilla.net/*': true
     '*://posteo.de/*': true
     '*://rc3.world/*': true
     '*://readthedocs.org/*': true
@@ -111,6 +119,7 @@ settings:
     '*://travis-ci.com/*': true
     '*://travis-ci.community/*': true
     '*://travis-ci.org/*': true
+    '*://trello.com/*': true
     '*://unix.stackexchange.com/*': true
     '*://vi.stackexchange.com/*': true
     '*://vicious.readthedocs.io/*': true
@@ -135,7 +144,9 @@ settings:
     https://gather.town: true
     https://jitsi.rc3.world: true
     https://lmu-munich.zoom.us: true
+    https://meet.artsoftandmore.com: true
     https://meet.ffmuc.net: true
+    https://meet.google.com: true
     https://meet.lrz.de: true
     https://meet.schule-infoportal.de: true
     https://meet1.schule-infoportal.de: true
@@ -145,7 +156,9 @@ settings:
   content.media.audio_video_capture:
     https://conf.dfn.de: true
     https://jitsi.rc3.world: true
+    https://meet.artsoftandmore.com: true
     https://meet.ffmuc.net: true
+    https://meet.google.com: true
     https://meet.lrz.de: true
     https://meet.schule-infoportal.de: true
     https://meet1.schule-infoportal.de: true
@@ -158,11 +171,14 @@ settings:
     https://jitsi.rc3.world: true
     https://lmu-munich.zoom.us: true
     https://meet.ffmuc.net: true
+    https://meet.google.com: true
     https://meet.lrz.de: true
     https://meet.schule-infoportal.de: true
     https://meet1.schule-infoportal.de: true
     https://visit.rc3.world: true
   content.notifications.enabled:
+    global: false
+  content.pdfjs:
     global: false
   content.proxy:
     global: system
