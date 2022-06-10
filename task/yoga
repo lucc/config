@@ -1,2 +1,2 @@
 include ~/.config/task/main
-include /run/current-system/etc/profiles/per-user/luc/share/doc/task/rc/solarized-dark-256.theme
+include /run/current-system/sw/share/doc/task/rc/solarized-dark-256.theme
