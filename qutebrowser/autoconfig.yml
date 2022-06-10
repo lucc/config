@@ -54,6 +54,7 @@ settings:
   content.geolocation:
     global: false
   content.javascript.enabled:
+    '*://*.acroyoga-workspace.slack.com/*': true
     '*://accounts.bahn.de/*': true
     '*://alot.readthedocs.io/*': true
     '*://app.travis-ci.com/*': true
