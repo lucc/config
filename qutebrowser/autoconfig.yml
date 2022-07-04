@@ -156,6 +156,7 @@ settings:
     '*://travis-ci.com/*': true
     '*://travis-ci.community/*': true
     '*://travis-ci.org/*': true
+    '*://ts.kfv-portal.org/*': true
     '*://unix.stackexchange.com/*': true
     '*://vi.stackexchange.com/*': true
     '*://vicious.readthedocs.io/*': true
@@ -204,6 +205,8 @@ settings:
     global: true
   content.proxy:
     global: system
+  content.register_protocol_handler:
+    https://cloud.artsoftandmore.com: true
   downloads.location.directory:
     global: ~/
   editor.command:
