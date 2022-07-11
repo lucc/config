@@ -2,54 +2,23 @@
 # vim: ft=pycfg
 
 [default]
-default_calendar = home
+default_calendar = local
 #days = 7
 highlight_event_days = True
 [calendars]
-[[uni]]
-path = ~/.local/share/khal/calendars/uni
-color = brown
-[[sport]]
-path = ~/.local/share/khal/calendars/sport
-color = brown
-[[arbeit]]
-path = ~/.local/share/khal/calendars/arbeit
-color = dark blue
-[[home]]
-path = ~/.local/share/khal/calendars/home
+
+
+
+[[nextcloud]]
+
+path = ~/.local/share/khal/calendars/nextcloud/*
+type = discover
+
+
+[[local]]
+path = ~/.local/share/khal/calendars/local
 color = dark red
-[[festivals]]
-path = ~/.local/share/khal/calendars/festivals
-color = dark magenta
-[[background]]
-path = ~/.local/share/khal/calendars/background
-[[birthdays]]
-path = ~/.local/share/khard/main
-type = birthdays
-color = dark cyan
-#[[jim_treffen]]
-#  path = ~/.local/share/khal/calendars/jimev/treffen
-#[[jim_events]]
-#  path = ~/.local/share/khal/calendars/jimev/events
-#[[jim_workshops]]
-#  path = ~/.local/share/khal/calendars/jimev/workshops
-[[holidays]]
-path = ~/.local/share/khal/calendars/gmail/holidays
-[[ferien]]
-path = ~/.local/share/khal/calendars/remote/ferien
-[[test]]
-path = ~/.local/share/khal/calendars/test
-[[naf]]
-path = ~/.local/share/khal/calendars/stichtingnaf
-[[ccc]]
-color=dark green
-path = ~/.local/share/khal/calendars/ccc
-[[Mia]]
-color=brown
-path = ~/.local/share/khal/calendars/mia
-[[Nina]]
-color=brown
-path = ~/.local/share/khal/calendars/nina
+
 [locale]
 #unicode_symbols = False
 #longdateformat = %a %F
