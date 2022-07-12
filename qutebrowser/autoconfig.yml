@@ -82,9 +82,11 @@ settings:
   content.javascript.enabled:
     '*://*.acroyoga-workspace.slack.com/*': true
     '*://accounts.bahn.de/*': true
+    '*://accounts.hetzner.com/*': true
     '*://accounts.meister.co/*': true
     '*://admin.artsoftandmore.com/*': true
     '*://admin2.artsoftandmore.com/*': true
+    '*://admin3.artsoftandmore.com/*': true
     '*://alot.readthedocs.io/*': true
     '*://archlinuxarm.org/*': true
     '*://asamdemo2.eltern-portal.org/*': true
@@ -119,9 +121,11 @@ settings:
     '*://hydra.nixos.org/*': true
     '*://impfdashboard.de/*': true
     '*://kachelmannwetter.com/*': true
+    '*://konsoleh.hetzner.com/*': true
     '*://konsoleh.your-server.de/*': true
     '*://login.o2online.de/*': true
     '*://localhost/*': true
+    '*://login.o2online.de/*': true
     '*://math.stackexchange.com/*': true
     '*://media.ccc.de/*': true
     '*://meet.artsoftandmore.com/*': true
@@ -136,6 +140,7 @@ settings:
     '*://readthedocs.org/*': true
     '*://reiseauskunft.bahn.de/*': true
     '*://retribe.de/*': true
+    '*://robot.hetzner.com/*': true
     '*://robot.your-server.de/*': true
     '*://schule-infoportal.de/*': true
     '*://search.nixos.org/*': true
@@ -144,6 +149,7 @@ settings:
     '*://serverfault.com/*': true
     '*://service.discotel.de/*': true
     '*://shop.flixbus.de/*': true
+    '*://sso.edenred.io/*': true
     '*://stackexchange.com/*': true
     '*://stackoverflow.com/*': true
     '*://stars.przemeknowak.com/*': true
@@ -161,6 +167,7 @@ settings:
     '*://vi.stackexchange.com/*': true
     '*://vicious.readthedocs.io/*': true
     '*://www.bahn.de/*': true
+    '*://www.cvedetails.com/*': true
     '*://www.ebay-kleinanzeigen.de/*': true
     '*://www.flixbus.de/*': true
     '*://www.jimev.de/*': true
@@ -178,6 +185,7 @@ settings:
     '*://www.youtube.com/*': true
     '*://xxs-infoportal.de/*': true
     '*://xxs.localhost/*': true
+    '*://xxs.schule-infoportal.de/*': true
     global: false
   content.javascript.prompt:
     global: true
