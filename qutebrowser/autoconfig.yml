@@ -72,6 +72,8 @@ settings:
     '*://de.wikipedia.org/*': true
     '*://detexify.kirelabs.org/*': true
     '*://discourse.nixos.org/*': true
+    '*://docs.google.com/*': true
+    '*://drive.google.com/*': true
     '*://efa.mvv-muenchen.de/*': true
     '*://en.wikipedia.org/*': true
     '*://experience.arcgis.com/*': true
