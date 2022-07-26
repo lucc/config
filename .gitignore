@@ -10,8 +10,6 @@
 /pass
 /fetchmail
 /alot
-/mutt
-/certs
 /gpg
 # these contain api token
 /hub
@@ -21,3 +19,4 @@
 
 # It does not make sense to track these
 /pulse
+/evince/accels
