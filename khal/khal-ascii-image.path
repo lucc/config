@@ -1,8 +1,0 @@
-[Unit]
-Description=Generate an ascii dump from khal
-
-[Path]
-PathChanged=%h/.local/share/khal/khal.db
-
-[Install]
-WantedBy=default.target
