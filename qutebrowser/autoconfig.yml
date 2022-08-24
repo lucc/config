@@ -59,6 +59,7 @@ settings:
     '*://alot.readthedocs.io/*': true
     '*://app.travis-ci.com/*': true
     '*://archlinuxarm.org/*': true
+    '*://duckduckgo.com/*': true
     '*://askubuntu.com/*': true
     '*://banking.umweltbank.de/*': true
     '*://bbb.ifi.lmu.de/*': true
@@ -239,7 +240,7 @@ settings:
     global: http://wetterstationen.meteomedia.de/messnetz/vorhersagegrafik/108650.png
   url.searchengines:
     global:
-      DEFAULT: https://html.duckduckgo.com/html?q={}
+      DEFAULT: https://duckduckgo.com/?q={}
       aur: https://aur.archlinux.org/packages/?K={}
       aw: https://wiki.archlinux.org/index.php?title=Special%3ASearch&search={}
       ctan: https://ctan.org/search?phrase={}
