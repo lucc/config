@@ -1,16 +1,16 @@
-# Colors (Solarized Dark)
+# The default config file with all options and explanations is at
+# $PREFIX/share/doc/alacritty.yml
+
+# Solarized dark colors
 colors:
-  # Default colors
   primary:
     background: '#002b36' # base03
     foreground: '#839496' # base0
 
-  # Cursor colors
   cursor:
     text:   '#002b36' # base03
     cursor: '#839496' # base0
 
-  # Normal colors
   normal:
     black:   '#073642' # base02
     red:     '#dc322f' # red
@@ -21,7 +21,6 @@ colors:
     cyan:    '#2aa198' # cyan
     white:   '#eee8d5' # base2
 
-  # Bright colors
   bright:
     black:   '#002b36' # base03
     red:     '#cb4b16' # orange
@@ -31,8 +30,8 @@ colors:
     magenta: '#6c71c4' # violet
     cyan:    '#93a1a1' # base1
     white:   '#fdf6e3' # base3
+
 font:
-  # The size to use.
   size: 9
   normal:
     #family: monospace
@@ -40,4 +39,3 @@ font:
     family: DejaVuSansMono Nerd Font
     #family: DejaVuSansMono Nerd Font Mono
     #family: DejaVu Sans Mono
-    #family: hans
