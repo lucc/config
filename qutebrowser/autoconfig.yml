@@ -191,7 +191,7 @@ settings:
   editor.command:
     global:
     - term
-    - -fe
+    - -e
     - nvim
     - '{}'
   fonts.default_family:
