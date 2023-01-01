@@ -59,7 +59,6 @@ settings:
     '*://alot.readthedocs.io/*': true
     '*://app.travis-ci.com/*': true
     '*://archlinuxarm.org/*': true
-    '*://duckduckgo.com/*': true
     '*://askubuntu.com/*': true
     '*://banking.umweltbank.de/*': true
     '*://bbb.ifi.lmu.de/*': true
@@ -75,6 +74,7 @@ settings:
     '*://discourse.nixos.org/*': true
     '*://docs.google.com/*': true
     '*://drive.google.com/*': true
+    '*://duckduckgo.com/*': true
     '*://efa.mvv-muenchen.de/*': true
     '*://en.wikipedia.org/*': true
     '*://experience.arcgis.com/*': true
@@ -174,6 +174,7 @@ settings:
     https://gather.town: true
     https://jitsi.rc3.world: true
     https://lmu-munich.zoom.us: true
+    https://meet.artsoftandmore.com: true
     https://meet.ffmuc.net: true
     https://meet.google.com: true
     https://meet.lrz.de: true
