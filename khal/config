@@ -18,6 +18,9 @@ type = discover
 [[local]]
 path = ~/.local/share/khal/calendars/local
 color = dark red
+[[schulferien]]
+path = ~/.local/share/khal/calendars/schuleferien
+color = dark blue
 
 [locale]
 #unicode_symbols = False
