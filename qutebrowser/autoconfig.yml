@@ -142,6 +142,8 @@ settings:
     '*://www.wetteronline.de/*': true
     '*://www.youtube.com/*': true
     global: false
+  content.javascript.prompt:
+    global: true
   content.media.audio_capture:
     https://bbb.ifi.lmu.de: true
     https://discord.com: true
@@ -194,7 +196,8 @@ settings:
     - term
     - -e
     - nvim
-    - '{}'
+    - '{file}'
+    - +{line}
   fonts.default_family:
     global:
     - DejaVu Sans Mono
