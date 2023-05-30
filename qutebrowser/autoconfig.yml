@@ -134,6 +134,7 @@ settings:
     '*://www.ebay-kleinanzeigen.de/*': true
     '*://www.flixbus.de/*': true
     '*://www.jimev.de/*': true
+    '*://www.kleinanzeigen.de/*': true
     '*://www.mvv-muenchen.de/*': true
     '*://www.openstreetmap.org/*': true
     '*://www.paypal.com/*': true
