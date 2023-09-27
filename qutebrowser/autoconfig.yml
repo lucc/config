@@ -25,11 +25,11 @@ settings:
     global:
       normal:
         ;D: hint all delete
-        <Ctrl+Space>: set-cmd-text -s :open
+        <Ctrl+Space>: cmd-set-text -s :open
         _: navigate next
         aba: set -p content.blocking.method auto
         abh: set -tp content.blocking.method hosts
-        b: set-cmd-text -s :buffer
+        b: cmd-set-text -s :buffer
   colors.webpage.darkmode.algorithm:
     global: lightness-hsl
   colors.webpage.darkmode.enabled:
