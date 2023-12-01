@@ -123,6 +123,7 @@ settings:
     '*://streaming.media.ccc.de/*': true
     '*://superuser.com/*': true
     '*://tex.stackexchange.com/*': true
+    '*://tickets.events.ccc.de/*': true
     '*://travis-ci.com/*': true
     '*://travis-ci.community/*': true
     '*://travis-ci.org/*': true
