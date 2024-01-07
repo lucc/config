@@ -58,7 +58,7 @@ longdateformat = %Y-%m-%d
 weeknumbers = left
 timeformat= %H:%M
 dateformat= %d.%m.
-datetimeformat = %FT%H:%M
+datetimeformat = %Y-%m-%dT%H:%M
 
 [view]
 event_view_always_visible = True
