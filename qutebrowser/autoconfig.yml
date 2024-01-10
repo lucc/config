@@ -36,7 +36,7 @@ settings:
   colors.webpage.darkmode.algorithm:
     global: lightness-hsl
   colors.webpage.darkmode.enabled:
-    global: false
+    global: true
   colors.webpage.darkmode.threshold.background:
     global: 200
   colors.webpage.preferred_color_scheme:
@@ -46,7 +46,7 @@ settings:
   content.blocking.enabled:
     global: true
   content.blocking.method:
-    global: auto
+    global: both
   content.cache.size:
     global: null
   content.cookies.accept:
