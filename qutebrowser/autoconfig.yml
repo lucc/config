@@ -54,16 +54,23 @@ settings:
     '*://askubuntu.com/*': no-3rdparty
     '*://cryptpad.fr/*': no-3rdparty
     '*://discourse.nixos.org/*': no-3rdparty
+    '*://efa.mvv-muenchen.de/*': no-3rdparty
+    '*://gist.github.com/*': no-3rdparty
     '*://git.artsoftandmore.com/*': no-3rdparty
     '*://github.com/*': no-3rdparty
     '*://gitlab.com/*': no-3rdparty
+    '*://hansseite.hanstool.org/*': no-3rdparty
     '*://o2.box/*': no-3rdparty
+    '*://posteo.de/*': all
+    '*://service.discotel.de/*': no-3rdparty
     '*://stackoverflow.com/*': no-3rdparty
     '*://superuser.com/*': no-3rdparty
     '*://unix.stackexchange.com/*': no-3rdparty
     '*://vi.stackexchange.com/*': no-3rdparty
     '*://www.bahn.de/*': no-3rdparty
     '*://www.o2online.de/*': all
+    '*://www.openstreetmap.org/*': no-3rdparty
+    '*://www.paypal.com/*': no-3rdparty
     '*://www.vr-ll.de/*': no-3rdparty
     '*://www.youtube.com/*': no-3rdparty
     global: never
@@ -157,6 +164,7 @@ settings:
     '*://www.jimev.de/*': true
     '*://www.kleinanzeigen.de/*': true
     '*://www.mvv-muenchen.de/*': true
+    '*://www.o2online.de/*': true
     '*://www.openstreetmap.org/*': true
     '*://www.paypal.com/*': true
     '*://www.tagesschau.de/*': true
