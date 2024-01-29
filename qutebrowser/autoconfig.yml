@@ -13,6 +13,7 @@ settings:
       dlv: spawn tmux-youtube-dl.sh {url}
       elinks: spawn term -e elinks {url}
       firefox: spawn firefox {url}
+      lightmode: spawn qutebrowser -Ts colors.webpage.darkmode.enabled false {url}
       lynx: spawn term -e lynx {url}
       opera: spawn opera {url}
       pw: spawn --userscript password_fill
