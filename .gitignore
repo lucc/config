@@ -12,12 +12,19 @@
 /lab/lab.toml
 /gh/hosts.yml
 /pypirc
+/gomuks/config.yaml
+/iamb/profiles/*/session.json
 # holds the passwords to log into freenode/nickserv
 /weechat
 
 # It does not make sense to track these
-/pulse
+/pulse/
+/pipewire/
 /evince/accels
+/Qtrac Ltd./DiffPDF.conf
 
 # managed by home-manager
 /alacritty/
+/environment.d/10-home-manager.conf
+/ncmpcpp/
+/task/
