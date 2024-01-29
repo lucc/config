@@ -34,12 +34,6 @@ settings:
           all never ;; reload
         tch: config-cycle -p -t -u *://{url:host}/* content.cookies.accept no-3rdparty
           all never ;; reload
-  colors.webpage.darkmode.algorithm:
-    global: lightness-hsl
-  colors.webpage.darkmode.enabled:
-    global: true
-  colors.webpage.darkmode.threshold.background:
-    global: 200
   colors.webpage.preferred_color_scheme:
     global: dark
   completion.cmd_history_max_items:
