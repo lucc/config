@@ -75,65 +75,52 @@ settings:
     '*://www.youtube.com/*': no-3rdparty
     global: never
   content.desktop_capture:
-    '*://meet.lrz.de/*': true
-    https://conf.dfn.de: true
-    https://meet.lrz.de: true
-    https://meet1.schule-infoportal.de: true
+    '*://meet.artsoftandmore.com/*': true
+    https://meet.jit.si: true
   content.geolocation:
     global: false
   content.javascript.enabled:
     '*://*.acroyoga-workspace.slack.com/*': true
     '*://accounts.bahn.de/*': true
     '*://alot.readthedocs.io/*': true
-    '*://app.travis-ci.com/*': true
     '*://archlinuxarm.org/*': true
+    '*://asciinema.org/*': true
     '*://askubuntu.com/*': true
     '*://banking.umweltbank.de/*': true
-    '*://bbb.ifi.lmu.de/*': true
     '*://book.local/*': true
     '*://cloud.artsoftandmore.com/*': true
     '*://codenames.game/*': true
-    '*://conf.dfn.de/*': true
-    '*://coronavirus.jhu.edu/*': true
     '*://cryptpad.fr/*': true
     '*://cs.stackexchange.com/*': true
+    '*://dba.stackexchange.com/*': true
     '*://de.wikipedia.org/*': true
     '*://detexify.kirelabs.org/*': true
+    '*://devops.stackexchange.com/*': true
     '*://discourse.nixos.org/*': true
     '*://docs.google.com/*': true
     '*://drive.google.com/*': true
     '*://duckduckgo.com/*': true
     '*://efa.mvv-muenchen.de/*': true
     '*://en.wikipedia.org/*': true
-    '*://experience.arcgis.com/*': true
-    '*://gather.town/*': true
     '*://git.artsoftandmore.com/*': true
     '*://github.com/*': true
     '*://gitlab.com/*': true
     '*://gitlab.redox-os.org/*': true
-    '*://gitlab2.cip.ifi.lmu.de/*': true
-    '*://homeworker.li/*': true
     '*://hydra.nixos.org/*': true
     '*://impfdashboard.de/*': true
     '*://kachelmannwetter.com/*': true
-    '*://kinox.to/*': true
-    '*://lmuidp.lrz.de/*': true
     '*://login.o2online.de/*': true
     '*://math.stackexchange.com/*': true
     '*://media.ccc.de/*': true
-    '*://meet.lrz.de/*': true
-    '*://meet.schule-infoportal.de/*': true
-    '*://meet1.schule-infoportal.de/*': true
-    '*://monitor.prod.schule-infoportal.de/*': true
+    '*://meet.artsoftandmore.com/*': true
+    '*://meet.jit.si/*': true
     '*://nina-roeckelein.de/*': true
     '*://nixos.wiki/*': true
     '*://o2.box/*': true
     '*://oc.netzguerilla.net/*': true
     '*://posteo.de/*': true
-    '*://rc3.world/*': true
     '*://readthedocs.org/*': true
     '*://reiseauskunft.bahn.de/*': true
-    '*://reservierung.ub.uni-muenchen.de/*': true
     '*://retribe.de/*': true
     '*://schule-infoportal.de/*': true
     '*://search.nixos.org/*': true
@@ -153,11 +140,9 @@ settings:
     '*://travis-ci.com/*': true
     '*://travis-ci.community/*': true
     '*://travis-ci.org/*': true
-    '*://trello.com/*': true
     '*://unix.stackexchange.com/*': true
     '*://vi.stackexchange.com/*': true
     '*://vicious.readthedocs.io/*': true
-    '*://visit.rc3.world/*': true
     '*://www.bahn.de/*': true
     '*://www.ebay-kleinanzeigen.de/*': true
     '*://www.flixbus.de/*': true
@@ -177,44 +162,20 @@ settings:
   content.javascript.prompt:
     global: true
   content.media.audio_capture:
-    https://bbb.ifi.lmu.de: true
-    https://discord.com: true
-    https://gather.town: true
-    https://jitsi.rc3.world: true
-    https://lmu-munich.zoom.us: true
     https://meet.artsoftandmore.com: true
     https://meet.ffmuc.net: true
     https://meet.google.com: true
-    https://meet.lrz.de: true
-    https://meet.schule-infoportal.de: true
-    https://meet1.schule-infoportal.de: true
-    https://mumble.lassul.us: true
+    https://meet.jit.si: true
     https://test.bigbluebutton.org: true
-    https://visit.rc3.world: true
   content.media.audio_video_capture:
-    https://conf.dfn.de: true
-    https://jitsi.rc3.world: true
     https://meet.artsoftandmore.com: true
     https://meet.ffmuc.net: true
     https://meet.google.com: true
-    https://meet.lrz.de: true
-    https://meet.schule-infoportal.de: true
-    https://meet1.schule-infoportal.de: true
-    https://visit.rc3.world: true
-    https://www.wonder.me: true
+    https://meet.jit.si: true
   content.media.video_capture:
-    https://bbb.ifi.lmu.de: true
-    https://discord.com: true
-    https://gather.town: true
-    https://jitsi.rc3.world: true
-    https://lmu-munich.zoom.us: true
     https://meet.artsoftandmore.com: true
     https://meet.ffmuc.net: true
     https://meet.google.com: true
-    https://meet.lrz.de: true
-    https://meet.schule-infoportal.de: true
-    https://meet1.schule-infoportal.de: true
-    https://visit.rc3.world: true
   content.notifications.enabled:
     global: false
   content.pdfjs:
