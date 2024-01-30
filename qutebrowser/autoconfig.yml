@@ -45,6 +45,7 @@ settings:
   content.cache.size:
     global: null
   content.cookies.accept:
+    '*://admin.artsoftandmore.com/*': no-3rdparty
     '*://askubuntu.com/*': no-3rdparty
     '*://cryptpad.fr/*': no-3rdparty
     '*://discourse.nixos.org/*': no-3rdparty
@@ -54,8 +55,10 @@ settings:
     '*://github.com/*': no-3rdparty
     '*://gitlab.com/*': no-3rdparty
     '*://hansseite.hanstool.org/*': no-3rdparty
+    '*://localhost/*': no-3rdparty
     '*://o2.box/*': no-3rdparty
     '*://posteo.de/*': all
+    '*://schule-infoportal.de/*': no-3rdparty
     '*://service.discotel.de/*': no-3rdparty
     '*://stackoverflow.com/*': no-3rdparty
     '*://superuser.com/*': no-3rdparty
