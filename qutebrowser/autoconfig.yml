@@ -187,10 +187,11 @@ settings:
   editor.command:
     global:
     - term
-    - -e
+    - -fe
     - nvim
     - '{file}'
-    - +{line}
+    - -c
+    - normal!{line}G{column0}l
   fonts.default_family:
     global:
     - DejaVu Sans Mono
@@ -240,6 +241,7 @@ settings:
       DEFAULT: https://duckduckgo.com/?q={}
       aw: https://wiki.archlinux.org/index.php?title=Special%3ASearch&search={}
       ctan: https://ctan.org/search?phrase={}
+      cve: https://www.cvedetails.com/google-search-results.php?q={}
       gm: https://www.google.de/maps?hl=en&q={}
       k: https://kinox.to/Search.html?q={}
       kinox: https://kinox.to/Search.html?q={}
