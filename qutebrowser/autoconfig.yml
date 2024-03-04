@@ -60,14 +60,17 @@ settings:
     '*://github.com/*': no-3rdparty
     '*://gitlab.com/*': no-3rdparty
     '*://hansseite.hanstool.org/*': no-3rdparty
+    '*://login.o2online.de/*': all
     '*://o2.box/*': no-3rdparty
     '*://posteo.de/*': all
     '*://service.discotel.de/*': no-3rdparty
     '*://stackoverflow.com/*': no-3rdparty
+    '*://stars.przemeknowak.com/*': all
     '*://superuser.com/*': no-3rdparty
     '*://unix.stackexchange.com/*': no-3rdparty
     '*://vi.stackexchange.com/*': no-3rdparty
     '*://www.bahn.de/*': no-3rdparty
+    '*://www.kleinanzeigen.de/*': no-3rdparty
     '*://www.o2online.de/*': all
     '*://www.openstreetmap.org/*': no-3rdparty
     '*://www.paypal.com/*': no-3rdparty
@@ -180,6 +183,8 @@ settings:
     global: false
   content.pdfjs:
     global: false
+  content.prefers_reduced_motion:
+    global: true
   content.proxy:
     global: system
   downloads.location.directory:
