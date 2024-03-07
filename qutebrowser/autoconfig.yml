@@ -45,21 +45,32 @@ settings:
   content.cache.size:
     global: null
   content.cookies.accept:
+    '*://accounts.hetzner.com/*': no-3rdparty
+    '*://accounts.meister.co/*': no-3rdparty
     '*://admin.artsoftandmore.com/*': no-3rdparty
+    '*://admin3.artsoftandmore.com/*': no-3rdparty
     '*://askubuntu.com/*': no-3rdparty
+    '*://cloud.artsoftandmore.com/*': no-3rdparty
+    '*://console.hetzner.cloud/*': no-3rdparty
     '*://cryptpad.fr/*': no-3rdparty
     '*://discourse.nixos.org/*': no-3rdparty
+    '*://dns.hetzner.com/*': no-3rdparty
     '*://efa.mvv-muenchen.de/*': no-3rdparty
     '*://gist.github.com/*': no-3rdparty
     '*://git.artsoftandmore.com/*': no-3rdparty
     '*://github.com/*': no-3rdparty
     '*://gitlab.com/*': no-3rdparty
     '*://hansseite.hanstool.org/*': no-3rdparty
+    '*://konsoleh.hetzner.com/*': no-3rdparty
     '*://localhost/*': no-3rdparty
+    '*://msd.schule-infoportal.de/*': no-3rdparty
     '*://o2.box/*': no-3rdparty
     '*://posteo.de/*': all
+    '*://robot.hetzner.com/*': no-3rdparty
+    '*://schueler.schule-infoportal.de/*': no-3rdparty
     '*://schule-infoportal.de/*': no-3rdparty
     '*://service.discotel.de/*': no-3rdparty
+    '*://sso.edenred.io/*': no-3rdparty
     '*://stackoverflow.com/*': no-3rdparty
     '*://superuser.com/*': no-3rdparty
     '*://unix.stackexchange.com/*': no-3rdparty
@@ -70,6 +81,7 @@ settings:
     '*://www.paypal.com/*': no-3rdparty
     '*://www.vr-ll.de/*': no-3rdparty
     '*://www.youtube.com/*': no-3rdparty
+    '*://xxs-infoportal.de/*': no-3rdparty
     global: never
   content.desktop_capture:
     '*://meet.artsoftandmore.com/*': true
@@ -120,7 +132,6 @@ settings:
     '*://kachelmannwetter.com/*': true
     '*://konsoleh.hetzner.com/*': true
     '*://konsoleh.your-server.de/*': true
-    '*://login.o2online.de/*': true
     '*://localhost/*': true
     '*://login.o2online.de/*': true
     '*://math.stackexchange.com/*': true
@@ -139,6 +150,7 @@ settings:
     '*://retribe.de/*': true
     '*://robot.hetzner.com/*': true
     '*://robot.your-server.de/*': true
+    '*://schueler.schule-infoportal.de/*': true
     '*://schule-infoportal.de/*': true
     '*://search.nixos.org/*': true
     '*://security.stackexchange.com/*': true
