@@ -66,6 +66,7 @@ settings:
     '*://localhost/*': no-3rdparty
     '*://msd.schule-infoportal.de/*': no-3rdparty
     '*://o2.box/*': no-3rdparty
+    '*://ofs.schule-infoportal.de/*': no-3rdparty
     '*://posteo.de/*': all
     '*://robot.hetzner.com/*': no-3rdparty
     '*://schueler.schule-infoportal.de/*': no-3rdparty
@@ -142,6 +143,7 @@ settings:
     '*://mermaid-js.github.io/*': true
     '*://msd.schule-infoportal.de/*': true
     '*://nina-roeckelein.de/*': true
+    '*://nixos.org/*': true
     '*://nixos.wiki/*': true
     '*://o2.box/*': true
     '*://oc.netzguerilla.net/*': true
@@ -204,6 +206,7 @@ settings:
     https://meet.ffmuc.net: true
     https://meet.google.com: true
     https://meet.jit.si: true
+    https://teams.microsoft.com: true
     https://test.bigbluebutton.org: true
   content.media.audio_video_capture:
     https://meet.artsoftandmore.com: true
