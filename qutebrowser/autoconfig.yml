@@ -10,6 +10,7 @@ settings:
     global:
       block: hint images userscript add-to-custom-blocked-hosts
       chrome: spawn chromium {url}
+      darkmode: spawn qutebrowser -Ts colors.webpage.darkmode.enabled true {url}
       dlv: spawn tmux-youtube-dl.sh {url}
       elinks: spawn term -e elinks {url}
       firefox: spawn firefox {url}
