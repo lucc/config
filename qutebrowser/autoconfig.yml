@@ -51,29 +51,36 @@ settings:
   content.cache.size:
     global: null
   content.cookies.accept:
+    '*://*.o2online.de/*': all
+    '*://*.slack.com/*': all
     '*://askubuntu.com/*': no-3rdparty
+    '*://cloud.artsoftandmore.com/*': no-3rdparty
     '*://cryptpad.fr/*': no-3rdparty
     '*://discourse.nixos.org/*': no-3rdparty
+    '*://docs.google.com/*': no-3rdparty
     '*://efa.mvv-muenchen.de/*': no-3rdparty
     '*://gist.github.com/*': no-3rdparty
     '*://git.artsoftandmore.com/*': no-3rdparty
     '*://github.com/*': no-3rdparty
     '*://gitlab.com/*': no-3rdparty
     '*://hansseite.hanstool.org/*': no-3rdparty
-    '*://login.o2online.de/*': all
+    '*://login.muenchen.de/*': no-3rdparty
+    '*://meine.swm.de/*': no-3rdparty
     '*://o2.box/*': no-3rdparty
     '*://posteo.de/*': all
+    '*://security.stackexchange.com/*': no-3rdparty
     '*://service.discotel.de/*': no-3rdparty
     '*://stackoverflow.com/*': no-3rdparty
     '*://stars.przemeknowak.com/*': all
     '*://superuser.com/*': no-3rdparty
     '*://unix.stackexchange.com/*': no-3rdparty
     '*://vi.stackexchange.com/*': no-3rdparty
+    '*://wiki.nixos.org/*': all
     '*://www.bahn.de/*': no-3rdparty
     '*://www.kleinanzeigen.de/*': no-3rdparty
-    '*://www.o2online.de/*': all
     '*://www.openstreetmap.org/*': no-3rdparty
     '*://www.paypal.com/*': no-3rdparty
+    '*://www.theintimaterevolution.com/*': no-3rdparty
     '*://www.vr-ll.de/*': no-3rdparty
     '*://www.youtube.com/*': no-3rdparty
     global: never
@@ -83,7 +90,8 @@ settings:
   content.geolocation:
     global: false
   content.javascript.enabled:
-    '*://*.acroyoga-workspace.slack.com/*': true
+    '*://*.o2online.de/*': true
+    '*://*.slack.com/*': true
     '*://accounts.bahn.de/*': true
     '*://alot.readthedocs.io/*': true
     '*://archlinuxarm.org/*': true
@@ -112,11 +120,12 @@ settings:
     '*://hydra.nixos.org/*': true
     '*://impfdashboard.de/*': true
     '*://kachelmannwetter.com/*': true
-    '*://login.o2online.de/*': true
+    '*://login.muenchen.de/*': true
     '*://math.stackexchange.com/*': true
     '*://media.ccc.de/*': true
     '*://meet.artsoftandmore.com/*': true
     '*://meet.jit.si/*': true
+    '*://meine.swm.de/*': true
     '*://nina-roeckelein.de/*': true
     '*://nixos.wiki/*': true
     '*://o2.box/*': true
@@ -152,7 +161,6 @@ settings:
     '*://www.jimev.de/*': true
     '*://www.kleinanzeigen.de/*': true
     '*://www.mvv-muenchen.de/*': true
-    '*://www.o2online.de/*': true
     '*://www.openstreetmap.org/*': true
     '*://www.paypal.com/*': true
     '*://www.tagesschau.de/*': true
@@ -254,7 +262,7 @@ settings:
       leo: https://dict.leo.org/german-english/{}
       libgen: http://gen.lib.rus.ec/search.php?req={}
       nix: https://discourse.nixos.org/search?q={}
-      nw: https://nixos.wiki/index.php?search={}
+      nw: https://wiki.nixos.org/w/index.php?search={}
       osm: http://www.openstreetmap.org/search?query={}
       repo: https://repology.org/projects/?search={}
       w: https://en.wikipedia.org/w/index.php?search={}
