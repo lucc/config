@@ -50,6 +50,7 @@ settings:
     '*://accounts.meister.co/*': no-3rdparty
     '*://admin.artsoftandmore.com/*': no-3rdparty
     '*://admin3.artsoftandmore.com/*': no-3rdparty
+    '*://asamdemo2.eltern-portal.org/*': no-3rdparty
     '*://askubuntu.com/*': no-3rdparty
     '*://cloud.artsoftandmore.com/*': no-3rdparty
     '*://console.hetzner.cloud/*': no-3rdparty
@@ -64,6 +65,8 @@ settings:
     '*://hansseite.hanstool.org/*': no-3rdparty
     '*://konsoleh.hetzner.com/*': no-3rdparty
     '*://localhost/*': no-3rdparty
+    '*://meet.artsoftandmore.com/*': no-3rdparty
+    '*://meet2.artsoftandmore.com/*': no-3rdparty
     '*://msd.schule-infoportal.de/*': no-3rdparty
     '*://o2.box/*': no-3rdparty
     '*://ofs.schule-infoportal.de/*': no-3rdparty
@@ -71,23 +74,30 @@ settings:
     '*://robot.hetzner.com/*': no-3rdparty
     '*://schueler.schule-infoportal.de/*': no-3rdparty
     '*://schule-infoportal.de/*': no-3rdparty
+    '*://serverfault.com/*': no-3rdparty
     '*://service.discotel.de/*': no-3rdparty
     '*://sso.edenred.io/*': no-3rdparty
     '*://stackoverflow.com/*': no-3rdparty
     '*://superuser.com/*': no-3rdparty
+    '*://ts.kfv-portal.org/*': no-3rdparty
     '*://unix.stackexchange.com/*': no-3rdparty
     '*://vi.stackexchange.com/*': no-3rdparty
+    '*://webmasters.stackexchange.com/*': no-3rdparty
     '*://www.bahn.de/*': no-3rdparty
+    '*://www.mein-edenred.de/*': no-3rdparty
     '*://www.o2online.de/*': all
     '*://www.openstreetmap.org/*': no-3rdparty
     '*://www.paypal.com/*': no-3rdparty
     '*://www.vr-ll.de/*': no-3rdparty
+    '*://www.wetteronline.de/*': no-3rdparty
     '*://www.youtube.com/*': no-3rdparty
     '*://xxs-infoportal.de/*': no-3rdparty
     global: never
   content.desktop_capture:
     '*://meet.artsoftandmore.com/*': true
+    https://meet.ffmuc.net: true
     https://meet.jit.si: true
+    https://meet2.artsoftandmore.com: true
   content.geolocation:
     global: false
   content.javascript.enabled:
@@ -140,6 +150,7 @@ settings:
     '*://media.ccc.de/*': true
     '*://meet.artsoftandmore.com/*': true
     '*://meet.jit.si/*': true
+    '*://meet2.artsoftandmore.com/*': true
     '*://mermaid-js.github.io/*': true
     '*://msd.schule-infoportal.de/*': true
     '*://nina-roeckelein.de/*': true
@@ -178,12 +189,14 @@ settings:
     '*://unix.stackexchange.com/*': true
     '*://vi.stackexchange.com/*': true
     '*://vicious.readthedocs.io/*': true
+    '*://webmasters.stackexchange.com/*': true
     '*://www.bahn.de/*': true
     '*://www.cvedetails.com/*': true
     '*://www.ebay-kleinanzeigen.de/*': true
     '*://www.flixbus.de/*': true
     '*://www.jimev.de/*': true
     '*://www.kleinanzeigen.de/*': true
+    '*://www.mein-edenred.de/*': true
     '*://www.meistertask.com/*': true
     '*://www.mvv-muenchen.de/*': true
     '*://www.o2online.de/*': true
@@ -206,6 +219,7 @@ settings:
     https://meet.ffmuc.net: true
     https://meet.google.com: true
     https://meet.jit.si: true
+    https://meet2.artsoftandmore.com: true
     https://teams.microsoft.com: true
     https://test.bigbluebutton.org: true
   content.media.audio_video_capture:
@@ -213,10 +227,12 @@ settings:
     https://meet.ffmuc.net: true
     https://meet.google.com: true
     https://meet.jit.si: true
+    https://meet2.artsoftandmore.com: true
   content.media.video_capture:
     https://meet.artsoftandmore.com: true
     https://meet.ffmuc.net: true
     https://meet.google.com: true
+    https://meet2.artsoftandmore.com: true
     https://teams.microsoft.com: true
   content.notifications.enabled:
     global: false
