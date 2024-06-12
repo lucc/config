@@ -10,11 +10,9 @@ settings:
     global:
       block: hint images userscript add-to-custom-blocked-hosts
       chrome: spawn chromium {url}
-      darkmode: spawn qutebrowser -Ts colors.webpage.darkmode.enabled true {url}
       dlv: spawn tmux-youtube-dl.sh {url}
       elinks: spawn term -e elinks {url}
       firefox: spawn firefox {url}
-      lightmode: spawn qutebrowser -Ts colors.webpage.darkmode.enabled false {url}
       lynx: spawn term -e lynx {url}
       opera: spawn opera {url}
       pw: spawn --userscript password_fill
@@ -35,6 +33,8 @@ settings:
           all never ;; reload
         tch: config-cycle -p -t -u *://{url:host}/* content.cookies.accept no-3rdparty
           all never ;; reload
+        tdh: config-cycle -p -t -u *://{url:host}/* colors.webpage.darkmode.enabled ;; reload
+        tDh: config-cycle -p -u *://{url:host}/* colors.webpage.darkmode.enabled ;; reload
   colors.webpage.preferred_color_scheme:
     global: dark
   completion.cmd_history_max_items:
