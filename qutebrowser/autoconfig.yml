@@ -31,10 +31,12 @@ settings:
         abh: set -tp content.blocking.method hosts
         tCh: config-cycle -p -u *://{url:host}/* content.cookies.accept no-3rdparty
           all never ;; reload
+        tDh: config-cycle -p -u *://{url:host}/* colors.webpage.darkmode.enabled ;;
+          reload
         tch: config-cycle -p -t -u *://{url:host}/* content.cookies.accept no-3rdparty
           all never ;; reload
-        tdh: config-cycle -p -t -u *://{url:host}/* colors.webpage.darkmode.enabled ;; reload
-        tDh: config-cycle -p -u *://{url:host}/* colors.webpage.darkmode.enabled ;; reload
+        tdh: config-cycle -p -t -u *://{url:host}/* colors.webpage.darkmode.enabled
+          ;; reload
   colors.webpage.preferred_color_scheme:
     global: dark
   completion.cmd_history_max_items:
@@ -46,6 +48,7 @@ settings:
   content.cache.size:
     global: null
   content.cookies.accept:
+    '*://accounts.bahn.de/*': no-3rdparty
     '*://accounts.hetzner.com/*': no-3rdparty
     '*://accounts.meister.co/*': no-3rdparty
     '*://admin.artsoftandmore.com/*': no-3rdparty
@@ -79,6 +82,7 @@ settings:
     '*://sso.edenred.io/*': no-3rdparty
     '*://stackoverflow.com/*': no-3rdparty
     '*://superuser.com/*': no-3rdparty
+    '*://teams.microsoft.com/*': no-3rdparty
     '*://ts.kfv-portal.org/*': no-3rdparty
     '*://unix.stackexchange.com/*': no-3rdparty
     '*://vi.stackexchange.com/*': no-3rdparty
@@ -180,6 +184,7 @@ settings:
     '*://status.nixos.org/*': true
     '*://streaming.media.ccc.de/*': true
     '*://superuser.com/*': true
+    '*://teams.microsoft.com/*': true
     '*://tex.stackexchange.com/*': true
     '*://tickets.events.ccc.de/*': true
     '*://travis-ci.com/*': true
@@ -222,6 +227,7 @@ settings:
     https://meet2.artsoftandmore.com: true
     https://teams.microsoft.com: true
     https://test.bigbluebutton.org: true
+    https://viko.bycs.de: true
   content.media.audio_video_capture:
     https://meet.artsoftandmore.com: true
     https://meet.ffmuc.net: true
@@ -234,10 +240,11 @@ settings:
     https://meet.google.com: true
     https://meet2.artsoftandmore.com: true
     https://teams.microsoft.com: true
+    https://viko.bycs.de: true
   content.notifications.enabled:
     global: false
   content.pdfjs:
-    global: false
+    global: true
   content.prefers_reduced_motion:
     global: true
   content.proxy:
